@@ -1,12 +1,13 @@
 import React from 'react'
-import { Login } from "./webpages/Login"
-import { Register } from "./webpages/Register"
+
+
+import "./App.css"
+import  Login  from "./webpages/Login";
+
 
 function App() {
   return (
-    <div>
-
-    </div>
+    Login
   )
 }
 
