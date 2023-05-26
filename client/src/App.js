@@ -1,11 +1,23 @@
-import React from 'react'
-import "./App.css"
-import  Login  from "./webpages/Login";
+import React, { useState } from "react";
+import { Routes, Route } from 'react-router-dom';
+import "./App.css";
+
+import AppLayout from "./layout/RootLayout";
+
+import Login from "./webpages/Login";
+import Register from "./webpages/Register";
 
 function App() {
   return (
-    Login
-  )
+    <Routes>
+      <Route path ="/" element={<AppLayout />}>
+
+        <Route path="login" element= {<Login /> } />
+        <Route path="register" element= {<Register />} />
+
+      </Route>
+    </Routes>
+  );
 }
 
-export default App() 
+export default App; 

@@ -1,3 +1,9 @@
-body{
-    background-image: url("../images/background_image.jpg");
+.app {
+    background-image: url("../assets/background_image.jpg");
+    text-align: center;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
