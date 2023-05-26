@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Register from './Register';
 
 
 const Login = () => {
@@ -14,13 +16,14 @@ const Login = () => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label for="email">email</label>
+                <label htmlFor="email">Email</label>
                 <input value = {email} onChange ={(e) => setEmail(e.target.value)} type="email" placeholder="Email" id="email" name="email"/>
-                <label for="password">password</label>
+                <label htmlFor="password">Password</label>
                 <input value = {password} onChange ={(e) => setPassword(e.target.value)} type="password" placeholder="Password" id="password" name="password"/>
                 <button>Log In</button>
             </form>
-            <button>Do not have an account? Register here.</button>
+
+            <p>Don't have an account? <Link to ="/register">Register here.</Link></p>
         </>
     );
 };
