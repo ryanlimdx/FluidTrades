@@ -1,5 +1,11 @@
 .app {
+    /* making background image responsive */
     background-image: url("../assets/background_image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
     text-align: center;
     display: flex;
     min-height: 100vh;
