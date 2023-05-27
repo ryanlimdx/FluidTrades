@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Stack, Heading, Text, Center, Button, Input } from '@chakra-ui/react';
-import { Form, Formik } from 'formik';
+import { Stack, Heading, Text, Center, Button, Input ,InputLeftElement, InputGroup } from '@chakra-ui/react';
+import { AtSignIcon, LockIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { Form, Formik, Field } from 'formik';
+import axios from 'axios';
 
 const Register = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const initialValues = {
+        name: "",
+        email: "",
+        password: ""
+    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(email)
-        console.log(password)
-    };
+    const handleSubmit = async (values, {setSubmitting}) => {
+        try {
+            // Make POST request
+            const response = await axios.post('/register', values)
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setSubmitting = false;
+        }
+    }
 
     return (
         <Center>
@@ -21,30 +31,45 @@ const Register = () => {
                     <Text fontSize="lg">Please register for an account with your name and email.</Text>
 
                     <Formik
-                        onSubmit={(values, {setSubmitting}) => {
-                            setTimeout(() => {
-                                console.log(values);
-                                setSubmitting(false);
-                            }, 1000);
-                        }}
-                        initialValues={{email: "", password: ""}}          
+                        onSubmit={handleSubmit}
+                        initialValues={initialValues}          
                     >
+                        {({isSubmitting}) => (
                         <Form>
                             <Stack>
-                                <Input name="name" type="name" placeholder="Full Name"/>
-                                <Input name="email" type="email" placeholder="Email"/>
-                                <Input name="password" type="password" placeholder="Password"/>
+                            <Field as={InputGroup}>
+                                    <Input name="name" type="name" placeholder="Name" />
+                                    <InputLeftElement pointerEvents='none'>
+                                        <ChevronRightIcon color="teal"/>
+                                    </InputLeftElement>
+                                </Field>
+
+                                <Field as={InputGroup}>
+                                    <Input name="email" type="email" placeholder="Email" />
+                                    <InputLeftElement pointerEvents='none'>
+                                        <AtSignIcon color="teal"/>
+                                    </InputLeftElement>
+                                </Field>
+
+                                <Field as={InputGroup}>
+                                    <Input name="password" type="password" placeholder="Password" />
+                                    <InputLeftElement pointerEvents='none'>
+                                        <LockIcon color="teal"/>
+                                    </InputLeftElement>
+                                </Field>
+
                                 <Button                             
-                                    isLoading={handleSubmit}
+                                    isLoading={isSubmitting}
                                     loadingText="Hang on while we fight the demons."
                                     size="lg"
                                     colorScheme="teal"
                                     type="submit"
                                     >
-                                    Login
+                                    Register
                                 </Button>
                             </Stack>
                         </Form>
+                        )}
                     </Formik>
 
                     
