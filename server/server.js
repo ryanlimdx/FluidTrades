@@ -2,13 +2,13 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+app.use(express.json());
 
 const mongoose = require('mongoose'); 
-const User = require('./schemas/User');
 
 // ensure port is up and running
-app.listen(4000, () => {
-    console.log("Server started on Port 4000.");
+app.listen(8080, () => {
+    console.log("Server started.");
 })  
 
 // connect to database
@@ -23,18 +23,29 @@ mongoose.connect(process.env.DB, {
 });
 
 
-
+const User = require('./schemas/User');
 // POST request to register user into database
-app.post('http://localhost:4000/register', async(req, res) => {
+app.post('http://localhost:3000/register', async(req, res) => {
   try {
-    // Create new User
-    const newUser = new User(req.body);
-
-    // Save newUser to database
-    await newUser.save();
-    res.status(201).json(newUser);
+    const name = req.body.name;
+      const email = req.body.email;
+      console.log(email);
+    const password = req.body.password;
+    
+    const existingUser = await User.findOne({email});
+    if (existingUser) {
+      return res.status(409).json({ messsage: 'A user with that email already exists.'})
+    } else {
+      // Create new User
+      const newUser = User.create({
+        name: name,
+        email: email,
+        password: password
+      })
+      res.send({status : "ok"})
+    }
   } catch(error) {
-    res.status(500).json({error : "An error occured"});
+    res.status(500).json({error : "An error occured."});
   }
 })
 

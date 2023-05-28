@@ -14,11 +14,13 @@ const Register = () => {
 
     const handleSubmit = async (values, {setSubmitting}) => {
         try {
+            const config = { headers: { "Content-Type": "application/json"}}
+            console.log(values);
             // Make POST request
-            const response = await axios.post('http://localhost:4000/register', values)
+            const response = await axios.post('http://localhost:3000/register', values, config)
             console.log(response.data);
         } catch (error) {
-            console.log(error);
+            console.error("An error occured:", error);
         } finally {
             setSubmitting = false;
         }
@@ -38,7 +40,7 @@ const Register = () => {
                         <Form>
                             <Stack>
                             <Field as={InputGroup}>
-                                    <Input name="name" type="name" placeholder="Name" />
+                                    <Input name="name" type="text" placeholder="Name" />
                                     <InputLeftElement pointerEvents='none'>
                                         <ChevronRightIcon color="teal"/>
                                     </InputLeftElement>

@@ -16,8 +16,8 @@ const Login = () => {
         try {
             console.log(values);
             // Make POST request
-            const response = await axios.post('http://localhost:4000/login', values)
-            console.log(response.data);
+            // const response = await axios.post('/login', values)
+            // console.log(response.data);
         } catch (error) {
             console.log(error);
         } finally {

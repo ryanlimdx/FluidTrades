@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
 
-import AppLayout from "./layout/RootLayout";
+import RootLayout from "./layout/RootLayout";
 
 import Login from "./webpages/Login";
 import Register from "./webpages/Register";
@@ -9,7 +9,7 @@ import Register from "./webpages/Register";
 function App() {
   return (
     <Routes>
-      <Route path ="/" element={<AppLayout />} >
+      <Route path ="/" element={<RootLayout />} >
 
         <Route path="login" element= {<Login /> } />
         <Route path="register" element= {<Register />} />
