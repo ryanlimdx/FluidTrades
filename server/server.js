@@ -4,12 +4,7 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-const mongoose = require('mongoose'); 
-
-// ensure port is up and running
-app.listen(8080, () => {
-    console.log("Server started.");
-})  
+const mongoose = require('mongoose');  
 
 // connect to database
 mongoose.connect(process.env.DB, {
@@ -25,16 +20,20 @@ mongoose.connect(process.env.DB, {
 
 const User = require('./schemas/User');
 // POST request to register user into database
-app.post('http://localhost:3000/register', async(req, res) => {
-  try {
+app.post('/register', async(req, res) => {
+  try {np
     const name = req.body.name;
-      const email = req.body.email;
-      console.log(email);
+    const email = req.body.email;
+    console.log(email);
     const password = req.body.password;
+
+    if (!(email && password && name)) {
+      return res.status(400).json({ message: "Your name, email and password are required!"})
+    }
     
     const existingUser = await User.findOne({email});
     if (existingUser) {
-      return res.status(409).json({ messsage: 'A user with that email already exists.'})
+      return res.json({ messsage: 'A user with that email already exists.'})
     } else {
       // Create new User
       const newUser = User.create({
@@ -49,3 +48,7 @@ app.post('http://localhost:3000/register', async(req, res) => {
   }
 })
 
+// ensure port is up and running
+app.listen(4000, () => {
+  console.log("Server started.");
+}) 

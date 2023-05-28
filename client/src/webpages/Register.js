@@ -14,13 +14,29 @@ const Register = () => {
 
     const handleSubmit = async (values, {setSubmitting}) => {
         try {
+            
             const config = { headers: { "Content-Type": "application/json"}}
             console.log(values);
             // Make POST request
-            const response = await axios.post('http://localhost:3000/register', values, config)
+            const response = await axios.post('reg  ister', values, config)
             console.log(response.data);
         } catch (error) {
-            console.error("An error occured:", error);
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
         } finally {
             setSubmitting = false;
         }
@@ -39,8 +55,8 @@ const Register = () => {
                         {({isSubmitting}) => (
                         <Form>
                             <Stack>
-                            <Field as={InputGroup}>
-                                    <Input name="name" type="text" placeholder="Name" />
+                                <Field as={InputGroup}>
+                                    <Input name="name" type="text" placeholder="Name" required={true}/>
                                     <InputLeftElement pointerEvents='none'>
                                         <ChevronRightIcon color="teal"/>
                                     </InputLeftElement>
@@ -54,7 +70,7 @@ const Register = () => {
                                 </Field>
 
                                 <Field as={InputGroup}>
-                                    <Input name="password" type="password" placeholder="Password" />
+                                    <Input name="password" type="password" placeholder="Password" required={true}/>
                                     <InputLeftElement pointerEvents='none'>
                                         <LockIcon color="teal"/>
                                     </InputLeftElement>
