@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Stack, Heading, Text, Center, Button, Input ,InputLeftElement, InputGroup } from '@chakra-ui/react';
 import { AtSignIcon, LockIcon } from '@chakra-ui/icons';
@@ -14,10 +14,11 @@ const Login = () => {
 
     const handleSubmit = async (values, {setSubmitting}) => {
         try {
+            const config = { headers: { contentType : "application/json" }}
             console.log(values);
             // Make POST request
-            // const response = await axios.post('/login', values)
-            // console.log(response.data);
+            const response = await axios.post('http://localhost:3000/login', values, config)
+            console.log(response.data);
         } catch (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code

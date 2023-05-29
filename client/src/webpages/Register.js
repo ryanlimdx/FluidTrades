@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Stack, Heading, Text, Center, Button, Input ,InputLeftElement, InputGroup } from '@chakra-ui/react';
 import { AtSignIcon, LockIcon, ChevronRightIcon } from '@chakra-ui/icons';
@@ -14,11 +14,10 @@ const Register = () => {
 
     const handleSubmit = async (values, {setSubmitting}) => {
         try {
-            
-            const config = { headers: { "Content-Type": "application/json"}}
+            const config = { headers: { "Content-Type" : "application/json" }}
             console.log(values);
             // Make POST request
-            const response = await axios.post('reg  ister', values, config)
+            const response = await axios.post('http://localhost:3000/register', values, config)
             console.log(response.data);
         } catch (error) {
             if (error.response) {
