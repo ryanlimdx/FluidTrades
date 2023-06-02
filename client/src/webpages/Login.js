@@ -1,12 +1,14 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Stack, Heading, Text, Center, Button, Input ,InputLeftElement, InputGroup } from '@chakra-ui/react';
 import { AtSignIcon, LockIcon } from '@chakra-ui/icons';
 import { Form, Formik, Field } from 'formik';
-import axios from 'axios';
+import axios from '../api/axios';
+import UserAuthContext from '../context/UserAuthContext';
 
 
 const Login = () => {
+    const { setUserAuth } = useContext(UserAuthContext);
     const initialValues = {
         email: '',
         password: ''
@@ -17,8 +19,10 @@ const Login = () => {
             const config = { headers: { contentType : "application/json" }}
             console.log(values);
             // Make POST request
-            const response = await axios.post('http://localhost:3000/login', values, config)
+            const response = await axios.post('/login', values, config);
             console.log(response.data);
+            const accessToken = response.data.token;
+            setUserAuth({ values, accessToken});
         } catch (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code

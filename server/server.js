@@ -6,7 +6,7 @@ const app = require("./app");
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { createJWT } =require('./middleware/webtoken');
+const { createJWT } = require('./middleware/webtoken');
 
 const User = require('./schemas/User');
 // POST request to register user into database
@@ -28,7 +28,7 @@ app.post('/register', async(req, res) => {
       var salt = bcrypt.genSaltSync(10);
       const encryptedPassword = await bcrypt.hash(password, salt);
       // Create new User
-      const newUser = await User.create({
+      await User.create({
         name: name,
         email: email,
         password: encryptedPassword
