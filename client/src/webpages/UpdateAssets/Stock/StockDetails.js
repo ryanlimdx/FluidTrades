@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAppState } from "../../state";
+import { useAppState } from "../../../state";
 import {
   Stack,
   Heading,
@@ -15,14 +15,17 @@ import {
   RadioGroup,
   Radio,
   HStack,
+  Flex,
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
 
-const ClosingPosition = () => {
+const StockDetails = () => {
   const initialValues = {
-    price: "",
-    shares: "",
-    fees: "",
+    sector: "",
+    equity: "",
+    ticker: "",
+    currency: "",
+    transactionType: "",
   };
 
   const [state, setState] = useAppState();
@@ -30,38 +33,35 @@ const ClosingPosition = () => {
 
   const saveData = (data) => {
     setState({ ...state, ...data });
-    navigate("/UpdateAssets/Confirmation");
+
+    console.log(state.transactionType);
+    
+    if (state.transactionType === "Buy") {
+      navigate("/UpdateAssets/Stock/OpeningPosition");
+    } else if (state.transactionType === "Sell") {
+      navigate("/UpdateAssets/Stock/ClosingPosition");
+    } else {
+      navigate("/UpdateAssets/Stock/Dividends");
+    }
+    
   };
 
   return (
-    <Center>
-      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">Closing position</Heading>
+    <Flex>
+        <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
+        <Heading as="h1">Tell us more about the company</Heading>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
-          {({ isSubmitting }) => (
+          {({ isSubmitting, setFieldValue }) => (
             <Form>
               <Stack>
                 <Field as={InputGroup}>
                   <FormControl>
-                    <FormLabel>Price per share</FormLabel>
+                    <FormLabel>Sector</FormLabel>
                     <Input
-                      name="price"
+                      name="sector"
                       type="text"
-                      placeholder="24"
-                      required={true}
-                    />
-                    <FormHelperText> Currency need not be included! </FormHelperText>
-                  </FormControl>
-                </Field>
-
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Number of shares</FormLabel>
-                    <Input
-                      name="shares"
-                      type="text"
-                      placeholder="10"
+                      placeholder="Technology"
                       required={true}
                     />
                   </FormControl>
@@ -69,14 +69,37 @@ const ClosingPosition = () => {
 
                 <Field as={InputGroup}>
                   <FormControl>
-                    <FormLabel>Fees</FormLabel>
+                    <FormLabel>Equity</FormLabel>
                     <Input
-                      name="fees"
+                      name="equity"
                       type="text"
-                      placeholder="0.40"
+                      placeholder="Apple"
                       required={true}
                     />
-                    <FormHelperText> Commissions paid for the transaction. </FormHelperText>
+                  </FormControl>
+                </Field>
+
+                <Field as={InputGroup}>
+                  <FormControl>
+                    <FormLabel>Ticker</FormLabel>
+                    <Input
+                      name="ticker"
+                      type="text"
+                      placeholder="AAPL"
+                      required={true}
+                    />
+                  </FormControl>
+                </Field>
+
+                <Field as={InputGroup}>
+                  <FormControl>
+                    <FormLabel>Currency</FormLabel>
+                    <Input
+                      name="currency"
+                      type="text"
+                      placeholder="USD"
+                      required={true}
+                    />
                   </FormControl>
                 </Field>
 
@@ -94,8 +117,9 @@ const ClosingPosition = () => {
           )}
         </Formik>
       </Stack>
-    </Center>
+    </Flex>
+      
   );
 };
 
-export default ClosingPosition;
+export default StockDetails;
