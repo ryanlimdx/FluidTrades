@@ -30,6 +30,8 @@ const ClosingPosition = () => {
 
   const saveData = (data) => {
     setState({ ...state, ...data });
+    console.log("Closing Position: ");
+    console.log(state.transactionType);
     navigate("/UpdateAssets/Stock/Confirmation");
   };
 

@@ -16,8 +16,10 @@ import {
   Radio,
   HStack,
   Flex,
+  Select
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
+
 
 const StockTransaction = () => {
   const initialValues = {
@@ -44,13 +46,44 @@ const StockTransaction = () => {
                 <Field as={InputGroup}>
                   <FormControl>
                     <FormLabel> Transaction type </FormLabel>
-                    <RadioGroup name="transactionType">
+                    {/* <RadioGroup name="transactionType">
                       <HStack spacing="24px">
                         <Radio name="transactionType" value="Buy" onChange= {() => setFieldValue("transactionType", "Buy")}>Buy</Radio>
                         <Radio name="transactionType" value="Sell" onChange= {() => setFieldValue("transactionType", "Sell")}>Sell</Radio>
                         <Radio name="transactionType" value="Dividends" onChange= {() => setFieldValue("transactionType", "Dividends")}>Dividends</Radio>
                       </HStack>
-                    </RadioGroup>
+                    </RadioGroup> */}
+                    
+                    {/* <Select name='transactionType' placeholder='Select option'>
+                      <option value='Buy'>Buy</option>
+                      <option value='Sell'>Sell</option>
+                      <option value='Dividends'>Dividends</option>
+                    </Select> */}
+
+                    <Field as={InputGroup}>
+                      <FormControl>
+                        <FormLabel>Transaction type</FormLabel>
+                        <Input
+                          name="transactionType"
+                          type="radio"
+                          id="Buy"
+                          value="Buy"
+                          required={true}
+                        />
+                        <label for="Buy">Buy</label>
+
+                        {/* <Input
+                          name="transactionType"
+                          type="radio"
+                          id="Sell"
+                          value="Sell"
+                          required={true}
+                        />
+                        <label for="Sell">Sell</label> */}
+                      </FormControl>
+                    </Field>
+
+                   
                     <FormHelperText>Select the transaction type.</FormHelperText>
                   </FormControl>
                 </Field>

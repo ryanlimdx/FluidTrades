@@ -33,7 +33,7 @@ const StockDetails = () => {
 
   const saveData = (data) => {
     setState({ ...state, ...data });
-
+    console.log("Stock Details: ");
     console.log(state.transactionType);
     
     if (state.transactionType === "Buy") {
