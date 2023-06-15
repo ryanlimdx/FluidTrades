@@ -4,7 +4,7 @@ export const Section = ({ title, children, url }) => {
   return (
     <div className="section mb-4">
       <div className="title-row mb-4">
-        <h4>{title}</h4>
+        <h2><b>{title}</b></h2>
         <Link className={`btn btn-secondary`} to={url}>
           Edit
         </Link>

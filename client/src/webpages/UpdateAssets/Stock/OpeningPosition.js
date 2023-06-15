@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAppState } from "../../state";
+import { useAppState } from "../../../state";
 import {
   Stack,
   Heading,
@@ -18,10 +18,11 @@ import {
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
 
-const Dividends = () => {
+const OpeningPosition = () => {
   const initialValues = {
+    price: "",
     shares: "",
-    dividends: "",
+    fees: "",
   };
 
   const [state, setState] = useAppState();
@@ -29,21 +30,33 @@ const Dividends = () => {
 
   const saveData = (data) => {
     setState({ ...state, ...data });
-    navigate("/UpdateAssets/Confirmation");
+    console.log("Opening Position: ");
+    console.log(state.sector);
+    console.log(state.transactionType);
+    navigate("/UpdateAssets/Stock/Confirmation");
   };
 
   return (
     <Center>
       <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">Dividends</Heading>
-        <Text fontSize="lg">
-          Dividends can be in the form of monetary distribution from Companies, or Staking rewards for Cryptocurrencies!
-        </Text>
+        <Heading as="h1">Almost there! Position details left...</Heading>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
           {({ isSubmitting }) => (
             <Form>
               <Stack>
+                <Field as={InputGroup}>
+                    <FormControl>
+                      <FormLabel>Price per share</FormLabel>
+                      <Input
+                        name="price"
+                        type="text"
+                        placeholder="24"
+                        required={true}
+                      />
+                      <FormHelperText> Currency need not be included! </FormHelperText>
+                    </FormControl>
+                </Field>
 
                 <Field as={InputGroup}>
                     <FormControl>
@@ -58,16 +71,16 @@ const Dividends = () => {
                 </Field>
 
                 <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Dividends issued</FormLabel>
-                    <Input
-                      name="dividends"
-                      type="text"
-                      placeholder="0.60"
-                      required={true}
-                    />
-                    <FormHelperText>Dividends issued per share.</FormHelperText>
-                  </FormControl>
+                    <FormControl>
+                      <FormLabel>Fees</FormLabel>
+                      <Input
+                        name="fees"
+                        type="text"
+                        placeholder="0.40"
+                        required={true}
+                      />
+                      <FormHelperText> Commissions paid for the transaction. </FormHelperText>
+                    </FormControl>
                 </Field>
 
                 <Button
@@ -88,4 +101,4 @@ const Dividends = () => {
   );
 };
 
-export default Dividends;
+export default OpeningPosition;

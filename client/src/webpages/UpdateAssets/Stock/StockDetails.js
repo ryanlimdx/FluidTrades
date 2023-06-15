@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAppState } from "../../state";
+import { useAppState } from "../../../state";
 import {
   Stack,
   Heading,
@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
 
-const UpdateAssets = () => {
+const StockDetails = () => {
   const initialValues = {
     sector: "",
     equity: "",
@@ -33,25 +33,23 @@ const UpdateAssets = () => {
 
   const saveData = (data) => {
     setState({ ...state, ...data });
+    console.log("Stock Details: ");
     console.log(state.transactionType);
-    if (initialValues.transactionType === "Buy") { // testing alternative methods to retrieve form data
-      navigate("/UpdateAssets/OpeningPosition");
+    
+    if (state.transactionType === "Buy") {
+      navigate("/UpdateAssets/Stock/OpeningPosition");
     } else if (state.transactionType === "Sell") {
-      navigate("/UpdateAssets/ClosingPosition");
+      navigate("/UpdateAssets/Stock/ClosingPosition");
     } else {
-      navigate("/UpdateAssets/Dividends");
+      navigate("/UpdateAssets/Stock/Dividends");
     }
+    
   };
 
   return (
     <Flex>
         <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">Track your equities</Heading>
-        <Text fontSize="lg">
-          This form is for the tracking of transactions related to equities, and
-          may include of Cryptocurrency. The form is to be filled out in TITLE
-          CASE.
-        </Text>
+        <Heading as="h1">Tell us more about the company</Heading>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
           {({ isSubmitting, setFieldValue }) => (
@@ -105,18 +103,6 @@ const UpdateAssets = () => {
                   </FormControl>
                 </Field>
 
-                <FormControl as="fieldset">
-                  <FormLabel> Transaction type </FormLabel>
-                  <RadioGroup name="transactionType">
-                    <HStack spacing="24px">
-                      <Radio value="Buy" onChange= {() => setFieldValue("transactionType", "Buy")}>Buy</Radio>
-                      <Radio value="Sell" onChange= {() => setFieldValue("transactionType", "Sell")}>Sell</Radio>
-                      <Radio value="Dividends" onChange= {() => setFieldValue("transactionType", "Dividends")}>Dividends</Radio>
-                    </HStack>
-                  </RadioGroup>
-                  <FormHelperText>Select the transaction type.</FormHelperText>
-                </FormControl>
-
                 <Button
                   isLoading={isSubmitting}
                   loadingText="Hang on while we fight the demons."
@@ -136,4 +122,4 @@ const UpdateAssets = () => {
   );
 };
 
-export default UpdateAssets;
+export default StockDetails;

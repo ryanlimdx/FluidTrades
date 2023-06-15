@@ -10,11 +10,18 @@ import Register from "./webpages/Register";
 import Homepage from "./webpages/Homepage";
 
 // UpdateAssets form
-import TransactionDetails from "./webpages/UpdateAssets/TransactionDetails";
-import OpeningPosition from "./webpages/UpdateAssets/OpeningPosition";
-import ClosingPosition from "./webpages/UpdateAssets/ClosingPosition";
-import Dividends from "./webpages/UpdateAssets/Dividends";
-import Confirmation from "./webpages/UpdateAssets/Confirmation";
+
+// Stock
+import StockTransaction from "./webpages/UpdateAssets/Stock/StockTransaction";
+import StockDetails from "./webpages/UpdateAssets/Stock/StockDetails";
+import OpeningPosition from "./webpages/UpdateAssets/Stock/OpeningPosition";
+import ClosingPosition from "./webpages/UpdateAssets/Stock/ClosingPosition";
+import Dividends from "./webpages/UpdateAssets/Stock/Dividends";
+
+// Currency
+
+// Confirmation
+import Confirmation from "./webpages/UpdateAssets/Stock/Confirmation";
 
 function App() {
   return (
@@ -24,13 +31,13 @@ function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/homepage" exact element={<Homepage />} />
-
-          <Route path="/updateAssets" element={<TransactionDetails />} />
-          <Route path="/updateAssets/OpeningPosition" element={<OpeningPosition />} />
-          <Route path="/updateAssets/ClosingPosition" element={<ClosingPosition />} />
-          <Route path="/updateAssets/Dividends" element={<Dividends />} />
-          <Route path="/updateAssets/Confirmation" element={<Confirmation />} />
-
+          // Stock Form
+          <Route path="/updateAssets/Stock" element={<StockTransaction />} />
+          <Route path="/updateAssets/Stock/Details" element={<StockDetails />} />
+          <Route path="/updateAssets/Stock/OpeningPosition" element={<OpeningPosition />} />
+          <Route path="/updateAssets/Stock/ClosingPosition" element={<ClosingPosition />} />
+          <Route path="/updateAssets/Stock/Dividends" element={<Dividends />} />
+          <Route path="/updateAssets/Stock/Confirmation" element={<Confirmation />} />
           {/**
            * <Route element={<PrivateRoutes />}>
            *  <Route path="/homepage" exact element= {<Homepage />}/>
@@ -39,7 +46,6 @@ function App() {
         </Route>
       </Routes>
     </AppProvider>
-    
   );
 }
 

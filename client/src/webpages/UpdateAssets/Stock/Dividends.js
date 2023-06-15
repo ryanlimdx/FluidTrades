@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAppState } from "../../state";
+import { useAppState } from "../../../state";
 import {
   Stack,
   Heading,
@@ -18,11 +18,10 @@ import {
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
 
-const ClosingPosition = () => {
+const Dividends = () => {
   const initialValues = {
-    price: "",
     shares: "",
-    fees: "",
+    dividends: "",
   };
 
   const [state, setState] = useAppState();
@@ -30,53 +29,44 @@ const ClosingPosition = () => {
 
   const saveData = (data) => {
     setState({ ...state, ...data });
-    navigate("/UpdateAssets/Confirmation");
+    navigate("/UpdateAssets/Stock/Confirmation");
   };
 
   return (
     <Center>
       <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">Closing position</Heading>
+        <Heading as="h1">Almost there! Position details left...</Heading>
+        <Text fontSize="lg">
+          Dividends can be in the form of monetary distribution from Companies, or Staking rewards for Cryptocurrencies!
+        </Text>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
           {({ isSubmitting }) => (
             <Form>
               <Stack>
+
                 <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Price per share</FormLabel>
-                    <Input
-                      name="price"
-                      type="text"
-                      placeholder="24"
-                      required={true}
-                    />
-                    <FormHelperText> Currency need not be included! </FormHelperText>
-                  </FormControl>
+                    <FormControl>
+                      <FormLabel>Number of shares</FormLabel>
+                      <Input
+                        name="shares"
+                        type="text"
+                        placeholder="10"
+                        required={true}
+                      />
+                    </FormControl>
                 </Field>
 
                 <Field as={InputGroup}>
                   <FormControl>
-                    <FormLabel>Number of shares</FormLabel>
+                    <FormLabel>Dividends issued</FormLabel>
                     <Input
-                      name="shares"
+                      name="dividends"
                       type="text"
-                      placeholder="10"
+                      placeholder="0.60"
                       required={true}
                     />
-                  </FormControl>
-                </Field>
-
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Fees</FormLabel>
-                    <Input
-                      name="fees"
-                      type="text"
-                      placeholder="0.40"
-                      required={true}
-                    />
-                    <FormHelperText> Commissions paid for the transaction. </FormHelperText>
+                    <FormHelperText>Dividends issued per share.</FormHelperText>
                   </FormControl>
                 </Field>
 
@@ -98,4 +88,4 @@ const ClosingPosition = () => {
   );
 };
 
-export default ClosingPosition;
+export default Dividends;
