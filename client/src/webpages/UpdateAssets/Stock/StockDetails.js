@@ -24,14 +24,13 @@ const StockDetails = () => {
     sector: "",
     equity: "",
     ticker: "",
-    currency: "",
-    transactionType: "",
+    currency: ""
   };
 
   const [state, setState] = useAppState();
   const navigate = useNavigate();
 
-  const saveData = (data) => {
+  const saveData = async (data) => {
     setState({ ...state, ...data });
     console.log("Stock Details: ");
     console.log(state.transactionType);

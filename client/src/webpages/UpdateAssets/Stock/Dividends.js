@@ -27,7 +27,7 @@ const Dividends = () => {
   const [state, setState] = useAppState();
   const navigate = useNavigate();
 
-  const saveData = (data) => {
+  const saveData = async (data) => {
     setState({ ...state, ...data });
     navigate("/UpdateAssets/Stock/Confirmation");
   };

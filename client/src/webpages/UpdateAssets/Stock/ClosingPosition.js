@@ -28,7 +28,7 @@ const ClosingPosition = () => {
   const [state, setState] = useAppState();
   const navigate = useNavigate();
 
-  const saveData = (data) => {
+  const saveData = async (data) => {
     setState({ ...state, ...data });
     console.log("Closing Position: ");
     console.log(state.transactionType);

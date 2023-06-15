@@ -28,11 +28,10 @@ const OpeningPosition = () => {
   const [state, setState] = useAppState();
   const navigate = useNavigate();
 
-  const saveData = (data) => {
+  const saveData = async (data) => {
     setState({ ...state, ...data });
     console.log("Opening Position: ");
-    console.log(state.sector);
-    console.log(state.transactionType);
+    console.log(initialValues);
     navigate("/UpdateAssets/Stock/Confirmation");
   };
 
