@@ -46,13 +46,13 @@ const StockTransaction = () => {
                 <Field as={InputGroup}>
                   <FormControl>
                     <FormLabel> Transaction type </FormLabel>
-                    {/* <RadioGroup name="transactionType">
+                    <RadioGroup name="transactionType">
                       <HStack spacing="24px">
                         <Radio name="transactionType" value="Buy" onChange= {() => setFieldValue("transactionType", "Buy")}>Buy</Radio>
                         <Radio name="transactionType" value="Sell" onChange= {() => setFieldValue("transactionType", "Sell")}>Sell</Radio>
                         <Radio name="transactionType" value="Dividends" onChange= {() => setFieldValue("transactionType", "Dividends")}>Dividends</Radio>
                       </HStack>
-                    </RadioGroup> */}
+                    </RadioGroup>
                     
                     {/* <Select name='transactionType' placeholder='Select option'>
                       <option value='Buy'>Buy</option>
@@ -60,7 +60,7 @@ const StockTransaction = () => {
                       <option value='Dividends'>Dividends</option>
                     </Select> */}
 
-                    <Field as={InputGroup}>
+                    {/* <Field as={InputGroup}>
                       <FormControl>
                         <FormLabel>Transaction type</FormLabel>
                         <Input
@@ -72,16 +72,16 @@ const StockTransaction = () => {
                         />
                         <label for="Buy">Buy</label>
 
-                        {/* <Input
+                        <Input
                           name="transactionType"
                           type="radio"
                           id="Sell"
                           value="Sell"
                           required={true}
                         />
-                        <label for="Sell">Sell</label> */}
+                        <label for="Sell">Sell</label>
                       </FormControl>
-                    </Field>
+                    </Field> */}
 
                    
                     <FormHelperText>Select the transaction type.</FormHelperText>
