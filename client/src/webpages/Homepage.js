@@ -2,7 +2,7 @@
 
 const Homepage = () => {
     return (
-        <h1>You have successfully logged in!</h1>
+        <h3>You have successfully logged in!</h3>
     )
 }
 

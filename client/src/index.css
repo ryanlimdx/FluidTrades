@@ -13,7 +13,7 @@ body {
 
 .app {
   /* making background image responsive */
-  background-image: url("../assets/background_image.jpg");
+  background-image: url("./assets/background_image.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
