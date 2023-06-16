@@ -1,8 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import RootLayout from "./layout/RootLayout";
 import PrivateRoutes from "./navigation/PrivateRoutes";
 import { AppProvider } from "./state";
+
+// Layouts
+import RootLayout from "./layout/RootLayout";
+import MainLayout from "./layout/MainLayout";
 
 // Webpages
 import Login from "./webpages/Login";
@@ -26,6 +29,7 @@ import ConvertTo from "./webpages/UpdateAssets/Currency/ConvertTo";
 import CurrencyConfirmation from "./webpages/UpdateAssets/Currency/Confirmation";
 
 
+
 function App() {
   return (
     <AppProvider>
@@ -33,6 +37,7 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
+
           <Route path="/homepage" exact element={<Homepage />} />
           // Stock Form
           <Route path="/updateAssets/Stock" element={<StockTransaction />} />
