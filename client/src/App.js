@@ -34,10 +34,11 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
+
           <Route element={<MainLayout />}>
             <Route path="/homepage" exact element={<Homepage />} />
 
-              // Stock Form
+            {/*  Stock Form */}
             <Route path="/updateAssets/Stock" element={<StockTransaction />} />
             <Route path="/updateAssets/Stock/Details" element={<StockDetails />} />
             <Route path="/updateAssets/Stock/OpeningPosition" element={<OpeningPosition />} />
