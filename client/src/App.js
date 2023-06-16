@@ -17,11 +17,14 @@ import StockDetails from "./webpages/UpdateAssets/Stock/StockDetails";
 import OpeningPosition from "./webpages/UpdateAssets/Stock/OpeningPosition";
 import ClosingPosition from "./webpages/UpdateAssets/Stock/ClosingPosition";
 import Dividends from "./webpages/UpdateAssets/Stock/Dividends";
+import StockConfirmation from "./webpages/UpdateAssets/Stock/Confirmation";
 
 // Currency
+import CurrencyTransaction from "./webpages/UpdateAssets/Currency/CurrencyTransaction";
+import CurrencyBase from "./webpages/UpdateAssets/Currency/CurrencyBase";
+import ConvertTo from "./webpages/UpdateAssets/Currency/ConvertTo";
+import CurrencyConfirmation from "./webpages/UpdateAssets/Currency/Confirmation";
 
-// Confirmation
-import Confirmation from "./webpages/UpdateAssets/Stock/Confirmation";
 
 function App() {
   return (
@@ -37,7 +40,14 @@ function App() {
           <Route path="/updateAssets/Stock/OpeningPosition" element={<OpeningPosition />} />
           <Route path="/updateAssets/Stock/ClosingPosition" element={<ClosingPosition />} />
           <Route path="/updateAssets/Stock/Dividends" element={<Dividends />} />
-          <Route path="/updateAssets/Stock/Confirmation" element={<Confirmation />} />
+          <Route path="/updateAssets/Stock/Confirmation" element={<StockConfirmation />} />
+
+          // Currency Form
+          <Route path="updateAssets/Currency" element={<CurrencyTransaction/>} />
+          <Route path="updateAssets/Currency/Base" element={<CurrencyBase/>} />
+          <Route path="updateAssets/Currency/ConvertTo" element={<ConvertTo/>} />          
+          <Route path="updateAssets/Currency/Confirmation" element={<CurrencyConfirmation/>} />
+
           {/**
            * <Route element={<PrivateRoutes />}>
            *  <Route path="/homepage" exact element= {<Homepage />}/>
