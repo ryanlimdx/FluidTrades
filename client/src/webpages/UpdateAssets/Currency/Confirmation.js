@@ -20,7 +20,7 @@ import { Form, Formik, Field } from "formik";
 import { Section, SectionRow } from '../../../components/forms/Section';
 
 
-const StockConfirmation = () => {
+const CurrencyConfirmation = () => {
     const [state] = useAppState();
    
     const handleSubmit = async (values, { setSubmitting }) => {
@@ -55,60 +55,57 @@ const StockConfirmation = () => {
     return (
         <Flex>
             <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-            <Heading as="h1">Woohoo! Now, confirm your {state.transactionType} transaction!</Heading>
+            <Heading as="h1">
+                Woohoo! Now, confirm your 
+                {state.transactionType === "deposit" && " deposit "}
+                {state.transactionType === "withdraw" && " withdrawal "}
+                {state.transactionType === "convert" && " conversion "}
+                details!
+            </Heading>
+
             <Formik onSubmit={handleSubmit}>
                 {({ isSubmitting }) => (
                 <Form>
                 <Stack>
-                    // Confirmation should show relevant segments (if-else statements html)
-                    // Deposit
-                    // Withdraw
-                    // Convert Currency
-                    // Buy
-                    // Sell
-                    // Dividends
+                    <SectionRow>
+                        <div>
+                            Currency 
+                            {state.transactionType === "deposit" && " deposited"}
+                            {state.transactionType === "withdraw" && " withdrawn"}
+                            {state.transactionType === "convert" && " converted from"}
+                        </div>
+                        <div>{state.baseCurrency}</div>
+                    </SectionRow>
 
+                    <SectionRow>
+                        <div>Amount</div>
+                        <div>{state.baseAmount}</div>
+                    </SectionRow>
+
+                    {(state.transactionType === "convert") &&
+                        <Stack>
+                            <SectionRow>
+                                <div>Converted to</div>
+                                <div>{state.currency}</div>
+                            </SectionRow>
+                            
+                            <SectionRow>
+                                <div>Amount received</div>
+                                <div>{state.amount}</div>
+                            </SectionRow>
+
+                            <SectionRow>
+                                <div>{state.baseCurrency}{state.currency}</div>
+                                <div>Exchange rate at conversion: {state.baseAmount / state.amount}</div>
+                            </SectionRow>
+
+                        </Stack>
+                    }
                     
-                    <Section title= "Stock Details" url="/updateAssets/Stock">
-                        <SectionRow>
-                            <div>Sector</div>
-                            <div>{state.sector}</div>
-                        </SectionRow>
-
-                        <SectionRow>
-                            <div>Equity</div>
-                            <div>{state.equity}</div>
-                        </SectionRow>
-
-                        <SectionRow>
-                            <div>Ticker</div>
-                            <div>{state.ticker}</div>
-                        </SectionRow>
-                        
-                        <SectionRow>
-                            <div>Currency</div>
-                            <div>{state.currency}</div>
-                        </SectionRow>
-
-                    </Section>
-
-                    <Section title= "Position Details">
-                        <SectionRow>
-                            <div>Price</div>
-                            <div>{state.price}</div>
-                        </SectionRow>
-
-                        <SectionRow>
-                            <div>Shares</div>
-                            <div>{state.shares}</div>
-                        </SectionRow>
-
-                        <SectionRow>
-                            <div>Fees</div>
-                            <div>{state.fees}</div>
-                        </SectionRow>
-                    </Section>
-                    
+                    <SectionRow>
+                        <div>Fees</div>
+                        <div>{state.fees}</div>
+                    </SectionRow>
 
                     <Button
                     isLoading={isSubmitting}
@@ -129,4 +126,4 @@ const StockConfirmation = () => {
     )
 };
 
-export default StockConfirmation;
+export default CurrencyConfirmation;
