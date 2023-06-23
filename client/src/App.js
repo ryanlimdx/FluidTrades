@@ -26,6 +26,7 @@ import Dividends from "./webpages/UpdateAssets/Stock/Dividends";
 // Confirmation
 import Confirmation from "./webpages/UpdateAssets/Stock/Confirmation";
 
+export const UserAuthContext = React.createContext([]);
 
 function App() {
   return (
@@ -35,23 +36,21 @@ function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
 
-          <Route element={<MainLayout />}>
+          {/* <Route element={<MainLayout />}>
             <Route path="/homepage" exact element={<Homepage />} />
 
-            {/*  Stock Form */}
+            
             <Route path="/updateAssets/Stock" element={<StockTransaction />} />
             <Route path="/updateAssets/Stock/Details" element={<StockDetails />} />
             <Route path="/updateAssets/Stock/OpeningPosition" element={<OpeningPosition />} />
             <Route path="/updateAssets/Stock/ClosingPosition" element={<ClosingPosition />} />
             <Route path="/updateAssets/Stock/Dividends" element={<Dividends />} />
             <Route path="/updateAssets/Stock/Confirmation" element={<Confirmation />} />
-          </Route>
+          </Route> */}
 
-          {/**
-           * <Route element={<PrivateRoutes />}>
-           *  <Route path="/homepage" exact element= {<Homepage />}/>
-           * </Route>
-           */}
+          <Route path="/homepage" element= {<PrivateRoutes> <Homepage /> </PrivateRoutes >} />
+
+          
         </Route>
       </Routes>
     </AppProvider>

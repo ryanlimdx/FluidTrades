@@ -10,7 +10,7 @@ export const UserAuthProvider = ({ children }) => {
         <UserAuthContext.Provider value={{ userAuth, setUserAuth }}>
             {children}
         </UserAuthContext.Provider>
-    );
+    )
 }
 
 export default UserAuthContext;

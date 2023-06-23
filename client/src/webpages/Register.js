@@ -89,11 +89,11 @@ const Register = () => {
                     </Formik>
 
                     
-                    <Stack justify="center" spacing={10}>
+                    <Stack justify="center">
                         <Text as="div" textAlign="center">
                             Already have an an account?
-                            <Button as={Link} to="/login" colorScheme="teal" variant="link">Login here</Button>
                         </Text>
+                        <Button as={Link} to="/login" colorScheme="teal" variant="link">Login here</Button>
                     </Stack>
             </Stack>
         </Center>
