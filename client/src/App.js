@@ -29,6 +29,7 @@ import ConvertTo from "./webpages/UpdateAssets/Currency/ConvertTo";
 import CurrencyConfirmation from "./webpages/UpdateAssets/Currency/Confirmation";
 
 
+export const UserAuthContext = React.createContext([]);
 
 function App() {
   return (
@@ -38,7 +39,10 @@ function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
 
-          <Route path="/homepage" exact element={<Homepage />} />
+          {/* <Route element={<MainLayout />}>
+            <Route path="/homepage" element= {<PrivateRoutes> <Homepage /> </PrivateRoutes >} />
+            
+
           // Stock Form
           <Route path="/updateAssets/Stock" element={<StockTransaction />} />
           <Route path="/updateAssets/Stock/Details" element={<StockDetails />} />
@@ -52,12 +56,10 @@ function App() {
           <Route path="updateAssets/Currency/Base" element={<CurrencyBase/>} />
           <Route path="updateAssets/Currency/ConvertTo" element={<ConvertTo/>} />          
           <Route path="updateAssets/Currency/Confirmation" element={<CurrencyConfirmation/>} />
+          </Route> */}
 
-          {/**
-           * <Route element={<PrivateRoutes />}>
-           *  <Route path="/homepage" exact element= {<Homepage />}/>
-           * </Route>
-           */}
+
+          
         </Route>
       </Routes>
     </AppProvider>

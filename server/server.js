@@ -70,6 +70,7 @@ app.post('/login', async (req, res) => {
                   return res.status(200).json({
                     success: true,
                     token: access_token,
+                    status : "ok",
                     message: user
                   });
               }

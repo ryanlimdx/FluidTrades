@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
-import { UserAuthProvider } from "./context/UserAuthContext";
+import { UserAuthProvider } from "./context/UserAuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
