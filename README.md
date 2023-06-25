@@ -13,22 +13,22 @@ Access our documentation on Google Docs [here](https://docs.google.com/document/
 Step 1. Clone the repository
 Fork the repository, then clone the repository locally by doing
 
-'''
+```
   git clone git@github.com:ryanlimdx/FluidTrades.git
-'''
+```
   
 Step 2. Install Dependencies
 In the root folder, do npm install (to install concurrently)
 
-'''
+```
   npm install
-'''
+```
 
 Then, do npm run build, to collectively install all dependencies for both frontend/backend
 
-'''
+```
   npm run build
-'''
+```
 
 Alternatively, you can install the dependencies separately by doing cd client/server and doing npm install
 
@@ -44,6 +44,6 @@ With everything properly set up, you should be good to go! From the root directo
 
 Alternatively, you can run them separately by doing cd client/server and doing npm start
 
-'''
+```
   npm start
-'''
+```
