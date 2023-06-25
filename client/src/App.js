@@ -1,7 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import PrivateRoutes from "./navigation/PrivateRoutes";
 import { AppProvider } from "./state";
+import { ChakraProvider } from "@chakra-ui/react";
+
+import PrivateRoutes from "./navigation/PrivateRoutes";
 
 // Layouts
 import RootLayout from "./layout/RootLayout";
@@ -10,7 +12,8 @@ import MainLayout from "./layout/MainLayout";
 // Webpages
 import Login from "./webpages/Login";
 import Register from "./webpages/Register";
-import Homepage from "./webpages/Homepage";
+import Dashboard from "./webpages/Dashboard";
+import Profile from "./webpages/Profile"
 
 // UpdateAssets form
 
@@ -36,17 +39,19 @@ function App() {
     <AppProvider>
       <Routes>
         <Route path="/" element={<RootLayout />}>
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/register" exact element={<Register />} />
+            <Route path="/login" exact element={<ChakraProvider> <Login /> </ChakraProvider>} />
+            <Route path="/register" exact element={<ChakraProvider> <Register /> </ChakraProvider>} />
 
-          {/* <Route element={<MainLayout />}>
-            <Route path="/homepage" element= {<PrivateRoutes> <Homepage /> </PrivateRoutes >} />
+           <Route element={<MainLayout />}>
+            <Route path="/dashboard" element={<PrivateRoutes> <Dashboard /> </PrivateRoutes >} />
+            <Route path="/profile" element={<PrivateRoutes> <Profile /> </PrivateRoutes >} />
             
-
+          {/*
           // Stock Form
           <Route path="/updateAssets/Stock" element={<StockTransaction />} />
           <Route path="/updateAssets/Stock/Details" element={<StockDetails />} />
-          <Route path="/updateAssets/Stock/OpeningPosition" element={<OpeningPosition />} />
+          <Route path="/updateAsse
+          ts/Stock/OpeningPosition" element={<OpeningPosition />} />
           <Route path="/updateAssets/Stock/ClosingPosition" element={<ClosingPosition />} />
           <Route path="/updateAssets/Stock/Dividends" element={<Dividends />} />
           <Route path="/updateAssets/Stock/Confirmation" element={<StockConfirmation />} />
@@ -55,8 +60,8 @@ function App() {
           <Route path="updateAssets/Currency" element={<CurrencyTransaction/>} />
           <Route path="updateAssets/Currency/Base" element={<CurrencyBase/>} />
           <Route path="updateAssets/Currency/ConvertTo" element={<ConvertTo/>} />          
-          <Route path="updateAssets/Currency/Confirmation" element={<CurrencyConfirmation/>} />
-          </Route> */}
+          <Route path="updateAssets/Currency/Confirmation" element={<CurrencyConfirmation/>} /> */}
+          </Route> 
 
 
           

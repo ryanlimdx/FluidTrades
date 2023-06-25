@@ -3,9 +3,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import useUser from "../hooks/useUser";
 
 const PrivateRoutes = ({ children }) => {
-  const userAuth = useUser();
+  const user = useUser();
 
-  if (!userAuth?.accessToken) {
+  if (!user.userAuth?.accessToken) {
     return <Navigate to="/login" />
   }
 

@@ -41,7 +41,7 @@ const Register = () => {
     }
 
     return (
-        <Center>
+        <Center className='register'>
             <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
                     <Heading as="h1">Register</Heading>
                     <Text fontSize="lg">Please register for an account with your name and email.</Text>
