@@ -4,6 +4,7 @@ A web platform for casual and investors alike to consolidate their investments i
 
 ## Team Members
 Wang Helin
+
 Ryan Lim Ding Xuan
 
 ## Documentation
