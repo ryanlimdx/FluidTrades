@@ -6,9 +6,13 @@ const app = require("./app");
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const { createJWT } = require('./middleware/webtoken');
+const { auth } = require("./middleware/auth");
 
 const User = require('./schemas/User');
+
+app.use(cookieParser());
 // POST request to register user into database
 app.post('/register', async(req, res) => {
   try {
@@ -70,7 +74,6 @@ app.post('/login', async (req, res) => {
                   return res.status(200).json({
                     success: true,
                     token: access_token,
-                    status : "ok",
                     message: user
                   });
               }
@@ -80,6 +83,21 @@ app.post('/login', async (req, res) => {
     }
   } catch(error) {
     res.status(500).json({error : "An error occured."});
+  }
+})
+
+
+app.get('/profile', auth, async (req, res) => {
+  try {
+    console.log(req.userId);
+    const user = await User.findById(req.userId);
+
+    if (user === null) {
+      return res.status(404).json({ message: "Profile cannot be found." });
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ err: err.message });
   }
 })
 
