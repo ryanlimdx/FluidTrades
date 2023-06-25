@@ -1,4 +1,5 @@
 Fluid Trades
+
 A web platform for casual and investors alike to consolidate their investments in one place. Developed using the MERN (MongoDB, Express, React, Node) tech stack.
 
 Team Members
