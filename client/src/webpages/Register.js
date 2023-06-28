@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Stack, Heading, Text, Center, Button, Input ,InputLeftElement, InputGroup } from '@chakra-ui/react';
 import { AtSignIcon, LockIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Form, Formik, Field } from 'formik';
 import axios from '../api/axios';
 
 const Register = () => {
+    const navigate = useNavigate();
     const initialValues = {
         name: "",
         email: "",
@@ -16,7 +17,7 @@ const Register = () => {
             const config = { headers: { "Content-Type" : "application/json" }}
             console.log(values);
             // Make POST request
-            const response = await axios.post('/register', values, config)
+            const response = await axios.post('/register', values, config).then(() => navigate("/login"));
             console.log(response.data);
         } catch (error) {
             if (error.response) {

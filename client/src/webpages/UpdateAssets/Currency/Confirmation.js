@@ -1,23 +1,13 @@
-import { Card, CardHeader, CardBody, CardFooter, Stack,
+import { 
+    Stack,
     Heading,
-    Text,
-    Center,
     Button,
-    Input,
-    InputGroup,
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-    RadioGroup,
-    Radio,
-    HStack,
-    Flex
+    Center
 } from '@chakra-ui/react'
 import { useAppState } from "../../../state";
 import axios from "../../../api/axios";
-import { Form, Formik, Field } from "formik";
-import { Section, SectionRow } from '../../../components/forms/Section';
+import { Form, Formik} from "formik";
+import { SectionRow } from '../../../components/forms/Section';
 
 
 const CurrencyConfirmation = () => {
@@ -53,7 +43,7 @@ const CurrencyConfirmation = () => {
       };
    
     return (
-        <Flex>
+        <Center>
             <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
             <Heading as="h1">
                 Woohoo! Now, confirm your 
@@ -122,7 +112,7 @@ const CurrencyConfirmation = () => {
 
             </Formik>
             </Stack>
-        </Flex>
+        </Center>
     )
 };
 

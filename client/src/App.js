@@ -30,6 +30,7 @@ import CurrencyTransaction from "./webpages/UpdateAssets/Currency/CurrencyTransa
 import CurrencyBase from "./webpages/UpdateAssets/Currency/CurrencyBase";
 import ConvertTo from "./webpages/UpdateAssets/Currency/ConvertTo";
 import CurrencyConfirmation from "./webpages/UpdateAssets/Currency/Confirmation";
+import FormLayout from "./layout/FormLayout";
 
 
 export const UserAuthContext = React.createContext([]);
@@ -42,29 +43,28 @@ function App() {
             <Route path="/login" exact element={<ChakraProvider> <Login /> </ChakraProvider>} />
             <Route path="/register" exact element={<ChakraProvider> <Register /> </ChakraProvider>} />
 
-           <Route element={<MainLayout />}>
-            <Route path="/dashboard" element={<PrivateRoutes> <Dashboard /> </PrivateRoutes >} />
-            <Route path="/profile" element={<PrivateRoutes> <Profile /> </PrivateRoutes >} />
+           <Route element={<PrivateRoutes><MainLayout /></PrivateRoutes>}>
+            <Route path="/dashboard" element={ <Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
             
-          {/*
-          // Stock Form
-          <Route path="/updateAssets/Stock" element={<StockTransaction />} />
-          <Route path="/updateAssets/Stock/Details" element={<StockDetails />} />
-          <Route path="/updateAsse
-          ts/Stock/OpeningPosition" element={<OpeningPosition />} />
-          <Route path="/updateAssets/Stock/ClosingPosition" element={<ClosingPosition />} />
-          <Route path="/updateAssets/Stock/Dividends" element={<Dividends />} />
-          <Route path="/updateAssets/Stock/Confirmation" element={<StockConfirmation />} />
+            <Route element={<ChakraProvider><FormLayout /></ChakraProvider>}>
+              {/* Stock Form */}
+              <Route path="/updateAssets/Stock" element={<StockTransaction />} />
+              <Route path="/updateAssets/Stock/Details" element={<StockDetails />} />
+              <Route path="/updateAssets/Stock/OpeningPosition" element={<OpeningPosition />} />
+              <Route path="/updateAssets/Stock/ClosingPosition" element={<ClosingPosition />} />
+              <Route path="/updateAssets/Stock/Dividends" element={<Dividends />} />
+              <Route path="/updateAssets/Stock/Confirmation" element={<StockConfirmation />} />
 
-          // Currency Form
-          <Route path="updateAssets/Currency" element={<CurrencyTransaction/>} />
-          <Route path="updateAssets/Currency/Base" element={<CurrencyBase/>} />
-          <Route path="updateAssets/Currency/ConvertTo" element={<ConvertTo/>} />          
-          <Route path="updateAssets/Currency/Confirmation" element={<CurrencyConfirmation/>} /> */}
+              {/* Currency Form */}
+              <Route path="updateAssets/Currency" element={<CurrencyTransaction/>} />
+              <Route path="updateAssets/Currency/Base" element={<CurrencyBase/>} />
+              <Route path="updateAssets/Currency/ConvertTo" element={<ConvertTo/>} />          
+              <Route path="updateAssets/Currency/Confirmation" element={<CurrencyConfirmation/>} />
+            </Route>
+            
           </Route> 
 
-
-          
         </Route>
       </Routes>
     </AppProvider>

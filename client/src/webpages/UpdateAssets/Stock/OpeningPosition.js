@@ -37,7 +37,7 @@ const OpeningPosition = () => {
 
   return (
     <Center>
-      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
+      <Stack>
         <Heading as="h1">Almost there! Position details left...</Heading>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>

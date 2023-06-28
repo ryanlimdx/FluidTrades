@@ -20,6 +20,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const links = [
   { name: "Dashboard", icon: <DashboardOutlinedIcon />, to: "/dashboard" },
+  { name: "Update Stocks", icon: <DashboardOutlinedIcon />, to: "/updateAssets/Stock" },
+  { name: "Update Currency", icon: <DashboardOutlinedIcon />, to: "/updateAssets/Currency" },
 ];
 
 const Topbar = () => {
@@ -58,15 +60,15 @@ const Topbar = () => {
           {links.map(({ name, icon, to }) => (
             <MenuItem
               onClick={() => navigate(`${to}`) }
-              sx={{ fontSize: 30 }}
-              size="large"
+              // sx={{ fontSize: 30 }}
+              size="small"
             >
               {name}
             </MenuItem>
           ))}
         </Menu>
         <Stack direction="row" sx={{ minWidth: 0 }}>
-          <Avatar alt="Gather Logo" src={Logo} />
+          <Avatar alt="Logo" src={Logo} />
           <Typography sx={{ marginTop: 0, fontSize:26}}> Fluid Trades </Typography>
         </Stack>
         <IconButton size="large" onClick={handleProfileLinkClick} color="inherit">
