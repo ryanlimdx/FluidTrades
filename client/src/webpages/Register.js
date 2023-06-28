@@ -19,7 +19,7 @@ const Register = () => {
             // Make POST request
             const response = await axios.post('/register', values, config).then(() => navigate("/login"));
             console.log(response.data);
-        } catch (error) {
+        } catch (error) {git 
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
