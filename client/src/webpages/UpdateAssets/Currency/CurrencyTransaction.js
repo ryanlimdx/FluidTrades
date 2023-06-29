@@ -35,7 +35,7 @@ const CurrencyTransaction = () => {
 
   const next = () => {
     console.log(initialValues.transactionType);
-    navigate("/UpdateAssets/Currency/Base");
+    navigate("/updateAssets/currency/base");
   }
 
   return (

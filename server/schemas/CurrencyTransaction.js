@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ctransactionSchema = new mongoose.Schema({
+const cTransactionSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
     transactionType: {
         type: String,
@@ -17,6 +17,6 @@ const ctransactionSchema = new mongoose.Schema({
         collection: "transactions"
     });
 
-const Transaction = mongoose.model('Transaction', ctransactionSchema);
+const CTransaction = mongoose.model('Transaction', cTransactionSchema);
 
-module.exports = Transaction;
+module.exports = CTransaction;

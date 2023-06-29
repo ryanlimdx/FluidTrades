@@ -30,7 +30,7 @@ const ConvertTo = () => {
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
-    navigate("/UpdateAssets/Currency/Confirmation");
+    navigate("/updateAssets/currency/confirmation");
   };
 
   return (

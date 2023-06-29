@@ -20,8 +20,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const links = [
   { name: "Dashboard", icon: <DashboardOutlinedIcon />, to: "/dashboard" },
-  { name: "Update Stocks", icon: <DashboardOutlinedIcon />, to: "/updateAssets/Stock" },
-  { name: "Update Currency", icon: <DashboardOutlinedIcon />, to: "/updateAssets/Currency" },
+  { name: "Update Stocks", icon: <DashboardOutlinedIcon />, to: "/updateAssets/stock" },
+  { name: "Update Currency", icon: <DashboardOutlinedIcon />, to: "/updateAssets/currency" },
 ];
 
 const Topbar = () => {

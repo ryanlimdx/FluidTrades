@@ -29,7 +29,7 @@ const CurrencyConfirmation = () => {
           console.log(values);
           // Make POST request
           await axios
-          .post("/updateAssets/Currency/Confirmation", values, config)
+          .post("/updateAssets/currency/confirmation", values, config)
           .then(() => navigate("/dashboard"));
         } catch (error) {
           if (error.response) {
