@@ -1,35 +1,39 @@
-import { Card, CardHeader, CardBody, CardFooter, Stack,
+import { 
+    Stack,
     Heading,
-    Text,
-    Center,
     Button,
-    Input,
-    InputGroup,
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-    RadioGroup,
-    Radio,
-    HStack,
-    Flex
+    Center
 } from '@chakra-ui/react'
 import { useAppState } from "../../../state";
 import axios from "../../../api/axios";
 import { Form, Formik, Field } from "formik";
 import { Section, SectionRow } from '../../../components/forms/Section';
+import { useNavigate } from 'react-router-dom';
 
 
 const StockConfirmation = () => {
     const [state] = useAppState();
+    const navigate = useNavigate();
+    const initialValues = {
+        transactionType: state.transactionType,
+        sector: state.sector,
+        equity: state.equity,
+        ticker: state.ticker,
+        currency: state.currency,
+
+        price: state.price,
+        shares: state.shares,
+        fees: state.fees
+    }
    
     const handleSubmit = async (values, { setSubmitting }) => {
         try {
           const config = { headers: { "Content-Type": "application/json" } };
           console.log(values);
           // Make POST request
-          const response = await axios.post("/register", values, config);
-          console.log(response.data);
+          await axios
+          .post("/updateAssets/stock/confirmation", values, config)
+          .then(() => navigate("/dashboard"));
         } catch (error) {
           if (error.response) {
             // The request was made and the server responded with a status code
@@ -53,22 +57,13 @@ const StockConfirmation = () => {
       };
    
     return (
-        <Flex>
+        <Center>
             <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
             <Heading as="h1">Woohoo! Now, confirm your {state.transactionType} transaction!</Heading>
-            <Formik onSubmit={handleSubmit}>
+            <Formik onSubmit={handleSubmit} initialValues={initialValues}>
                 {({ isSubmitting }) => (
                 <Form>
                 <Stack>
-                    // Confirmation should show relevant segments (if-else statements html)
-                    // Deposit
-                    // Withdraw
-                    // Convert Currency
-                    // Buy
-                    // Sell
-                    // Dividends
-
-                    
                     <Section title= "Stock Details" url="/updateAssets/Stock">
                         <SectionRow>
                             <div>Sector</div>
@@ -125,7 +120,7 @@ const StockConfirmation = () => {
 
             </Formik>
             </Stack>
-        </Flex>
+        </Center>
     )
 };
 

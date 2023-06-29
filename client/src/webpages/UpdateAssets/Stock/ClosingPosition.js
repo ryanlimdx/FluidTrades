@@ -32,7 +32,7 @@ const ClosingPosition = () => {
     setState({ ...state, ...data });
     console.log("Closing Position: ");
     console.log(state.transactionType);
-    navigate("/UpdateAssets/Stock/Confirmation");
+    navigate("/updateAssets/stock/confirmation");
   };
 
   return (

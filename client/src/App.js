@@ -49,12 +49,12 @@ function App() {
             
             <Route element={<ChakraProvider><FormLayout /></ChakraProvider>}>
               {/* Stock Form */}
-              <Route path="/updateAssets/Stock" element={<StockTransaction />} />
-              <Route path="/updateAssets/Stock/Details" element={<StockDetails />} />
-              <Route path="/updateAssets/Stock/OpeningPosition" element={<OpeningPosition />} />
-              <Route path="/updateAssets/Stock/ClosingPosition" element={<ClosingPosition />} />
-              <Route path="/updateAssets/Stock/Dividends" element={<Dividends />} />
-              <Route path="/updateAssets/Stock/Confirmation" element={<StockConfirmation />} />
+              <Route path="/updateAssets/stock" element={<StockTransaction />} />
+              <Route path="/updateAssets/stock/details" element={<StockDetails />} />
+              <Route path="/updateAssets/stock/openingPosition" element={<OpeningPosition />} />
+              <Route path="/updateAssets/stock/closingPosition" element={<ClosingPosition />} />
+              <Route path="/updateAssets/stock/dividends" element={<Dividends />} />
+              <Route path="/updateAssets/stock/confirmation" element={<StockConfirmation />} />
 
               {/* Currency Form */}
               <Route path="updateAssets/Currency" exact element={<CurrencyTransaction/>} />

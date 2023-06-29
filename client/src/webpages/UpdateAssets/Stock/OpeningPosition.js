@@ -25,9 +25,7 @@ const OpeningPosition = () => {
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
-    console.log("Opening Position: ");
-    console.log(initialValues);
-    navigate("/UpdateAssets/Stock/Confirmation");
+    navigate("/updateAssets/stock/confirmation");
   };
 
   return (
