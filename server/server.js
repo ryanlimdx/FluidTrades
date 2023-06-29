@@ -106,7 +106,7 @@ app.get('/profile', auth, async (req, res) => {
 const Transaction = require('./schemas/Transaction');
 
 // POST request to update Currency data
-app.post('updateAssets/Currency/Confirmation', async(req, res) => {
+app.post('/updateAssets/Currency/Confirmation', async(req, res) => {
   try {
     const transactionType = req.body.transactionType;
     const sellCurrency = req.body.sellCurrency;
@@ -126,9 +126,7 @@ app.post('updateAssets/Currency/Confirmation', async(req, res) => {
       fees: fees
     });
 
-    res.send({status : "ok"});
-    return res.status(200);
-    
+    return res.status(200).send("Data sent to database.");
   } catch(error) {
     res.status(500).json({error : "An error occured."});
   }

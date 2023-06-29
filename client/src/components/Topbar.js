@@ -62,6 +62,7 @@ const Topbar = () => {
               onClick={() => navigate(`${to}`) }
               // sx={{ fontSize: 30 }}
               size="small"
+              key={name}
             >
               <ListItemIcon>{icon}</ListItemIcon>
               {name}
