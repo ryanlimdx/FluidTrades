@@ -29,7 +29,7 @@ const Dividends = () => {
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
-    navigate("/UpdateAssets/Stock/Confirmation");
+    navigate("/updateAssets/stock/confirmation");
   };
 
   return (

@@ -31,16 +31,13 @@ const StockDetails = () => {
   const navigate = useNavigate();
 
   const saveData = async (data) => {
-    setState({ ...state, ...data });
-    console.log("Stock Details: ");
-    console.log(state.transactionType);
-    
+    setState({ ...state, ...data });    
     if (state.transactionType === "Buy") {
-      navigate("/UpdateAssets/Stock/OpeningPosition");
+      navigate("/updateAssets/stock/openingPosition");
     } else if (state.transactionType === "Sell") {
-      navigate("/UpdateAssets/Stock/ClosingPosition");
+      navigate("/updateAssets/stock/closingPosition");
     } else {
-      navigate("/UpdateAssets/Stock/Dividends");
+      navigate("/updateAssets/stock/dividends");
     }
     
   };
