@@ -17,9 +17,11 @@ const Register = () => {
             const config = { headers: { "Content-Type" : "application/json" }}
             console.log(values);
             // Make POST request
-            const response = await axios.post('/register', values, config).then(() => navigate("/login"));
+            const response = await axios
+            .post('/register', values, config)
+            .then(() => navigate("/login"));
             console.log(response.data);
-        } catch (error) {git 
+        } catch (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
