@@ -103,10 +103,10 @@ app.get('/profile', auth, async (req, res) => {
 
 // -----------------------------------------------------------------------------------
 
-const Transaction = require('./schemas/Transaction');
+const CTransaction = require('./schemas/CurrencyTransaction');
 
 // POST request to update Currency data
-app.post('/updateAssets/Currency/Confirmation', async(req, res) => {
+app.post('/updateAssets/currency/confirmation', async(req, res) => {
   try {
     const transactionType = req.body.transactionType;
     const sellCurrency = req.body.sellCurrency;
@@ -117,7 +117,7 @@ app.post('/updateAssets/Currency/Confirmation', async(req, res) => {
 
 
     // Create new transaction entry
-    await Transaction.create({
+    await CTransaction.create({
       transactionType: transactionType,
       sellCurrency: sellCurrency,
       sellAmount: sellAmount,
