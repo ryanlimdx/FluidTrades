@@ -57,10 +57,10 @@ function App() {
               <Route path="/updateAssets/Stock/Confirmation" element={<StockConfirmation />} />
 
               {/* Currency Form */}
-              <Route path="updateAssets/Currency" element={<CurrencyTransaction/>} />
-              <Route path="updateAssets/Currency/Base" element={<CurrencyBase/>} />
-              <Route path="updateAssets/Currency/ConvertTo" element={<ConvertTo/>} />          
-              <Route path="updateAssets/Currency/Confirmation" element={<CurrencyConfirmation/>} />
+              <Route path="updateAssets/Currency" exact element={<CurrencyTransaction/>} />
+              <Route path="updateAssets/Currency/Base" exact element={<CurrencyBase/>} />
+              <Route path="updateAssets/Currency/ConvertTo" exact element={<ConvertTo/>} />          
+              <Route path="updateAssets/Currency/Confirmation" exact element={<CurrencyConfirmation/>} />
             </Route>
             
           </Route> 

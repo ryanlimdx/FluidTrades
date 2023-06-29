@@ -10,15 +10,16 @@ const cookieParser = require('cookie-parser');
 const { createJWT } = require('./middleware/webtoken');
 const { auth } = require("./middleware/auth");
 
+app.use(cookieParser());
+
+// ------------------------------------------------------------------------
 const User = require('./schemas/User');
 
-app.use(cookieParser());
 // POST request to register user into database
 app.post('/register', async(req, res) => {
   try {
     const name = req.body.name;
     const email = req.body.email;
-    console.log(email);
     const password = req.body.password;
 
     if (!(email && password && name)) {
@@ -86,7 +87,6 @@ app.post('/login', async (req, res) => {
   }
 })
 
-
 app.get('/profile', auth, async (req, res) => {
   try {
     console.log(req.userId);
@@ -100,6 +100,40 @@ app.get('/profile', auth, async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 })
+
+// -----------------------------------------------------------------------------------
+
+const Transaction = require('./schemas/Transaction');
+
+// POST request to update Currency data
+app.post('updateAssets/Currency/Confirmation', async(req, res) => {
+  try {
+    const transactionType = req.body.transactionType;
+    const sellCurrency = req.body.sellCurrency;
+    const sellAmount = req.body.sellAmount;
+    const buyCurrency = req.body.buyCurrency;
+    const buyAmount = req.body.buyAmount;
+    const fees = req.body.fees;
+
+
+    // Create new transaction entry
+    await Transaction.create({
+      transactionType: transactionType,
+      sellCurrency: sellCurrency,
+      sellAmount: sellAmount,
+      buyCurrency: buyCurrency,
+      buyAmount: buyAmount,
+      fees: fees
+    });
+
+    res.send({status : "ok"});
+    return res.status(200);
+    
+  } catch(error) {
+    res.status(500).json({error : "An error occured."});
+  }
+})
+
 
 // ensure port is up and running
 app.listen(3000, () => {
