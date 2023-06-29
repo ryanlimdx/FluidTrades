@@ -132,6 +132,41 @@ app.post('/updateAssets/Currency/Confirmation', async(req, res) => {
   }
 })
 
+const STransaction = require('./schemas/StockTransaction');
+
+// POST request to update Currency data
+app.post('/updateAssets/stock/confirmation', async(req, res) => {
+  try {
+    const transactionType = req.body.transactionType;
+    const sector = req.body.sector;
+    const equity = req.body.equity;
+    const ticker = req.body.ticker;
+    const currency = req.body.currency;
+
+    const price = req.body.price;
+    const shares = req.body.shares;
+    const fees = req.body.fees;
+
+    // Create new transaction entry
+    await STransaction.create({
+      transactionType: transactionType,
+      sector: sector,
+      equity: equity,
+      ticker: ticker,
+      currency: currency,
+
+      price: price,
+      shares: shares,
+      fees: fees
+    });
+
+    return res.status(200).send("Data sent to database.");
+  } catch(error) {
+    res.status(500).json({error : "An error occured."});
+  }
+})
+
+// --------------------------------------------------------------------------
 
 // ensure port is up and running
 app.listen(3000, () => {
