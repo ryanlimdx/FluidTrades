@@ -4,9 +4,10 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/system";
 
 const AppContentWrapper = styled(Box)({
-  // flex: 1,
-  // alignContent: "flex-start",
-  // justifyContent: "center",
+  display: "flex",
+  height: "100vh",
+  alignItems: "center",
+  justifyContent: "center",
   width: "100%",
   backgroundColor: "white",
 });
