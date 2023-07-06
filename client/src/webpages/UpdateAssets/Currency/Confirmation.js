@@ -30,7 +30,7 @@ const CurrencyConfirmation = () => {
           // Make POST request
           await axios
           .post("/updateAssets/currency/confirmation", values, config)
-          .then(() => navigate("/dashboard"));
+          .then(() => navigate("/"));
         } catch (error) {
           if (error.response) {
             // The request was made and the server responded with a status code

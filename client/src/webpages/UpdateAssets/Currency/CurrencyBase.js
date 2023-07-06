@@ -1,20 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../state";
 import {
   Stack,
   Heading,
-  Text,
-  Center,
   Button,
   Input,
   InputGroup,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  RadioGroup,
-  Radio,
-  HStack,
   Flex,
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
@@ -73,7 +66,7 @@ const CurrencyBase = () => {
                   </FormControl>
                 </Field>
 
-                // include field for fees if it is a deposit/ withdraw transactionType
+                {/* include field for fees if it is a deposit/ withdraw transactionType */}
                 {(state.transactionType === "deposit" || state.transactionType === "withdraw") &&
                   <Field as={InputGroup}>
                     <FormControl>
