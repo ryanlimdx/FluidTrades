@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
+
 // allow request to be sent from react app to express server using cors
 app.use(
   cors({
@@ -13,17 +14,18 @@ app.use(
 // read JSON bodies
 app.use(express.json());
 
-const mongoose = require('mongoose');  
-
 // connect to database
-mongoose.connect(process.env.DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+const mongoose = require('mongoose');
+
+let db = mongoose.connect(process.env.DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 }).then(() => {
-    console.log("Connected to database.");
+  console.log("Connected to database.");
 }).catch((error) => {
-    console.error('Error connecting to MongoDB:', error);;
-    process.exit(1);
+  console.error('Error connecting to MongoDB:', error);;
+  process.exit(1);
 });
 
-module.exports = app; 
+exports.app = app;
+exports.db = db;
