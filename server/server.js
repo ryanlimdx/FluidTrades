@@ -89,15 +89,14 @@ app.post('/login', async (req, res) => {
 
 app.get('/profile', auth, async (req, res) => {
   try {
-    console.log(req.userId);
     const user = await User.findById(req.userId);
 
     if (user === null) {
       return res.status(404).json({ message: "Profile cannot be found." });
     }
-    res.status(200).json(user);
+    return res.status(200).json(user);
   } catch (err) {
-    res.status(500).json({ err: err.message });
+    return res.status(500).json({ err: err.message });
   }
 })
 
