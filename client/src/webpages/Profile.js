@@ -2,15 +2,18 @@ import { useState, useEffect } from "react";
 import axios from "../api/axios";
 
 const Profile = () => {
-  const [name, setName] = useState("example");
-  const [email, setEmail] = useState("example@gmail.com");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/profile")
-  //     .then((response) => setName(response.data.name))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("/profile")
+      .then((response) => {
+        console.log(response)
+        setName(response.data.name)
+        setEmail(response.data.email)})
+      .catch((err) => console.log(err));
+  }, [setName, setEmail]);
 
   return (
     <>

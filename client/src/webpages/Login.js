@@ -16,7 +16,7 @@ import useUser from "../hooks/useUser";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { userAuth, setUserAuth } = useUser();
+  const { setUserAuth } = useUser();
   const initialValues = {
     email: "",
     password: "",
@@ -31,8 +31,9 @@ const Login = () => {
         .post("/login", values, config)
         .then((response) => {
           setUserAuth({ accessToken: response.data.token });
+          axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
         })
-        .then(() => navigate("/dashboard"));
+        .then(() => navigate("/"));
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code

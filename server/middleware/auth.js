@@ -2,28 +2,27 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 exports.auth = (req, res, next) => {
-  // Authorization field in the HTTP request header
+  // Authorization field in header
   const authorization = req.headers['authorization'];
-  // console.log(req.headers)
 
-  // No header
   if (!authorization) {
-    console.log('Tried to access route without authorization')
     return res.status(401).json({ message: "No token, unauthorized access."});
   }
 
-  // Get token from header
+  // Retrieve Token
   const token = authorization.split(' ')[1];
+  console.log(token);
 
   // Verify incoming token and set requesting user id to be decoded user
   try {
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, function (err, payload) {
   
       if (err) {
         return res.status(401).json({ message: "Invalid token, unauthorized access."})
       }
 
-      req.user = payload.user;
+      req.userId = payload.userId;
+      
       next();
     })
   } catch (err) {

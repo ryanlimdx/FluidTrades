@@ -44,7 +44,7 @@ function App() {
             <Route path="/register" exact element={<ChakraProvider> <Register /> </ChakraProvider>} />
 
            <Route element={<PrivateRoutes><MainLayout /></PrivateRoutes>}>
-            <Route path="/dashboard" element={ <Dashboard />} />
+            <Route path="/" element={ <Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             
             <Route element={<ChakraProvider><FormLayout /></ChakraProvider>}>

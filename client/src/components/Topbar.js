@@ -19,7 +19,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const links = [
-  { name: "Dashboard", icon: <DashboardOutlinedIcon />, to: "/dashboard" },
+  { name: "Dashboard", icon: <DashboardOutlinedIcon />, to: "/" },
   { name: "Update Stocks", icon: <DashboardOutlinedIcon />, to: "/updateAssets/stock" },
   { name: "Update Currency", icon: <DashboardOutlinedIcon />, to: "/updateAssets/currency" },
 ];
