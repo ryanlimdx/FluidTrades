@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react'
 import { useAppState } from "../../../state";
 import axios from "../../../api/axios";
-import { Form, Formik, Field } from "formik";
+import { Form, Formik } from "formik";
 import { Section, SectionRow } from '../../../components/forms/Section';
 import { useNavigate } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ const StockConfirmation = () => {
           // Make POST request
           await axios
           .post("/updateAssets/stock/confirmation", values, config)
-          .then(() => navigate("/dashboard"));
+          .then(() => navigate("/"));
         } catch (error) {
           if (error.response) {
             // The request was made and the server responded with a status code
