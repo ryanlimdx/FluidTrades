@@ -87,6 +87,9 @@ app.post('/login', async (req, res) => {
   }
 })
 
+// ---------------------------------------------------------------------------------
+
+// GET request to fetch Profile data
 app.get('/profile', auth, async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -105,8 +108,10 @@ app.get('/profile', auth, async (req, res) => {
 const CTransaction = require('./schemas/CurrencyTransaction');
 
 // POST request to update Currency data
-app.post('/updateAssets/currency/confirmation', async(req, res) => {
+app.post('/updateAssets/currency/confirmation', auth, async(req, res) => {
   try {
+    const user = await User.findById(req.userId);
+
     const transactionType = req.body.transactionType;
     const sellCurrency = req.body.sellCurrency;
     const sellAmount = req.body.sellAmount;
@@ -114,9 +119,10 @@ app.post('/updateAssets/currency/confirmation', async(req, res) => {
     const buyAmount = req.body.buyAmount;
     const fees = req.body.fees;
 
-
     // Create new transaction entry
     await CTransaction.create({
+      user: user._id,
+
       transactionType: transactionType,
       sellCurrency: sellCurrency,
       sellAmount: sellAmount,
@@ -133,9 +139,11 @@ app.post('/updateAssets/currency/confirmation', async(req, res) => {
 
 const STransaction = require('./schemas/StockTransaction');
 
-// POST request to update Currency data
-app.post('/updateAssets/stock/confirmation', async(req, res) => {
+// POST request to update Stock data
+app.post('/updateAssets/stock/confirmation', auth, async(req, res) => {
   try {
+    const user = await User.findById(req.userId);
+    
     const transactionType = req.body.transactionType;
     const sector = req.body.sector;
     const equity = req.body.equity;
@@ -148,6 +156,8 @@ app.post('/updateAssets/stock/confirmation', async(req, res) => {
 
     // Create new transaction entry
     await STransaction.create({
+      user: user._id,
+
       transactionType: transactionType,
       sector: sector,
       equity: equity,

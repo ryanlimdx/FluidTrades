@@ -1,7 +1,14 @@
 const mongoose = require('mongoose');
 
 const cTransactionSchema = new mongoose.Schema({
-    date: { type: Date, default: Date.now },
+    user: {
+        type: String,
+        required: true
+    },
+    date: { 
+        type: Date, 
+        default: Date.now
+    },
     transactionType: {
         type: String,
         required: true
@@ -17,6 +24,6 @@ const cTransactionSchema = new mongoose.Schema({
         collection: "transactions"
     });
 
-const CTransaction = mongoose.model('Transaction', cTransactionSchema);
+const CTransaction = mongoose.model('CTransaction', cTransactionSchema);
 
 module.exports = CTransaction;
