@@ -22,6 +22,7 @@ const links = [
   { name: "Dashboard", icon: <DashboardOutlinedIcon />, to: "/" },
   { name: "Update Stocks", icon: <DashboardOutlinedIcon />, to: "/updateAssets/stock" },
   { name: "Update Currency", icon: <DashboardOutlinedIcon />, to: "/updateAssets/currency" },
+  { name: "Transactions", icon: <DashboardOutlinedIcon />, to: "/transactions" }
 ];
 
 const Topbar = () => {

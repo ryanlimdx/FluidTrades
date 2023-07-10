@@ -140,11 +140,11 @@ app.post('/updateAssets/currency/confirmation', auth, async(req, res) => {
 const STransaction = require('./schemas/StockTransaction');
 
 // GET request to retrieve stock data
-app.get("/getStockTxns", auth, async(req, res) => {
+app.get("/transactions", auth, async(req, res) => {
   try {
     const user = await User.findById(req.userId);
-    const stockTxns = await STransaction.find({"user._id": user._id});
-    res.send({ status: "ok", data: stockTxns });
+    const stockTxns = await STransaction.find({});
+    return res.status(200).json(stockTxns);
   } catch (error) {
     console.log(error);
   }

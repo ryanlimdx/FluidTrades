@@ -1,10 +1,24 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useState, useEffect } from "react";
+import axios from "../api/axios";
 // import theme and data
 
 const Transactions = () => {
+    const [data, getData] = useState("");
+          
+    useEffect(() => {
+        axios
+            .get("/transactions")
+            .then((response) => {
+                console.log(response);
+                getData(response.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
     const columns = [
-        { field: "date", headerName: "DATE", flex: 1, cellClassName: "date-column-cell"},
+        { field: "date", headerName: "DATE", flex: 1},
         { field: "transactionType", headerName: "TRANSACTION", flex: 1 },
         { field: "sector", headerName: "SECTOR", flex: 1 },
         { field: "equity", headerName: "EQUITY", flex: 1 },
@@ -38,17 +52,16 @@ const Transactions = () => {
     ]
 
     return (
-        <Box m = "20px" >
+        <Box margin = "20px" >
             {/* <Header></Header> */}
-            <Box m = "40px 0 0 0" height = "75vh">
+            <Box margin = "40px 0 0 0" height = "75vh">
                 <DataGrid 
-                    // rows = {data} 
+                    rows = {data} 
                     columns = {columns}
                 />
-                    
             </Box>
         </Box>
-    )
+    );
 }
 
 export default Transactions;
