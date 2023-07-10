@@ -2,14 +2,10 @@ const mongoose = require('mongoose');
 
 const sTransactionSchema = new mongoose.Schema({
     user: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
-    // {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "User",
-    //     required: true
-    // }
     date: { 
         type: Date, 
         default: Date.now 
@@ -29,7 +25,7 @@ const sTransactionSchema = new mongoose.Schema({
     },
 
     {
-        collection: "transactions"
+        collection: "STransaction"
     });
 
 const STransaction = mongoose.model('STransaction', sTransactionSchema);

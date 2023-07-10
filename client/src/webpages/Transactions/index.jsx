@@ -42,7 +42,7 @@ const Transactions = () => {
             {/* <Header></Header> */}
             <Box m = "40px 0 0 0" height = "75vh">
                 <DataGrid 
-                    rows = {data} 
+                    // rows = {data} 
                     columns = {columns}
                 />
                     
