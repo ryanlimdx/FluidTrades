@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const cTransactionSchema = new mongoose.Schema({
     user: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
     date: { 
@@ -21,7 +22,7 @@ const cTransactionSchema = new mongoose.Schema({
     },
 
     {
-        collection: "transactions"
+        collection: "CTransaction"
     });
 
 const CTransaction = mongoose.model('CTransaction', cTransactionSchema);
