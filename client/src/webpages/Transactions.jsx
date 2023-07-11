@@ -58,6 +58,7 @@ const Transactions = () => {
                 <DataGrid 
                     rows = {data} 
                     columns = {columns}
+                    getRowId={(row) => row._id}
                 />
             </Box>
         </Box>
