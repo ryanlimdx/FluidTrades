@@ -24,14 +24,19 @@ const RealTimeSearch = () => {
     setSymbol(event.target.value);
   };
 
+  const handleEnter = (event) => {
+    if (event.keyCode === 13 ) {
+      event.preventDefault();
+    }
+  }
+
   const handleClick = async () => {
     setLoading(true);
     try {
       await axios({
         method: 'get',
-        url: `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=GSDZL1BLZL9BZARY`,
+        url: `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${process.env.REACT_APP_ALPHAVINTAGE_KEY}`,
       }).then(function (response) {
-        console.log(  )
         if (response.data['Global Quote']) {
           const newPrice = parseFloat(response.data['Global Quote']['05. price']).toFixed(2);
           setPrice(newPrice);
@@ -76,6 +81,7 @@ const RealTimeSearch = () => {
           label="Ticker"
           variant="standard"
           helperText="Input the stock ticker and click search."
+          onKeyDown={handleEnter}
           value={symbol}
           onChange={handleChange}
           fullWidth
