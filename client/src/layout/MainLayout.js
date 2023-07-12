@@ -15,10 +15,14 @@ const MainLayout = () => {
   return (
     <>
       <Topbar />
-      {/* Box that wraps the content below the nav bar */}
+      {/* Box that wraps the content below the nav bar
       <AppContentWrapper>
         <Outlet />
-      </AppContentWrapper>
+      </AppContentWrapper> */}
+
+      <main className="content">
+            <Outlet />
+      </main>
     </>
   );
 };

@@ -5,6 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 // Components
 import PrivateRoutes from "./navigation/PrivateRoutes";
+import Topbar from "./components/Topbar";
 
 // Theme
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -55,7 +56,7 @@ function App() {
                   <Route path="/login" exact element={ <ChakraProvider> {" "}<Login />{" "} </ChakraProvider> } />
                   <Route path="/register" exact element={ <ChakraProvider> {" "} <Register />{" "} </ChakraProvider> } />
 
-                  <Route element={ <PrivateRoutes> <MainLayout /> </PrivateRoutes> } >
+                  <Route element={ <PrivateRoutes > <MainLayout /> </PrivateRoutes> } >
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/transactions" element={<Transactions />} />
