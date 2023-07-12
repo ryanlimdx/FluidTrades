@@ -5,6 +5,7 @@ import { Box, Typography, Paper, Stack, Grid } from "@mui/material";
 import PerformingAssets from "../components/dashboard/PerformingAssets";
 import LaggingAssets from "../components/dashboard/LaggingAssets";
 import ExposurePieChart from "../components/dashboard/ExposurePieChart";
+import RealTimeSearch from "../components/dashboard/RealTimeSearch";
 
 const Dashboard = () => {
   return (
@@ -30,7 +31,7 @@ const Dashboard = () => {
         </Grid>
 
         <Grid item xs={4}>
-          
+          <RealTimeSearch />
         </Grid>
       </Grid>
 

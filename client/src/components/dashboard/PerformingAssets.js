@@ -25,14 +25,14 @@ const PerformingAssets = () => {
   }, [assets]);
 
   return (
-    <Card variant="outlined" sx={{ height: 25 + "vh", minWidth: 49 + "%" }}>
+    <Card variant="outlined" sx={{ height: 26 + "vh", minWidth: 49 + "%", overflow: 'auto' }}>
       <CardContent>
         <Typography align="left" sx={{ fontWeight: "bold" }}>
           TOP 3 PERFORMING ASSETS
         </Typography>
 
         <Stack direction="row" justifyContent={"space-between"}>
-          <List>
+          <List disablePadding>
             <ListItem>
               <TrendingUpIcon />
             </ListItem>
@@ -47,7 +47,7 @@ const PerformingAssets = () => {
             </ListItem>
           </List>
 
-          <List>
+          <List disablePadding>
             <ListItem>
               <AttachMoneyIcon />
             </ListItem>
