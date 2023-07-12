@@ -2,15 +2,12 @@
  * This file will be used to send requests for account creation and login purposes.
  */
 // Setting up of backend server + connect to DB
-const {app, db} = require("./app");
+const { app  } = require("./app");
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
 const { createJWT } = require('./middleware/webtoken');
 const { auth } = require("./middleware/auth");
-
-app.use(cookieParser());
 
 // ------------------------------------------------------------------------
 const User = require('./schemas/User');
@@ -28,7 +25,7 @@ app.post('/register', async(req, res) => {
     
     const existingUser = await User.findOne({email});
     if (existingUser) {
-      return res.json({ messsage: 'A user with that email already exists.'})
+      return res.status(409).json({ message: "A user with that email already exists."})
     } else {
       var salt = bcrypt.genSaltSync(10);
       const encryptedPassword = await bcrypt.hash(password, salt);
@@ -39,8 +36,8 @@ app.post('/register', async(req, res) => {
         password: encryptedPassword
       })
 
-      res.send({status : "ok"})
-    }
+      return res.status(200).send({status : "ok"})
+    } 
   } catch(error) {
     res.status(500).json({error : "An error occured."});
   }

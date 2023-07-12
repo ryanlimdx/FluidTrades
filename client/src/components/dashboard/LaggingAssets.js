@@ -25,14 +25,14 @@ const LaggingAssets = () => {
   }, [assets]);
 
   return (
-    <Card variant="outlined" sx={{ height: 25 + "vh", minWidth: 49 + "%" }}>
+    <Card variant="outlined" sx={{ maxHeight: 26 + "vh", minWidth: 49 + "%", overflow: 'auto' }}>
       <CardContent>
         <Typography align="left" sx={{ fontWeight: "bold" }}>
           TOP 3 LAGGING ASSETS
         </Typography>
 
-        <Stack direction="row" justifyContent={"space-between"}>
-          <List>
+        <Stack direction="row" justifyContent={"space-between"} >
+          <List disablePadding>
             <ListItem>
               <TrendingDownIcon />
             </ListItem>
@@ -47,7 +47,7 @@ const LaggingAssets = () => {
             </ListItem>
           </List>
 
-          <List>
+          <List disablePadding>
             <ListItem>
               <AttachMoneyIcon />
             </ListItem>
