@@ -14,8 +14,9 @@ import Login from "./webpages/Login";
 import Register from "./webpages/Register";
 import Dashboard from "./webpages/Dashboard";
 import Profile from "./webpages/Profile"
+import Transactions from "./webpages/Transactions";
 
-// UpdateAssets form
+// Forms
 
 // Stock
 import StockTransaction from "./webpages/UpdateAssets/Stock/StockTransaction";
@@ -46,6 +47,7 @@ function App() {
            <Route element={<PrivateRoutes><MainLayout /></PrivateRoutes>}>
             <Route path="/" element={ <Dashboard />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/transactions" element={<Transactions/>} />
             
             <Route element={<ChakraProvider><FormLayout /></ChakraProvider>}>
               {/* Stock Form */}

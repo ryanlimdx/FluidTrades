@@ -13,6 +13,7 @@ body {
 
 .app {
   display: flex;
+  position: relative;
   min-height: 100vh;
   min-width: 100vw; 
   align-items: center;
