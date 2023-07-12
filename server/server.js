@@ -143,7 +143,7 @@ const STransaction = require('./schemas/StockTransaction');
 app.get("/transactions", auth, async(req, res) => {
   try {
     const user = await User.findById(req.userId);
-    const stockTxns = await STransaction.find({});
+    const stockTxns = await STransaction.find({user: user});
     return res.status(200).json(stockTxns);
   } catch (error) {
     console.log(error);
