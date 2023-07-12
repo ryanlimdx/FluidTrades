@@ -1,4 +1,16 @@
-* {
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+
+html,
+body,
+#root,
+.app,
+.content {
+  height: 100%;
+  width: 100%;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* * {
   box-sizing: border-box;
 }
 
@@ -9,23 +21,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 .app {
   display: flex;
   position: relative;
-  min-height: 100vh;
+  /* min-height: 100vh;
   min-width: 100vw; 
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: '#F1F1F1';
+  background-color: '#F1F1F1'; */
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
 .login {
   background-image: url("./assets/background_image.jpg");
@@ -55,4 +67,23 @@ code {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

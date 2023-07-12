@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAppState } from "../../../state";
+import { useAppState } from "../../../context/state";
 import {
   Stack,
   Heading,
@@ -11,10 +11,9 @@ import {
   RadioGroup,
   Radio,
   HStack,
-  Flex
+  Flex,
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
-
 
 const StockTransaction = () => {
   const initialValues = {
@@ -31,8 +30,10 @@ const StockTransaction = () => {
 
   return (
     <Flex>
-        <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">Hmm, what type of transaction did you do today?</Heading>
+      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
+        <Heading as="h1">
+          Hmm, what type of transaction did you do today?
+        </Heading>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
           {({ isSubmitting, setFieldValue }) => (
@@ -43,15 +44,40 @@ const StockTransaction = () => {
                     <FormLabel> Transaction type </FormLabel>
                     <RadioGroup name="transactionType">
                       <HStack spacing="24px">
-                        <Radio name="transactionType" value="Buy" onChange= {() => setFieldValue("transactionType", "Buy")}>Buy</Radio>
-                        <Radio name="transactionType" value="Sell" onChange= {() => setFieldValue("transactionType", "Sell")}>Sell</Radio>
-                        <Radio name="transactionType" value="Dividends" onChange= {() => setFieldValue("transactionType", "Dividends")}>Dividends</Radio>
+                        <Radio
+                          name="transactionType"
+                          value="Buy"
+                          onChange={() =>
+                            setFieldValue("transactionType", "Buy")
+                          }
+                        >
+                          Buy
+                        </Radio>
+                        <Radio
+                          name="transactionType"
+                          value="Sell"
+                          onChange={() =>
+                            setFieldValue("transactionType", "Sell")
+                          }
+                        >
+                          Sell
+                        </Radio>
+                        <Radio
+                          name="transactionType"
+                          value="Dividends"
+                          onChange={() =>
+                            setFieldValue("transactionType", "Dividends")
+                          }
+                        >
+                          Dividends
+                        </Radio>
                       </HStack>
                     </RadioGroup>
-                    <FormHelperText>Select the transaction type.</FormHelperText>
+                    <FormHelperText>
+                      Select the transaction type.
+                    </FormHelperText>
                   </FormControl>
                 </Field>
-                
 
                 <Button
                   isLoading={isSubmitting}
@@ -68,7 +94,6 @@ const StockTransaction = () => {
         </Formik>
       </Stack>
     </Flex>
-      
   );
 };
 

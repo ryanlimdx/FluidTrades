@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAppState } from "../../../state";
+import { useAppState } from "../../../context/state";
 import {
   Stack,
   Heading,
@@ -31,7 +31,9 @@ const ConvertTo = () => {
   return (
     <Center>
       <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">Almost there! Tell us about the currency you converted to.</Heading>
+        <Heading as="h1">
+          Almost there! Tell us about the currency you converted to.
+        </Heading>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
           {({ isSubmitting }) => (
@@ -68,11 +70,7 @@ const ConvertTo = () => {
                 <Field as={InputGroup}>
                   <FormControl>
                     <FormLabel>Fees</FormLabel>
-                    <Input
-                      name="fees"
-                      type="text"
-                      placeholder="0.40"
-                    />
+                    <Input name="fees" type="text" placeholder="0.40" />
                     <FormHelperText>
                       {" "}
                       Commissions paid for the transaction.{" "}
