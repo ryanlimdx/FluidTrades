@@ -5,14 +5,12 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 // Components
 import PrivateRoutes from "./navigation/PrivateRoutes";
-import Topbar from "./components/Topbar";
 
 // Theme
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 
 // Layouts
-import RootLayout from "./layout/RootLayout";
 import MainLayout from "./layout/MainLayout";
 import FormLayout from "./layout/FormLayout";
 
@@ -52,10 +50,10 @@ function App() {
           <main className="content">
             <AppProvider>
               <Routes>
-                <Route path="/" element={<RootLayout />}>
+                <Route path="/" >
                   <Route path="/login" exact element={ <ChakraProvider> {" "}<Login />{" "} </ChakraProvider> } />
                   <Route path="/register" exact element={ <ChakraProvider> {" "} <Register />{" "} </ChakraProvider> } />
-
+                  
                   <Route element={ <PrivateRoutes > <MainLayout /> </PrivateRoutes> } >
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/profile" element={<Profile />} />

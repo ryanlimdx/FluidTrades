@@ -4,15 +4,12 @@ import Logo from "../assets/FluidTradesLogoBG.PNG";
 import { ColorModeContext, tokens } from "../theme";
 
 // MUI components
-import { Box, IconButton, useTheme } from "@mui/material";
+import { Typography, Box, IconButton, useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import ListItemIcon from "@mui/material/ListItemIcon";
 
 // icons
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
@@ -20,6 +17,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import ListItemIcon from "@mui/material/ListItemIcon";
 
 const links = [
   { name: "Dashboard", icon: <DashboardOutlinedIcon />, to: "/" },
@@ -78,13 +76,26 @@ const Topbar = () => {
           ))}
         </Menu>
 
-        <Stack direction="row" sx={{ minWidth: 0 }}>
-          <Avatar alt="Logo" src={Logo} />
-          <Typography sx={{ marginTop: 0, fontSize:26}}> Fluid Trades </Typography>
-        </Stack>
+        <Box display="flex">
+          <Avatar 
+            alt="Logo" 
+            src={Logo}
+            sx={{ width: 40, height: 40 }}
+          />
+          <Typography
+            variant="h2" 
+            fontWeight="bold" 
+          > 
+            FLUID TRADES 
+          </Typography>
+        </Box>
         
         <Box display="flex">
-          <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+          <IconButton
+            size="large"
+            onClick={colorMode.toggleColorMode} 
+            color="inherit"
+          >
             {theme.palette.mode === "dark" ? (
               <DarkModeOutlinedIcon />
             ) : (
