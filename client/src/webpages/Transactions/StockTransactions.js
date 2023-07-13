@@ -8,11 +8,11 @@ const StockTransactions = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const [data, getData] = useState("");
+  const [data, getData] = useState([]);
 
   useEffect(() => {
     axios
-      .get("/transactions")
+      .get("/stocktransactions")
       .then((response) => {
         console.log(response);
         getData(response.data);

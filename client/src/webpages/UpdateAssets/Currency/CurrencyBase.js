@@ -26,8 +26,8 @@ const CurrencyBase = () => {
     setState({ ...state, ...data });
 
     if (
-      state.transactionType === "deposit" ||
-      state.transactionType === "withdraw"
+      state.transactionType === "Deposit" ||
+      state.transactionType === "Withdraw"
     ) {
       navigate("/updateAssets/currency/confirmation");
     } else {

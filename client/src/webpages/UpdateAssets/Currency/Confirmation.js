@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 const CurrencyConfirmation = () => {
   const [state] = useAppState();
   const navigate = useNavigate();
+
+  const exchangeRate = state.amount / state.baseAmount
+
   const initialValues = {
     transactionType: state.transactionType,
     sellCurrency: state.baseCurrency,
@@ -15,7 +18,7 @@ const CurrencyConfirmation = () => {
     buyCurrency: state.currency,
     buyAmount: state.amount,
     fees: state.fees,
-    exchangeRate: state.amount / ( state.baseAmount + state.fees )
+    exchangeRate: exchangeRate
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -54,9 +57,9 @@ const CurrencyConfirmation = () => {
       <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
         <Heading as="h1">
           Woohoo! Now, confirm your
-          {state.transactionType === "deposit" && " deposit "}
-          {state.transactionType === "withdraw" && " withdrawal "}
-          {state.transactionType === "convert" && " conversion "}
+          {state.transactionType === "Deposit" && " deposit "}
+          {state.transactionType === "Withdraw" && " withdrawal "}
+          {state.transactionType === "Convert" && " conversion "}
           details!
         </Heading>
 
@@ -67,9 +70,9 @@ const CurrencyConfirmation = () => {
                 <SectionRow>
                   <div>
                     Currency
-                    {state.transactionType === "deposit" && " deposited"}
-                    {state.transactionType === "withdraw" && " withdrawn"}
-                    {state.transactionType === "convert" && " converted from"}
+                    {state.transactionType === "Deposit" && " deposited"}
+                    {state.transactionType === "Withdraw" && " withdrawn"}
+                    {state.transactionType === "Convert" && " converted from"}
                   </div>
                   <div>{state.baseCurrency}</div>
                 </SectionRow>
@@ -79,7 +82,7 @@ const CurrencyConfirmation = () => {
                   <div>{state.baseAmount}</div>
                 </SectionRow>
 
-                {state.transactionType === "convert" && (
+                {state.transactionType === "Convert" && (
                   <Stack>
                     <SectionRow>
                       <div>Converted to</div>
@@ -98,7 +101,7 @@ const CurrencyConfirmation = () => {
                       </div>
                       <div>
                         Exchange rate at conversion:{" "}
-                        {state.amount / ( state.baseAmount + state.fees )}
+                        {state.amount / state.baseAmount}
                       </div>
                     </SectionRow>
                   </Stack>

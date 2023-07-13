@@ -51,7 +51,7 @@ const CurrencyTransaction = () => {
                       <HStack spacing="24px">
                         <Radio
                           name="transactionType"
-                          value="deposit"
+                          value="Deposit"
                           onChange={() =>
                             setFieldValue("transactionType", "Deposit")
                           }
@@ -60,7 +60,7 @@ const CurrencyTransaction = () => {
                         </Radio>
                         <Radio
                           name="transactionType"
-                          value="withdraw"
+                          value="Withdraw"
                           onChange={() =>
                             setFieldValue("transactionType", "Withdraw")
                           }
@@ -69,7 +69,7 @@ const CurrencyTransaction = () => {
                         </Radio>
                         <Radio
                           name="transactionType"
-                          value="convert"
+                          value="Convert"
                           onChange={() =>
                             setFieldValue("transactionType", "Convert")
                           }

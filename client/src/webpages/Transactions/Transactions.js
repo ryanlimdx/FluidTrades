@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
 import StockTransactions from "./StockTransactions";
+import CurrencyTransactions from "./CurrencyTransactions";
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -36,7 +37,7 @@ const Transactions = () => {
 
             { form === "Stock"
                 ? <StockTransactions/>
-                : <StockTransactions/>
+                : <CurrencyTransactions/>
             }
 
         </Box>

@@ -4,11 +4,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 
-const StockTransactions = () => {
+const CurrencyTransactions = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const [data, getData] = useState("");
+  const [data, getData] = useState([]);
 
   useEffect(() => {
     axios
@@ -30,16 +30,35 @@ const StockTransactions = () => {
       type: "number",
       headerAlign: "center",
       align: "center",
-      renderCell: (params) => <Typography>{params.row.sellAmount.toFixed(2)}</Typography>,
+      renderCell: (params) => <Typography>{params.row.sellAmount}</Typography>,
     },
-    { field: "buyCurrency", headerName: "TO", flex: 1 },
+    { 
+      field: "buyCurrency", 
+      headerName: "TO", 
+      flex: 1,
+      renderCell: (params) => 
+        <Typography> 
+          {
+            params.row.buyCurrency
+              ? params.row.buyCurrency
+              : params.row.sellCurrency
+          }
+        </Typography>
+    },
     {
       field: "buyAmount",
       headerName: "AMOUNT",
       type: "number",
       headerAlign: "center",
       align: "center",
-      renderCell: (params) => <Typography>{params.row.buyAmount.toFixed(2)}</Typography>,
+      renderCell: (params) => 
+        <Typography> 
+          {
+            params.row.buyAmount 
+              ? params.row.buyAmount.toFixed(2)
+              : params.row.sellAmount.toFixed(2)
+          }
+        </Typography>
     },
     {
       field: "fees",
@@ -47,7 +66,29 @@ const StockTransactions = () => {
       type: "number",
       headerAlign: "center",
       align: "center",
-      renderCell: (params) => <Typography>{params.row.fees.toFixed(2)}</Typography>,
+      renderCell: (params) => 
+      <Typography> 
+        {
+          params.row.fees 
+            ? params.row.fees.toFixed(2)
+            : 0
+        }
+      </Typography>
+    },
+    {
+      field: "exchangeRate",
+      headerName: "EXCHANGE RATE",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => 
+        <Typography> 
+          {
+            params.row.exchangeRate
+              ? params.row.exchangeRate.toFixed(2)
+              : 1
+          }
+        </Typography>
     },
   ];
 
@@ -83,4 +124,4 @@ const StockTransactions = () => {
   );
 };
 
-export default StockTransactions;
+export default CurrencyTransactions;
