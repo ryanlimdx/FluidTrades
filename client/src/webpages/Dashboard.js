@@ -9,12 +9,11 @@ import RealTimeSearch from "../components/dashboard/RealTimeSearch";
 
 const Dashboard = () => {
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+    <Box component="main" sx={{ p: 2 }}>
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Paper
             sx={{
-              background: "white",
               textAlign: "left",
             }}
             elevation={0}

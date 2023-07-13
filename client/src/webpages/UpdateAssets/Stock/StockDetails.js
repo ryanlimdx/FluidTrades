@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAppState } from "../../../state";
+import { useAppState } from "../../../context/state";
 import {
   Stack,
   Heading,
@@ -17,14 +17,14 @@ const StockDetails = () => {
     sector: "",
     equity: "",
     ticker: "",
-    currency: ""
+    currency: "",
   };
 
   const [state, setState] = useAppState();
   const navigate = useNavigate();
 
   const saveData = async (data) => {
-    setState({ ...state, ...data });    
+    setState({ ...state, ...data });
     if (state.transactionType === "Buy") {
       navigate("/updateAssets/stock/openingPosition");
     } else if (state.transactionType === "Sell") {
@@ -32,12 +32,11 @@ const StockDetails = () => {
     } else {
       navigate("/updateAssets/stock/dividends");
     }
-    
   };
 
   return (
     <Flex>
-        <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
+      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
         <Heading as="h1">Tell us more about the company</Heading>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
@@ -107,7 +106,6 @@ const StockDetails = () => {
         </Formik>
       </Stack>
     </Flex>
-      
   );
 };
 
