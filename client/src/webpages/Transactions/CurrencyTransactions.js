@@ -1,0 +1,86 @@
+import { Box, Typography, useTheme } from "@mui/material";
+import { tokens } from "../../theme";
+import { DataGrid } from "@mui/x-data-grid";
+import { useState, useEffect } from "react";
+import axios from "../../api/axios";
+
+const StockTransactions = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  const [data, getData] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("/currencytransactions")
+      .then((response) => {
+        console.log(response);
+        getData(response.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const columns = [
+    { field: "date", headerName: "DATE", flex: 1 },
+    { field: "transactionType", headerName: "TRANSACTION", flex: 1 },
+    { field: "sellCurrency", headerName: "FROM", flex: 1 },
+    {
+      field: "sellAmount",
+      headerName: "AMOUNT",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => <Typography>{params.row.sellAmount.toFixed(2)}</Typography>,
+    },
+    { field: "buyCurrency", headerName: "TO", flex: 1 },
+    {
+      field: "buyAmount",
+      headerName: "AMOUNT",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => <Typography>{params.row.buyAmount.toFixed(2)}</Typography>,
+    },
+    {
+      field: "fees",
+      headerName: "FEES",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params) => <Typography>{params.row.fees.toFixed(2)}</Typography>,
+    },
+  ];
+
+  return (
+      <Box
+        margin="40px 0 0 0"
+        height="75vh"
+        sx={{
+          "& .MuiDataGrid-root": {
+            border: "none",
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: colors.blueAccent[700],
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-virtualScroller": {
+            backgroundColor: colors.primary[400],
+          },
+          "& .MuiDataGrid-footerContainer": {
+            borderTop: "none",
+            backgroundColor: colors.blueAccent[700],
+          },
+          "& .MuiCheckbox-root": {
+            color: `${colors.greenAccent[200]} !important`,
+          },
+        }}
+      >
+        <DataGrid rows={data} columns={columns} getRowId={(row) => row._id} />
+      </Box>
+  );
+};
+
+export default StockTransactions;

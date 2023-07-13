@@ -15,6 +15,7 @@ const CurrencyConfirmation = () => {
     buyCurrency: state.currency,
     buyAmount: state.amount,
     fees: state.fees,
+    exchangeRate: state.amount / ( state.baseAmount + state.fees )
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -97,7 +98,7 @@ const CurrencyConfirmation = () => {
                       </div>
                       <div>
                         Exchange rate at conversion:{" "}
-                        {state.amount / state.baseAmount}
+                        {state.amount / ( state.baseAmount + state.fees )}
                       </div>
                     </SectionRow>
                   </Stack>
