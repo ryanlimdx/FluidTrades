@@ -11,7 +11,6 @@ exports.auth = (req, res, next) => {
 
   // Retrieve Token
   const token = authorization.split(' ')[1];
-  console.log(token);
 
   // Verify incoming token and set requesting user id to be decoded user
   try {
