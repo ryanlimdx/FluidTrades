@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAppState } from "../../../state";
+import { useAppState } from "../../../context/state";
 import {
   Stack,
   Heading,
@@ -16,7 +16,7 @@ const CurrencyBase = () => {
   const initialValues = {
     baseCurrency: "",
     baseAmount: "",
-    fees: ""
+    fees: "",
   };
 
   const [state, setState] = useAppState();
@@ -24,19 +24,23 @@ const CurrencyBase = () => {
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
-    
-    if (state.transactionType === "deposit" || state.transactionType === "withdraw") {
+
+    if (
+      state.transactionType === "deposit" ||
+      state.transactionType === "withdraw"
+    ) {
       navigate("/updateAssets/currency/confirmation");
     } else {
       navigate("/updateAssets/currency/convertTo");
     }
-    
   };
 
   return (
     <Flex>
-        <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">What are you {state.transactionType}ing today? </Heading>
+      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
+        <Heading as="h1">
+          What are you {state.transactionType}ing today?{" "}
+        </Heading>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
           {({ isSubmitting, setFieldValue }) => (
@@ -67,19 +71,16 @@ const CurrencyBase = () => {
                 </Field>
 
                 {/* include field for fees if it is a deposit/ withdraw transactionType */}
-                {(state.transactionType === "deposit" || state.transactionType === "withdraw") &&
+                {(state.transactionType === "deposit" ||
+                  state.transactionType === "withdraw") && (
                   <Field as={InputGroup}>
                     <FormControl>
                       <FormLabel>Fees</FormLabel>
-                      <Input
-                        name="fees"
-                        type="text"
-                        placeholder="0.40"
-                      />
+                      <Input name="fees" type="text" placeholder="0.40" />
                     </FormControl>
                   </Field>
-                }
-                
+                )}
+
                 <Button
                   isLoading={isSubmitting}
                   loadingText="Hang on while we fight the demons."
@@ -95,7 +96,6 @@ const CurrencyBase = () => {
         </Formik>
       </Stack>
     </Flex>
-      
   );
 };
 

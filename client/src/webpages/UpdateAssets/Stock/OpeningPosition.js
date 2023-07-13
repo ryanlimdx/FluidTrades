@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAppState } from "../../../state";
+import { useAppState } from "../../../context/state";
 import {
   Stack,
   Heading,
@@ -9,7 +9,7 @@ import {
   InputGroup,
   FormControl,
   FormLabel,
-  FormHelperText
+  FormHelperText,
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
 
@@ -38,41 +38,47 @@ const OpeningPosition = () => {
             <Form>
               <Stack>
                 <Field as={InputGroup}>
-                    <FormControl>
-                      <FormLabel>Price per share</FormLabel>
-                      <Input
-                        name="price"
-                        type="text"
-                        placeholder="24"
-                        required={true}
-                      />
-                      <FormHelperText> Currency need not be included! </FormHelperText>
-                    </FormControl>
+                  <FormControl>
+                    <FormLabel>Price per share</FormLabel>
+                    <Input
+                      name="price"
+                      type="text"
+                      placeholder="24"
+                      required={true}
+                    />
+                    <FormHelperText>
+                      {" "}
+                      Currency need not be included!{" "}
+                    </FormHelperText>
+                  </FormControl>
                 </Field>
 
                 <Field as={InputGroup}>
-                    <FormControl>
-                      <FormLabel>Number of shares</FormLabel>
-                      <Input
-                        name="shares"
-                        type="text"
-                        placeholder="10"
-                        required={true}
-                      />
-                    </FormControl>
+                  <FormControl>
+                    <FormLabel>Number of shares</FormLabel>
+                    <Input
+                      name="shares"
+                      type="text"
+                      placeholder="10"
+                      required={true}
+                    />
+                  </FormControl>
                 </Field>
 
                 <Field as={InputGroup}>
-                    <FormControl>
-                      <FormLabel>Fees</FormLabel>
-                      <Input
-                        name="fees"
-                        type="text"
-                        placeholder="0.40"
-                        required={true}
-                      />
-                      <FormHelperText> Commissions paid for the transaction. </FormHelperText>
-                    </FormControl>
+                  <FormControl>
+                    <FormLabel>Fees</FormLabel>
+                    <Input
+                      name="fees"
+                      type="text"
+                      placeholder="0.40"
+                      required={true}
+                    />
+                    <FormHelperText>
+                      {" "}
+                      Commissions paid for the transaction.{" "}
+                    </FormHelperText>
+                  </FormControl>
                 </Field>
 
                 <Button

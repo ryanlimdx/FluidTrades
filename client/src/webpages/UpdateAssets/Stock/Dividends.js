@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAppState } from "../../../state";
+import { useAppState } from "../../../context/state";
 import {
   Stack,
   Heading,
@@ -10,7 +10,7 @@ import {
   InputGroup,
   FormControl,
   FormLabel,
-  FormHelperText
+  FormHelperText,
 } from "@chakra-ui/react";
 import { Form, Formik, Field } from "formik";
 
@@ -33,24 +33,24 @@ const Dividends = () => {
       <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
         <Heading as="h1">Almost there! Position details left...</Heading>
         <Text fontSize="lg">
-          Dividends can be in the form of monetary distribution from Companies, or Staking rewards for Cryptocurrencies!
+          Dividends can be in the form of monetary distribution from Companies,
+          or Staking rewards for Cryptocurrencies!
         </Text>
 
         <Formik onSubmit={saveData} initialValues={initialValues}>
           {({ isSubmitting }) => (
             <Form>
               <Stack>
-
                 <Field as={InputGroup}>
-                    <FormControl>
-                      <FormLabel>Number of shares</FormLabel>
-                      <Input
-                        name="shares"
-                        type="text"
-                        placeholder="10"
-                        required={true}
-                      />
-                    </FormControl>
+                  <FormControl>
+                    <FormLabel>Number of shares</FormLabel>
+                    <Input
+                      name="shares"
+                      type="text"
+                      placeholder="10"
+                      required={true}
+                    />
+                  </FormControl>
                 </Field>
 
                 <Field as={InputGroup}>
