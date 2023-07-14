@@ -116,7 +116,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
     const currency = req.body.currency;
 
     const price = req.body.price;
-    var shares = parseFloat(req.body.shares);
+    let shares = parseFloat(req.body.shares);
     if (transactionType === "Sell") {
       shares = -shares;
     }
