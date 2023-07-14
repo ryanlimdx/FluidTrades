@@ -19,6 +19,7 @@ router.post('/currency/confirmation', auth, async(req, res) => {
     const buyCurrency = req.body.buyCurrency;
     const buyAmount = req.body.buyAmount;
     const fees = req.body.fees;
+    const exchangeRate = req.body.exchangeRate;
 
     // Create new transaction entry
     await CTransaction.create({
@@ -29,7 +30,8 @@ router.post('/currency/confirmation', auth, async(req, res) => {
       sellAmount: sellAmount,
       buyCurrency: buyCurrency,
       buyAmount: buyAmount,
-      fees: fees
+      fees: fees,
+      exchangeRate: exchangeRate
     });
 
     return res.status(200).send("Data sent to database.");

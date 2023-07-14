@@ -32,11 +32,23 @@ app.get('/profile', auth, async (req, res) => {
 const STransaction = require('./schemas/StockTransaction');
 
 // GET request to retrieve stock data
-app.get("/transactions", auth, async(req, res) => {
+app.get("/stocktransactions", auth, async(req, res) => {
   try {
     const user = await User.findById(req.userId);
     const stockTxns = await STransaction.find({user: user});
     return res.status(200).json(stockTxns);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+const CTransaction = require('./schemas/CurrencyTransaction');
+// GET request to retrieve stock data
+app.get("/currencytransactions", auth, async(req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+    const currencyTxns = await CTransaction.find({user: user});
+    return res.status(200).json(currencyTxns);
   } catch (error) {
     console.log(error);
   }

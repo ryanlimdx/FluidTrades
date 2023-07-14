@@ -19,7 +19,7 @@ import Login from "./webpages/Login";
 import Register from "./webpages/Register";
 import Dashboard from "./webpages/Dashboard";
 import Profile from "./webpages/Profile";
-import Transactions from "./webpages/Transactions";
+import Transactions from "./webpages/Transactions/Transactions";
 
 // Forms
 // Stock
@@ -50,43 +50,100 @@ function App() {
           <main className="content">
             <AppProvider>
               <Routes>
-                <Route path="/" >
-                  <Route path="/login" exact element={ <ChakraProvider> {" "}<Login />{" "} </ChakraProvider> } />
-                  <Route path="/register" exact element={ <ChakraProvider> {" "} <Register />{" "} </ChakraProvider> } />
-                  
-                  <Route element={ <PrivateRoutes > <MainLayout /> </PrivateRoutes> } >
+                <Route path="/">
+                  <Route
+                    path="/login"
+                    exact
+                    element={
+                      <ChakraProvider>
+                        {" "}
+                        <Login />{" "}
+                      </ChakraProvider>
+                    }
+                  />
+                  <Route
+                    path="/register"
+                    exact
+                    element={
+                      <ChakraProvider>
+                        {" "}
+                        <Register />{" "}
+                      </ChakraProvider>
+                    }
+                  />
+
+                  <Route
+                    element={
+                      <PrivateRoutes>
+                        {" "}
+                        <MainLayout />{" "}
+                      </PrivateRoutes>
+                    }
+                  >
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/transactions" element={<Transactions />} />
 
-                    <Route element={ <ChakraProvider> <FormLayout /> </ChakraProvider> } >
+                    <Route
+                      element={
+                        <ChakraProvider>
+                          {" "}
+                          <FormLayout />{" "}
+                        </ChakraProvider>
+                      }
+                    >
                       {/* Stock Form */}
-                      <Route path="/updateAssets/stock" element={<StockTransaction />} />
-                      <Route path="/updateAssets/stock/details" element={<StockDetails />} />
-                      <Route path="/updateAssets/stock/openingPosition" element={<OpeningPosition />} />
-                      <Route path="/updateAssets/stock/closingPosition" element={<ClosingPosition />} />
-                      <Route path="/updateAssets/stock/dividends" element={<Dividends />} />
-                      <Route path="/updateAssets/stock/confirmation" element={<StockConfirmation />} />
+                      <Route
+                        path="/updateAssets/stock"
+                        element={<StockTransaction />}
+                      />
+                      <Route
+                        path="/updateAssets/stock/details"
+                        element={<StockDetails />}
+                      />
+                      <Route
+                        path="/updateAssets/stock/openingPosition"
+                        element={<OpeningPosition />}
+                      />
+                      <Route
+                        path="/updateAssets/stock/closingPosition"
+                        element={<ClosingPosition />}
+                      />
+                      <Route
+                        path="/updateAssets/stock/dividends"
+                        element={<Dividends />}
+                      />
+                      <Route
+                        path="/updateAssets/stock/confirmation"
+                        element={<StockConfirmation />}
+                      />
 
                       {/* Currency Form */}
-                      <Route path="updateAssets/currency" element={<CurrencyTransaction />} />
-                      <Route path="updateAssets/currency/base" element={<CurrencyBase />} />
-                      <Route path="updateAssets/currency/convertTo" element={<ConvertTo />} />
-                      <Route path="updateAssets/currency/confirmation" element={<CurrencyConfirmation />} />
+                      <Route
+                        path="updateAssets/currency"
+                        element={<CurrencyTransaction />}
+                      />
+                      <Route
+                        path="updateAssets/currency/base"
+                        element={<CurrencyBase />}
+                      />
+                      <Route
+                        path="updateAssets/currency/convertTo"
+                        element={<ConvertTo />}
+                      />
+                      <Route
+                        path="updateAssets/currency/confirmation"
+                        element={<CurrencyConfirmation />}
+                      />
                     </Route>
-
                   </Route>
-                
                 </Route>
               </Routes>
             </AppProvider>
-
           </main>
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
-    
-    
   );
 }
 
