@@ -6,7 +6,7 @@ import { SectionRow } from "../../../components/forms/Section";
 import { useNavigate } from "react-router-dom";
 
 const CurrencyConfirmation = () => {
-  const [state] = useAppState();
+  const [state, setState] = useAppState();
   const navigate = useNavigate();
 
   const exchangeRate = state.amount / state.baseAmount
@@ -49,6 +49,7 @@ const CurrencyConfirmation = () => {
       console.log(error.config);
     } finally {
       setSubmitting = false;
+      setState({});
     }
   };
 
