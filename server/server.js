@@ -1,6 +1,3 @@
-/**
- * This file will be used to send requests for account creation and login purposes.
- */
 // Setting up of backend server + connect to DB
 const { app  } = require("./app");
 

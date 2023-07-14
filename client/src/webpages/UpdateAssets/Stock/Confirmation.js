@@ -6,7 +6,7 @@ import { Section, SectionRow } from "../../../components/forms/Section";
 import { useNavigate } from "react-router-dom";
 
 const StockConfirmation = () => {
-  const [state] = useAppState();
+  const [state, setState] = useAppState();
   const navigate = useNavigate();
   const initialValues = {
     transactionType: state.transactionType,
@@ -47,6 +47,7 @@ const StockConfirmation = () => {
       console.log(error.config);
     } finally {
       setSubmitting = false;
+      setState({});
     }
   };
 
