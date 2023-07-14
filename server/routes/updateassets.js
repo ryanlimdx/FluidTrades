@@ -35,27 +35,68 @@ router.post("/currency/confirmation", auth, async (req, res) => {
       fees: fees,
       exchangeRate: exchangeRate,
     });
-
-    if (transactionType === "Deposit" || transactionType === "Withdraw") {
-
-    } else {
-      
-    }
-
+    
     // Create a new currency for record purposes. If already exists, patch the data.
-    await Currency.findOneAndUpdate(
-      { currency: currency },
-      {
-        $inc: {
-          balance: -investedCapital,
+    if (transactionType === "Deposit") {
+      await Currency.findOneAndUpdate(
+        { currency: sellCurrency },
+        {
+          $inc: {
+            balance: sellAmount - fees,
+          },
+  
+          $setOnInsert: {
+            currency: sellCurrency,
+          },
         },
+        { upsert: true }
+      );
 
-        $setOnInsert: {
-          currency: currency,
+    } else if (transactionType === "Withdraw") {
+      await Currency.findOneAndUpdate(
+        { currency: sellCurrency },
+        {
+          $inc: {
+            balance: - sellAmount - fees,
+          },
+  
+          $setOnInsert: {
+            currency: sellCurrency,
+          },
         },
-      },
-      { upsert: true }
-    );
+        { upsert: true }
+      );
+    } else {
+      // From this currency
+      await Currency.findOneAndUpdate(
+        { currency: sellCurrency },
+        {
+          $inc: {
+            balance: - sellAmount - fees,
+          },
+  
+          $setOnInsert: {
+            currency: sellCurrency,
+          },
+        },
+        { upsert: true }
+      );
+      
+      // To this currency
+      await Currency.findOneAndUpdate(
+        { currency: buyCurrency },
+        {
+          $inc: {
+            balance: buyAmount,
+          },
+  
+          $setOnInsert: {
+            currency: buyCurrency,
+          },
+        },
+        { upsert: true }
+      );
+    }
 
     return res.status(200).send("Data sent to database.");
   } catch (error) {
