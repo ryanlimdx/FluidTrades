@@ -11,8 +11,7 @@ const currencySchema = new mongoose.Schema({
         default: Date.now
     },
     currency: String,
-    balance: Number,
-    exchangeRate: Number
+    balance: Number
     },
 
     {

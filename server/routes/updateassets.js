@@ -36,6 +36,27 @@ router.post("/currency/confirmation", auth, async (req, res) => {
       exchangeRate: exchangeRate,
     });
 
+    if (transactionType === "Deposit" || transactionType === "Withdraw") {
+
+    } else {
+      
+    }
+
+    // Create a new currency for record purposes. If already exists, patch the data.
+    await Currency.findOneAndUpdate(
+      { currency: currency },
+      {
+        $inc: {
+          balance: -investedCapital,
+        },
+
+        $setOnInsert: {
+          currency: currency,
+        },
+      },
+      { upsert: true }
+    );
+
     return res.status(200).send("Data sent to database.");
   } catch (error) {
     res.status(500).json({ error: "An error occured." });
@@ -55,7 +76,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
 
     const price = req.body.price;
     var shares = parseFloat(req.body.shares);
-    if (transactionType == "Sell") {
+    if (transactionType === "Sell") {
       shares = -shares;
     }
     const fees = req.body.fees;
@@ -77,7 +98,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
       fees: fees,
     });
 
-    // Create a new stcok for record purposes. If already exists, patch the data.
+    // Create a new stock for record purposes. If already exists, patch the data.
     await Stock.findOneAndUpdate(
       { ticker: ticker },
       {
@@ -90,6 +111,21 @@ router.post("/stock/confirmation", auth, async (req, res) => {
           sector: sector,
           equity: equity,
           ticker: ticker,
+          currency: currency,
+        },
+      },
+      { upsert: true }
+    );
+
+    // Update currency records after transaction
+    await Currency.findOneAndUpdate(
+      { currency: currency },
+      {
+        $inc: {
+          balance: -investedCapital,
+        },
+
+        $setOnInsert: {
           currency: currency,
         },
       },
