@@ -15,8 +15,6 @@ const stockSchema = new mongoose.Schema({
     ticker: String,
     currency: String,
 
-    lastPrice: Number,
-    breakevenPrice: Number,
     shares: Number,
     investedCapital: Number
     },

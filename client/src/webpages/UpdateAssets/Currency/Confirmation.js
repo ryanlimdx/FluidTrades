@@ -13,9 +13,9 @@ const CurrencyConfirmation = () => {
 
   const initialValues = {
     transactionType: state.transactionType,
-    sellCurrency: state.baseCurrency,
+    sellCurrency: state.baseCurrency.toUpperCase(),
     sellAmount: state.baseAmount,
-    buyCurrency: state.currency,
+    buyCurrency: state.currency.toUpperCase(),
     buyAmount: state.amount,
     fees: state.fees,
     exchangeRate: exchangeRate

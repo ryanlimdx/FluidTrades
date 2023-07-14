@@ -12,7 +12,7 @@ const StockConfirmation = () => {
     transactionType: state.transactionType,
     sector: state.sector,
     equity: state.equity,
-    ticker: state.ticker,
+    ticker: state.ticker.toUpperCase(),
     currency: state.currency,
 
     price: state.price,
