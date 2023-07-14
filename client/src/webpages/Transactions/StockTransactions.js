@@ -48,7 +48,14 @@ const StockTransactions = () => {
       type: "number",
       headerAlign: "center",
       align: "center",
-      renderCell: (params) => <Typography>${params.row.fees.toFixed(2)}</Typography>,
+      renderCell: (params) => 
+      <Typography> 
+        ${
+          params.row.fees 
+            ? params.row.fees.toFixed(2)
+            : 0.00
+        }
+      </Typography>
     },
   ];
 

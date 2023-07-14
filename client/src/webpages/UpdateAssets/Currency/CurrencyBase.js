@@ -71,8 +71,8 @@ const CurrencyBase = () => {
                 </Field>
 
                 {/* include field for fees if it is a deposit/ withdraw transactionType */}
-                {(state.transactionType === "deposit" ||
-                  state.transactionType === "withdraw") && (
+                {(state.transactionType === "Deposit" ||
+                  state.transactionType === "Withdraw") && (
                   <Field as={InputGroup}>
                     <FormControl>
                       <FormLabel>Fees</FormLabel>

@@ -30,7 +30,7 @@ const CurrencyTransactions = () => {
       type: "number",
       headerAlign: "center",
       align: "center",
-      renderCell: (params) => <Typography>{params.row.sellAmount}</Typography>,
+      renderCell: (params) => <Typography>{params.row.sellAmount.toFixed(2)}</Typography>,
     },
     { 
       field: "buyCurrency", 
@@ -68,10 +68,10 @@ const CurrencyTransactions = () => {
       align: "center",
       renderCell: (params) => 
       <Typography> 
-        {
+        ${
           params.row.fees 
             ? params.row.fees.toFixed(2)
-            : 0
+            : 0.00
         }
       </Typography>
     },
