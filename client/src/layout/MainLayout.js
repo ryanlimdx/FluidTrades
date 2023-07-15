@@ -4,14 +4,12 @@ import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
 
 const MainLayout = () => {
-  const [isSidebar, setIsSidebar] = useState(true);
   
   return (
-    
     <div className="app">
-      <Sidebar isSidebar={isSidebar} />
+      <Sidebar/>
       <main className="content">
-        <Topbar setIsSideBar={setIsSidebar} />
+        <Topbar />
         <Outlet />
       </main>
     </div>

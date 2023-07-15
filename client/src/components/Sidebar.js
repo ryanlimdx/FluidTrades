@@ -1,21 +1,20 @@
 import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { tokens } from "../theme";
 import { Avatar } from "@mui/material";
 import coinStack from "../assets/coin-stack.gif";
 import Logo from "../assets/FluidTradesLogoBG.PNG";
 
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import BusinessIcon from "@mui/icons-material/Business";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
-
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -47,11 +46,8 @@ const SideBar = () => {
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Box
-      display="flex"
-      
-    >
-      <Sidebar collapsed={isCollapsed}>
+    <Box display="flex">
+      <Sidebar collapsed={isCollapsed} backgroundColor={colors.primary[400]}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
@@ -59,7 +55,17 @@ const SideBar = () => {
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
               margin: "10px 0 20px 0",
-              // color: colors.grey[100],
+              color: colors.grey[100],
+            }}
+            
+            menuItemStyles={{
+              button: {
+                    backgroundColor: 'red',
+                     '&:hover': {
+                            backgroundColor: '#d8f3dc',
+                            color: '#1b4332'
+                          },
+                },
             }}
           >
             {!isCollapsed && (
@@ -78,7 +84,7 @@ const SideBar = () => {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box mb="25px" margin="20px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="coin stack"

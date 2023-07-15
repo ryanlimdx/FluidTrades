@@ -13,6 +13,7 @@ body,
 .app {
   display: flex;
   position: relative;
+  height: 100vh;
 }
 
 .login {
