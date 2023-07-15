@@ -140,6 +140,10 @@ export const themeSettings = (mode) => {
               main: colors.grey[500],
               light: colors.grey[100],
             },
+            appBar: {
+              dark: colors.primary[500],
+              main: colors.primary[500],
+            },
             background: {
               default: colors.primary[500],
             },
@@ -156,6 +160,10 @@ export const themeSettings = (mode) => {
               dark: colors.grey[700],
               main: colors.grey[500],
               light: colors.grey[100],
+            },
+            appBar: {
+              main: "#fcfcfc",
+              light: "#fcfcfc",
             },
             background: {
               default: "#fcfcfc",

@@ -38,8 +38,6 @@ const Topbar = () => {
 
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
-  const themeColors = themeSettings(theme.palette.mode).palette;
-  const appBarColor = themeColors.background.default;
 
   const navigate = useNavigate();
   const handleProfileLinkClick = () => {
@@ -50,8 +48,9 @@ const Topbar = () => {
     <AppBar
       position="sticky"
       // sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
-      // color="default"
-      sx = {{ background: appBarColor }} 
+      color="appBar"
+      enableColorOnDark
+      // sx = {{ background: appBarColor }} 
     >
       <Toolbar
         sx={{
