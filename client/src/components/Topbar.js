@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import Logo from "../assets/FluidTradesLogoBG.PNG";
-import { ColorModeContext, tokens } from "../theme";
+import { ColorModeContext, themeSettings, tokens } from "../theme";
 
 // MUI components
 import { Typography, Box, IconButton, useTheme } from "@mui/material";
@@ -38,6 +38,8 @@ const Topbar = () => {
 
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
+  const themeColors = themeSettings(theme.palette.mode).palette;
+  const appBarColor = themeColors.background.default;
 
   const navigate = useNavigate();
   const handleProfileLinkClick = () => {
@@ -48,8 +50,8 @@ const Topbar = () => {
     <AppBar
       position="sticky"
       // sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
-      color="transparent"
-      enableColorOnDark
+      // color="default"
+      sx = {{ background: appBarColor }} 
     >
       <Toolbar
         sx={{
