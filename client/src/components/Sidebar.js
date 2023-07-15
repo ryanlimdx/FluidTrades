@@ -47,7 +47,10 @@ const SideBar = () => {
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Box display="flex">
+    <Box
+      display="flex"
+      
+    >
       <Sidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
