@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
-import StockTransactions from "./StockTransactions";
-import CurrencyTransactions from "./CurrencyTransactions";
 import Fab from "@mui/material/Fab";
+
+import Stocks from "./Stock";
 
 import AddIcon from "@mui/icons-material/Add";
 import InputLabel from "@mui/material/InputLabel";
@@ -12,38 +12,17 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const Transactions = () => {
-  const [form, setForm] = useState("stock");
-
-  const handleChange = (event) => {
-    setForm(event.target.value);
-  };
-
+const Portfolio = () => {
   const navigate = useNavigate();
   const handleAdd = () => {
-    navigate("/updateAssets/" + form);
+    navigate("/updateAssets/stock");
   };
 
   return (
     <Box margin="20px">
-      <Header title="TRANSACTIONS" />
-      <Box>
-        <FormControl fullWidth>
-          <InputLabel id="txn-asset-picker-label">Asset</InputLabel>
-          <Select
-            labelId="txn-asset-picker"
-            label="Asset"
-            id="txn-asset-picker"
-            value={form}
-            onChange={handleChange}
-          >
-            <MenuItem value="stock">Stock</MenuItem>
-            <MenuItem value="currency">Currency</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+      <Header title="PORTFOLIO" />
 
-      {form === "stock" ? <StockTransactions /> : <CurrencyTransactions />}
+      <Stocks />
 
       <Fab
         onClick={handleAdd}
@@ -62,4 +41,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions;
+export default Portfolio;

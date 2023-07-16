@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 
-const StockTransactions = () => {
+const Stocks = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -21,33 +21,41 @@ const StockTransactions = () => {
   }, []);
 
   const columns = [
-    { field: "date", headerName: "DATE", flex: 1 },
-    { field: "transactionType", headerName: "TRANSACTION", flex: 1 },
     { field: "sector", headerName: "SECTOR", flex: 1 },
     { field: "equity", headerName: "EQUITY", flex: 1 },
     { field: "ticker", headerName: "TICKER", flex: 1 },
     { field: "currency", headerName: "CURRENCY", flex: 1 },
-    {
-      field: "price",
-      headerName: "PRICE",
-      type: "number",
-      headerAlign: "center",
-      align: "center",
-      renderCell: (params) => <Typography>${params.row.price.toFixed(2)}</Typography>,
-    },
+    // { // to show current price (real time/ delayed data)
+    //   field: "price",
+    //   headerName: "PRICE",
+    //   type: "number",
+    //   headerAlign: "center",
+    //   align: "center",
+    //   renderCell: (params) => <Typography>${params.row.price.toFixed(2)}</Typography>,
+    // },
+    // { // to show breakeven price
+    //   field: "price",
+    //   headerName: "PRICE",
+    //   type: "number",
+    //   headerAlign: "center",
+    //   align: "center",
+    //   renderCell: (params) => <Typography>${params.row.price.toFixed(2)}</Typography>,
+    // },
     {
       field: "shares",
       headerName: "SHARES",
       type: "number",
       headerAlign: "center",
       align: "center",
+      flex: 1, 
     },
     {
-      field: "fees",
-      headerName: "FEES",
+      field: "investedCapital",
+      headerName: "INVESTED CAPITAL",
       type: "number",
       headerAlign: "center",
       align: "center",
+      flex: 1, 
       renderCell: (params) => 
       <Typography> 
         ${
@@ -91,4 +99,4 @@ const StockTransactions = () => {
   );
 };
 
-export default StockTransactions;
+export default Stocks;
