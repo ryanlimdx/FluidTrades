@@ -9,13 +9,17 @@ const CurrencyConfirmation = () => {
   const [state, setState] = useAppState();
   const navigate = useNavigate();
 
-  const exchangeRate = state.amount / state.baseAmount
+  const exchangeRate = state.amount / state.baseAmount;
+  let buyCurrency = state.currency;
+  if (state.currency) {
+    buyCurrency = state.currency.toUpperCase();
+  }
 
   const initialValues = {
     transactionType: state.transactionType,
-    sellCurrency: state.baseCurrency,
+    sellCurrency: state.baseCurrency.toUpperCase(),
     sellAmount: state.baseAmount,
-    buyCurrency: state.currency,
+    buyCurrency: buyCurrency,
     buyAmount: state.amount,
     fees: state.fees,
     exchangeRate: exchangeRate
