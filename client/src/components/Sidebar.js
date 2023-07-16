@@ -46,46 +46,83 @@ const SideBar = () => {
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Box display="flex">
+    <Box
+      display="flex"
+      sx={{
+        // "& .pro-sidebar-inner": {
+        //   background: `${colors.primary[400]} !important`,
+        // },
+        // "& .pro-sidebar": {
+        //     borderRight: "none !important",
+        // },
+        "& .ps-sidebar-container": {
+          /*background sidebar*/
+          display: "flex",
+          flexDirection: "column",
+          borderTopRightRadius: "10px",
+          borderBottomRightRadius: "10px",
+        },
+        // "& .ps-menu-button:hover": {
+        //     /*changes text color when hover.*/
+        //     color: `${colors.primary[700]} !important`,
+        //     background: `${colors.grey[100]} !important`,
+        //     borderRadius: "10px",
+        // },
+      }}
+    >
       <Sidebar collapsed={isCollapsed} backgroundColor={colors.primary[400]}>
-        <Menu iconShape="square">
+        <Menu
+          menuItemStyles={{
+            button: ({ isSubmenu, level, disabled, active, open }) => ({
+              backgroundColor: active ? "#6870fa" : undefined,
+              borderRadius: active ? "6px" : undefined,
+              "&:hover": {
+                backgroundColor: "#868dfb",
+                borderRadius: "6px",
+              },
+            }),
+          }}
+        >
           {/* LOGO AND MENU ICON */}
-          <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{
-              margin: "10px 0 20px 0",
-              color: colors.grey[100],
-            }}
-            
-            menuItemStyles={{
-              button: {
-                    backgroundColor: 'red',
-                     '&:hover': {
-                            backgroundColor: '#d8f3dc',
-                            color: '#1b4332'
-                          },
-                },
+          <Box 
+            paddingLeft={isCollapsed ? undefined : "10%"}
+            sx={{
+              "& .ps-menu-button:hover": {
+                  /*remove color when hover for header.*/
+                  background: `none !important`
+              },
             }}
           >
-            {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              >
-                <Avatar alt="Logo" src={Logo} sx={{ width: 40, height: 40 }} />
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <CloseIcon />
-                </IconButton>
-              </Box>
-            )}
-          </MenuItem>
+            <MenuItem
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+              style={{
+                margin: "10px 0 20px 0",
+                color: colors.grey[100],
+              }}
+            >
+              {!isCollapsed && (
+                <Box
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Avatar
+                    alt="Logo"
+                    src={Logo}
+                    sx={{ width: 40, height: 40 }}
+                  />
+                  <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                    <CloseIcon />
+                  </IconButton>
+                </Box>
+              )}
+            </MenuItem>
+          </Box>
 
           {!isCollapsed && (
-            <Box mb="25px" margin="20px">
-              <Box display="flex" justifyContent="center" alignItems="center">
+            <Box margin="20px 20px 15px 20px">
+              <Box display="flex" justifyContent="center" alignItems="center" mb="10px">
                 <img
                   alt="coin stack"
                   width="100px"
@@ -102,7 +139,7 @@ const SideBar = () => {
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box padding={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
               to="/"
