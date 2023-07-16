@@ -59,8 +59,8 @@ const Stocks = () => {
       renderCell: (params) => 
       <Typography> 
         ${
-          params.row.fees 
-            ? params.row.fees.toFixed(2)
+          params.row.investedCapital 
+            ? params.row.investedCapital.toFixed(2)
             : 0.00
         }
       </Typography>
