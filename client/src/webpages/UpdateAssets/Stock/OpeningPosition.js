@@ -1,17 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
-import {
-  Stack,
-  Heading,
-  Center,
-  Button,
-  Input,
-  InputGroup,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-} from "@chakra-ui/react";
-import { Form, Formik, Field } from "formik";
+import { Typography, Box, Stack, Button, TextField } from "@mui/material";
+import { Form, Formik } from "formik";
 
 const OpeningPosition = () => {
   const initialValues = {
@@ -29,73 +19,57 @@ const OpeningPosition = () => {
   };
 
   return (
-    <Center>
-      <Stack>
-        <Heading as="h1">Almost there! Position details left...</Heading>
+    <Box>
+      <Typography variant="h1">
+        Almost there! Position details left...
+      </Typography>
 
-        <Formik onSubmit={saveData} initialValues={initialValues}>
-          {({ isSubmitting }) => (
-            <Form>
-              <Stack>
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Price per share</FormLabel>
-                    <Input
-                      name="price"
-                      type="text"
-                      placeholder="24"
-                      required={true}
-                    />
-                    <FormHelperText>
-                      {" "}
-                      Currency need not be included!{" "}
-                    </FormHelperText>
-                  </FormControl>
-                </Field>
+      <Formik onSubmit={saveData} initialValues={initialValues}>
+        {({ setFieldValue }) => (
+          <Form>
+            <Stack>
+              <TextField
+                label="Price per share"
+                id="outlined-helperText"
+                required
+                margin="normal"
+                onChange={(event) => setFieldValue("price", event.target.value)}
+                helperText="Currency Symbol need not be included!"
+              />
 
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Number of shares</FormLabel>
-                    <Input
-                      name="shares"
-                      type="text"
-                      placeholder="10"
-                      required={true}
-                    />
-                  </FormControl>
-                </Field>
+              <TextField
+                label="Number of shares"
+                id="outlined-helperText"
+                required
+                margin="normal"
+                onChange={(event) =>
+                  setFieldValue("shares", event.target.value)
+                }
+              />
 
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Fees</FormLabel>
-                    <Input
-                      name="fees"
-                      type="text"
-                      placeholder="0.40"
-                      required={true}
-                    />
-                    <FormHelperText>
-                      {" "}
-                      Commissions paid for the transaction.{" "}
-                    </FormHelperText>
-                  </FormControl>
-                </Field>
+              <TextField
+                label="Fees"
+                id="outlined-helperText"
+                required
+                margin="normal"
+                onChange={(event) => setFieldValue("fees", event.target.value)}
+                helperText="Commissions paid for the transaction."
+              />
 
-                <Button
-                  isLoading={isSubmitting}
-                  loadingText="Hang on while we fight the demons."
-                  size="lg"
-                  colorScheme="teal"
-                  type="submit"
-                >
-                  Next
-                </Button>
-              </Stack>
-            </Form>
-          )}
-        </Formik>
-      </Stack>
-    </Center>
+              <Button
+                size="large"
+                variant="contained"
+                type="submit"
+                fullWidth
+                sx={{ marginTop: 2 }}
+              >
+                Next
+              </Button>
+            </Stack>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
 

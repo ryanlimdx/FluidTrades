@@ -1,16 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
 import {
+  Typography,
+  Box,
   Stack,
-  Heading,
   Button,
-  Input,
-  InputGroup,
-  FormControl,
-  FormLabel,
-  Flex,
-} from "@chakra-ui/react";
-import { Form, Formik, Field } from "formik";
+  TextField,
+} from "@mui/material";
+import { Form, Formik } from "formik";
 
 const CurrencyBase = () => {
   const initialValues = {
@@ -36,66 +33,53 @@ const CurrencyBase = () => {
   };
 
   return (
-    <Flex>
-      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">
-          What are you {state.transactionType}ing today?{" "}
-        </Heading>
+    <Box variant="outlined">
+      <Typography variant="h1">
+        What are you {state.transactionType}ing today?{" "}
+      </Typography>
 
-        <Formik onSubmit={saveData} initialValues={initialValues}>
-          {({ isSubmitting, setFieldValue }) => (
-            <Form>
-              <Stack>
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Base Currency</FormLabel>
-                    <Input
-                      name="baseCurrency"
-                      type="text"
-                      placeholder="SGD"
-                      required={true}
-                    />
-                  </FormControl>
-                </Field>
+      <Formik onSubmit={saveData} initialValues={initialValues}>
+        {({ setFieldValue }) => (
+          <Form>
+            <Stack margin={0}>
+              <TextField
+                label="Base Currency"
+                id="outlined-helperText"
+                required
+                margin="normal"
+                onChange={(event) => setFieldValue("baseCurrency", event.target.value)}
+              />
 
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Amount</FormLabel>
-                    <Input
-                      name="baseAmount"
-                      type="text"
-                      placeholder="1000"
-                      required={true}
-                    />
-                  </FormControl>
-                </Field>
+              <TextField
+                label="Amount"
+                id="outlined-helperText"
+                required
+                margin="normal"
+                onChange={(event) => setFieldValue("baseAmount", event.target.value)}
+              />
 
-                {/* include field for fees if it is a deposit/ withdraw transactionType */}
-                {(state.transactionType === "Deposit" ||
-                  state.transactionType === "Withdraw") && (
-                  <Field as={InputGroup}>
-                    <FormControl>
-                      <FormLabel>Fees</FormLabel>
-                      <Input name="fees" type="text" placeholder="0.40" />
-                    </FormControl>
-                  </Field>
-                )}
+              {/* include field for fees if it is a deposit/ withdraw transactionType */}
+              {(state.transactionType === "Deposit" ||
+                state.transactionType === "Withdraw") && (
+                <>
+                  <TextField
+                    label="Fees"
+                    id="outlined-helperText"
+                    required
+                    margin="normal"
+                    onChange={(event) => setFieldValue("fees", event.target.value)}
+                  />
+                </>
+              )}
 
-                <Button
-                  isLoading={isSubmitting}
-                  loadingText="Hang on while we fight the demons."
-                  size="lg"
-                  colorScheme="teal"
-                  type="submit"
-                >
-                  Next
-                </Button>
-              </Stack>
-            </Form>
-          )}
-        </Formik>
-      </Stack>
-    </Flex>
+              <Button size="large" variant="contained" type="submit" fullWidth sx={{marginTop: 2}}>
+                Next
+              </Button>
+            </Stack>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
 
