@@ -50,6 +50,7 @@ const Topbar = () => {
       // sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
       color="appBar"
       enableColorOnDark
+      elevation={0}
       // sx = {{ background: appBarColor }} 
     >
       <Toolbar
