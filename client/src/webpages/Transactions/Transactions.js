@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import StockTransactions from "./StockTransactions";
 import CurrencyTransactions from "./CurrencyTransactions";
 import Fab from "@mui/material/Fab";
+import FloatingTool from "../../components/FloatingTool";
 
 import AddIcon from "@mui/icons-material/Add";
 import InputLabel from "@mui/material/InputLabel";
@@ -19,10 +20,11 @@ const Transactions = () => {
     setForm(event.target.value);
   };
 
-  const navigate = useNavigate();
-  const handleAdd = () => {
-    navigate("/updateAssets/" + form);
-  };
+  // Swapped out automatic form functionality for more precise selection of forms
+  // const navigate = useNavigate();
+  // const handleAdd = () => {
+  //   navigate("/updateAssets/" + form);
+  // };
 
   return (
     <Box margin="20px">
@@ -45,19 +47,7 @@ const Transactions = () => {
 
       {form === "stock" ? <StockTransactions /> : <CurrencyTransactions />}
 
-      <Fab
-        onClick={handleAdd}
-        sx={{
-            margin: 0,
-            top: 'auto',
-            right: 20,
-            bottom: 20,
-            left: 'auto',
-            position: 'fixed',}
-        }
-      >
-        <AddIcon />
-      </Fab>
+      <FloatingTool />
     </Box>
   );
 };

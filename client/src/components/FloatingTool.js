@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Box, Chip, Fab } from "@mui/material";
+import { Box, Chip, Fab, useTheme } from "@mui/material";
+import { tokens } from "../theme";
 import { useNavigate } from "react-router-dom";
 import { ClickAwayListener } from "@mui/base";
 
@@ -8,6 +9,8 @@ import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import AddIcon from "@mui/icons-material/Add";
 
 const FloatingTool = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const Item = ({ title, to, icon, color }) => {
@@ -20,6 +23,7 @@ const FloatingTool = () => {
           navigate(`${to}`);
         }}
         icon={icon}
+        color="secondary"
         clickable
         sx={{
           height: 45,
@@ -50,13 +54,11 @@ const FloatingTool = () => {
               title="Update Stocks"
               to="/updateAssets/stock"
               icon={<BusinessIcon />}
-              color
             />
             <Item
               title="Update Currency"
               to="/updateAssets/currency"
               icon={<CurrencyExchangeIcon />}
-              color
             />
           </Box>
         </ClickAwayListener>
