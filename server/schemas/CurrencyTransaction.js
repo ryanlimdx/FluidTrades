@@ -14,8 +14,14 @@ const cTransactionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    sellCurrency: String,
-    sellAmount: Number,
+    sellCurrency: {
+        type: String,
+        required: true
+    },
+    sellAmount: {
+        type: Number,
+        required: true
+    },
     buyCurrency: String,
     buyAmount: Number,
     fees: Number,

@@ -45,8 +45,8 @@ const StockConfirmation = () => {
       }
       console.log(error.config);
     } finally {
+      setSubmitting = false;
       setState({});
-      setSubmitting(false);
     }
   };
 

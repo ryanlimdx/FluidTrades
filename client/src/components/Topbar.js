@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import Logo from "../assets/FluidTradesLogoBG.PNG";
-import { ColorModeContext, tokens } from "../theme";
+import { ColorModeContext, themeSettings, tokens } from "../theme";
 
 // MUI components
 import { Typography, Box, IconButton, useTheme } from "@mui/material";
@@ -37,7 +37,6 @@ const Topbar = () => {
   };
 
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
 
   const navigate = useNavigate();
@@ -49,8 +48,10 @@ const Topbar = () => {
     <AppBar
       position="sticky"
       // sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
-      color="transparent"
+      color="appBar"
       enableColorOnDark
+      elevation={0}
+      // sx = {{ background: appBarColor }} 
     >
       <Toolbar
         sx={{
@@ -58,9 +59,10 @@ const Topbar = () => {
           padding: 2
         }}
       >
-        <IconButton size="large" color="inherit" onClick={openMenu}>
+        {/* <IconButton size="large" color="inherit" onClick={openMenu}>
           <MenuIcon />
-        </IconButton>
+        </IconButton> */}
+        <div/> {/*to push elements right */}
 
         <Menu open={open} onClose={closeMenu} anchorEl={anchorEl}>
           {links.map(({ name, icon, to }) => (
