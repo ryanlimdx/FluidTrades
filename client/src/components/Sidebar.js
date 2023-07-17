@@ -179,14 +179,14 @@ const SideBar = () => {
             </Typography>
             <Item
               title="Update Stocks"
-              to="/updateAssets/stock"
+              to="/update-assets/stock"
               icon={<BusinessIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Update Currency"
-              to="/updateAssets/currency"
+              to="/update-assets/currency"
               icon={<CurrencyExchangeIcon />}
               selected={selected}
               setSelected={setSelected}

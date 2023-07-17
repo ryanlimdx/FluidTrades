@@ -26,9 +26,9 @@ const CurrencyBase = () => {
       state.transactionType === "Deposit" ||
       state.transactionType === "Withdraw"
     ) {
-      navigate("/updateAssets/currency/confirmation");
+      navigate("/update-assets/currency/confirmation");
     } else {
-      navigate("/updateAssets/currency/convertTo");
+      navigate("/update-assets/currency/convertTo");
     }
   };
 

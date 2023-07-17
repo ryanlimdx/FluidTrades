@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
 import { Typography, Box, Stack, Button, TextField } from "@mui/material";
 import { Form, Formik } from "formik";
-import { fontWeight } from "@mui/system";
 
 const ConvertTo = () => {
   const initialValues = {
@@ -16,7 +15,7 @@ const ConvertTo = () => {
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
-    navigate("/updateAssets/currency/confirmation");
+    navigate("/update-assets/currency/confirmation");
   };
 
   return (
