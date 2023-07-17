@@ -56,9 +56,6 @@ const SideBar = () => {
         //     borderRight: "none !important",
         // },
         "& .ps-sidebar-container": {
-          /*background sidebar*/
-          display: "flex",
-          flexDirection: "column",
           borderTopRightRadius: "10px",
           borderBottomRightRadius: "10px",
         },
