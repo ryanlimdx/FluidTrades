@@ -50,17 +50,17 @@ const CurrencyTransaction = () => {
               >
                 <FormControlLabel
                   value="Deposit"
-                  control={<Radio />}
+                  control={<Radio required={true} />}
                   label="Deposit"
                 />
                 <FormControlLabel
                   value="Withdraw"
-                  control={<Radio />}
+                  control={<Radio required={true} />}
                   label="Withdraw"
                 />
                 <FormControlLabel
                   value="Convert"
-                  control={<Radio />}
+                  control={<Radio required={true} />}
                   label="Convert"
                 />
               </RadioGroup>

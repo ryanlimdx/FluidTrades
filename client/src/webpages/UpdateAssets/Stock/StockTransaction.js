@@ -45,12 +45,12 @@ const StockTransaction = () => {
               >
                 <FormControlLabel
                   value="Buy"
-                  control={<Radio />}
+                  control={<Radio required={true} />}
                   label="Buy"
                 />
                 <FormControlLabel
                   value="Sell"
-                  control={<Radio />}
+                  control={<Radio required={true} />}
                   label="Sell"
                 />
                 {/* Decided to remove Dividends for future implementation. */}
