@@ -39,13 +39,14 @@ router.post("/currency/confirmation", auth, async (req, res) => {
     // Create a new currency for record purposes. If already exists, patch the data.
     if (transactionType === "Deposit") {
       await Currency.findOneAndUpdate(
-        { currency: sellCurrency },
+        { currency: sellCurrency, user: user._id, },
         {
           $inc: {
             balance: sellAmount - fees,
           },
   
           $setOnInsert: {
+            user: user._id,
             currency: sellCurrency,
           },
         },
@@ -54,13 +55,14 @@ router.post("/currency/confirmation", auth, async (req, res) => {
 
     } else if (transactionType === "Withdraw") {
       await Currency.findOneAndUpdate(
-        { currency: sellCurrency },
+        { currency: sellCurrency, user: user._id, },
         {
           $inc: {
             balance: - sellAmount - fees,
           },
   
           $setOnInsert: {
+            user: user._id,
             currency: sellCurrency,
           },
         },
@@ -69,13 +71,14 @@ router.post("/currency/confirmation", auth, async (req, res) => {
     } else {
       // From this currency
       await Currency.findOneAndUpdate(
-        { currency: sellCurrency },
+        { currency: sellCurrency, user: user._id, },
         {
           $inc: {
             balance: - sellAmount - fees,
           },
   
           $setOnInsert: {
+            user: user._id,
             currency: sellCurrency,
           },
         },
@@ -84,13 +87,14 @@ router.post("/currency/confirmation", auth, async (req, res) => {
       
       // To this currency
       await Currency.findOneAndUpdate(
-        { currency: buyCurrency },
+        { currency: buyCurrency, user: user._id, },
         {
           $inc: {
             balance: buyAmount,
           },
   
           $setOnInsert: {
+            user: user._id,
             currency: buyCurrency,
           },
         },
@@ -141,7 +145,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
 
     // Create a new stock for record purposes. If already exists, patch the data.
     await Stock.findOneAndUpdate(
-      { ticker: ticker },
+      { ticker: ticker, user: user._id, },
       {
         $inc: {
           shares: shares,
@@ -149,6 +153,8 @@ router.post("/stock/confirmation", auth, async (req, res) => {
         },
 
         $setOnInsert: {
+          user: user._id,
+
           sector: sector,
           equity: equity,
           ticker: ticker,
@@ -160,13 +166,14 @@ router.post("/stock/confirmation", auth, async (req, res) => {
 
     // Update currency records after transaction
     await Currency.findOneAndUpdate(
-      { currency: currency },
+      { currency: currency, user: user._id, },
       {
         $inc: {
           balance: -investedCapital,
         },
 
         $setOnInsert: {
+          user: user._id,
           currency: currency,
         },
       },
