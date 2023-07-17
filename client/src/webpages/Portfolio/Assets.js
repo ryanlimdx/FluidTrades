@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 
-const Stocks = () => {
+const Assets = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -43,7 +43,7 @@ const Stocks = () => {
     // },
     {
       field: "shares",
-      headerName: "SHARES",
+      headerName: "POSITION",
       type: "number",
       headerAlign: "center",
       align: "center",
@@ -99,4 +99,4 @@ const Stocks = () => {
   );
 };
 
-export default Stocks;
+export default Assets;

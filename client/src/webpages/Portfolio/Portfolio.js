@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Header from "../../components/Header";
 import Fab from "@mui/material/Fab";
 
-import Stocks from "./Stock";
+import Assets from "./Assets";
+import Currency from "./Currency";
 
 import AddIcon from "@mui/icons-material/Add";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 
 const Portfolio = () => {
   const navigate = useNavigate();
@@ -22,7 +19,14 @@ const Portfolio = () => {
     <Box margin="20px">
       <Header title="PORTFOLIO" />
 
-      <Stocks />
+      <Grid container spacing={2}>
+        <Grid item xs={9}>
+          <Assets/>
+        </Grid>
+        <Grid item xs={3}>
+          <Currency/>
+        </Grid>
+      </Grid>
 
       <Fab
         onClick={handleAdd}
