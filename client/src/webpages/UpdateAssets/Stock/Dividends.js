@@ -1,3 +1,7 @@
+// This page will remain here but in development phase as we decided to move Dividends into
+// a future implementation, past Orbital.
+
+/*
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
 import {
@@ -85,3 +89,4 @@ const Dividends = () => {
 };
 
 export default Dividends;
+*/

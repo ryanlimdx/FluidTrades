@@ -1,17 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
-import {
-  Stack,
-  Heading,
-  Center,
-  Button,
-  Input,
-  InputGroup,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-} from "@chakra-ui/react";
-import { Form, Formik, Field } from "formik";
+import { Typography, Box, Stack, Button, TextField } from "@mui/material";
+import { Form, Formik } from "formik";
+import { fontWeight } from "@mui/system";
 
 const ConvertTo = () => {
   const initialValues = {
@@ -29,70 +20,55 @@ const ConvertTo = () => {
   };
 
   return (
-    <Center>
-      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">
-          Almost there! Tell us about the currency you converted to.
-        </Heading>
+    <Box>
+      <Typography variant="h1">
+        Almost there! Tell us about the currency you converted to.
+      </Typography>
 
-        <Formik onSubmit={saveData} initialValues={initialValues}>
-          {({ isSubmitting }) => (
-            <Form>
-              <Stack>
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>I converted to:</FormLabel>
-                    <Input
-                      name="currency"
-                      type="text"
-                      placeholder="USD"
-                      required={true}
-                    />
-                    <FormHelperText>
-                      {" "}
-                      Currency need not be included!{" "}
-                    </FormHelperText>
-                  </FormControl>
-                </Field>
+      <Formik onSubmit={saveData} initialValues={initialValues}>
+        {({ setFieldValue }) => (
+          <Form>
+            <Stack margin={0}>
+              <Typography marginTop={1} variant="h5">I converted to:</Typography>
+              <TextField
+                label="Currency"
+                id="outlined-helperText"
+                required
+                onChange={(event) => setFieldValue("currency", event.target.value)}
+                helperText="Currency Symbol need not be included!"
+              />
 
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Amount</FormLabel>
-                    <Input
-                      name="amount"
-                      type="text"
-                      placeholder="10"
-                      required={true}
-                    />
-                  </FormControl>
-                </Field>
+              <TextField
+                label="Amount"
+                id="outlined-helperText"
+                required
+                margin="normal"
+                onChange={(event) => setFieldValue("amount", event.target.value)}
+              />
 
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel>Fees</FormLabel>
-                    <Input name="fees" type="text" placeholder="0.40" />
-                    <FormHelperText>
-                      {" "}
-                      Commissions paid for the transaction.{" "}
-                    </FormHelperText>
-                  </FormControl>
-                </Field>
+              <TextField
+                label="Fees"
+                id="outlined-helperText"
+                required
+                margin="normal"
+                onChange={(event) => setFieldValue("fees", event.target.value)}
+                helperText="Commissions paid for the transaction."
+              />
 
-                <Button
-                  isLoading={isSubmitting}
-                  loadingText="Hang on while we fight the demons."
-                  size="lg"
-                  colorScheme="teal"
-                  type="submit"
-                >
-                  Next
-                </Button>
-              </Stack>
-            </Form>
-          )}
-        </Formik>
-      </Stack>
-    </Center>
+              <Button
+                size="large"
+                variant="contained"
+                type="submit"
+                fullWidth
+                sx={{ marginTop: 2 }}
+              >
+                Next
+              </Button>
+            </Stack>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
 

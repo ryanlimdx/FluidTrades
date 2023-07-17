@@ -1,18 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
 import {
-  Stack,
-  Heading,
-  Button,
-  InputGroup,
+  Typography,
+  Box,
   FormControl,
-  FormLabel,
-  FormHelperText,
+  FormControlLabel,
   RadioGroup,
   Radio,
-  HStack,
-  Flex,
-} from "@chakra-ui/react";
+  Button,
+  FormHelperText,
+} from "@mui/material";
 import { Form, Formik, Field } from "formik";
 
 const CurrencyTransaction = () => {
@@ -34,71 +31,50 @@ const CurrencyTransaction = () => {
   };
 
   return (
-    <Flex>
-      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">
-          Hmm, what type of transaction did you do today?
-        </Heading>
+    <Box>
+      <Typography variant="h1">
+        Hmm, what type of transaction did you do today?
+      </Typography>
 
-        <Formik onSubmit={saveData} initialValues={initialValues}>
-          {({ isSubmitting, setFieldValue }) => (
-            <Form>
-              <Stack>
-                <Field as={InputGroup}>
-                  <FormControl>
-                    <FormLabel> Transaction type </FormLabel>
-                    <RadioGroup name="transactionType">
-                      <HStack spacing="24px">
-                        <Radio
-                          name="transactionType"
-                          value="Deposit"
-                          onChange={() =>
-                            setFieldValue("transactionType", "Deposit")
-                          }
-                        >
-                          Deposit
-                        </Radio>
-                        <Radio
-                          name="transactionType"
-                          value="Withdraw"
-                          onChange={() =>
-                            setFieldValue("transactionType", "Withdraw")
-                          }
-                        >
-                          Withdaw
-                        </Radio>
-                        <Radio
-                          name="transactionType"
-                          value="Convert"
-                          onChange={() =>
-                            setFieldValue("transactionType", "Convert")
-                          }
-                        >
-                          Convert
-                        </Radio>
-                      </HStack>
-                    </RadioGroup>
-                    <FormHelperText>
-                      Select the transaction type.
-                    </FormHelperText>
-                  </FormControl>
-                </Field>
+      <Formik onSubmit={saveData} initialValues={initialValues}>
+        {({ setFieldValue }) => (
+          <Form>
+            <Field as={FormControl} sx={{ m: 0 }} variant="standard">
+              <Typography id="transaction type">Transaction type</Typography>
+              <RadioGroup
+                row
+                name="transactionType"
+                onChange={(event) =>
+                  setFieldValue("transactionType", event.currentTarget.value)
+                }
+              >
+                <FormControlLabel
+                  value="Deposit"
+                  control={<Radio />}
+                  label="Deposit"
+                />
+                <FormControlLabel
+                  value="Withdraw"
+                  control={<Radio />}
+                  label="Withdraw"
+                />
+                <FormControlLabel
+                  value="Convert"
+                  control={<Radio />}
+                  label="Convert"
+                />
+              </RadioGroup>
+            </Field>
 
-                <Button
-                  isLoading={isSubmitting}
-                  loadingText="Hang on while we fight the demons."
-                  size="lg"
-                  colorScheme="teal"
-                  type="submit"
-                >
-                  Next
-                </Button>
-              </Stack>
-            </Form>
-          )}
-        </Formik>
-      </Stack>
-    </Flex>
+            <FormHelperText> Select the transaction type. </FormHelperText>
+
+            <Button size="large" variant="contained" type="submit" fullWidth>
+              Next
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
 

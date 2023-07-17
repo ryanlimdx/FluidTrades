@@ -1,18 +1,17 @@
-import { Stack, Heading, Button, Center } from "@chakra-ui/react";
 import { useAppState } from "../../../context/state";
 import axios from "../../../api/axios";
 import { Form, Formik } from "formik";
-import { Section, SectionRow } from "../../../components/forms/Section";
 import { useNavigate } from "react-router-dom";
+import { Box, Typography, Button, Stack } from "@mui/material";
 
 const StockConfirmation = () => {
-  const [state] = useAppState();
+  const [state, setState] = useAppState();
   const navigate = useNavigate();
   const initialValues = {
     transactionType: state.transactionType,
     sector: state.sector,
     equity: state.equity,
-    ticker: state.ticker,
+    ticker: state.ticker.toUpperCase(),
     currency: state.currency,
 
     price: state.price,
@@ -46,74 +45,88 @@ const StockConfirmation = () => {
       }
       console.log(error.config);
     } finally {
-      setSubmitting = false;
+      setState({});
+      setSubmitting(false);
     }
   };
 
   return (
-    <Center>
-      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">
-          Woohoo! Now, confirm your {state.transactionType} transaction!
-        </Heading>
-        <Formik onSubmit={handleSubmit} initialValues={initialValues}>
-          {({ isSubmitting }) => (
-            <Form>
-              <Stack>
-                <Section title="Stock Details" url="/updateAssets/Stock">
-                  <SectionRow>
-                    <div>Sector</div>
-                    <div>{state.sector}</div>
-                  </SectionRow>
+    <Box>
+      <Typography variant="h1">
+        Woohoo! Now, confirm your {state.transactionType} transaction!
+      </Typography>
+      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+        {({ isSubmitting }) => (
+          <Form>
+            <Stack>
+              <Typography variant="h3" marginTop={1}> Stock Details </Typography>
 
-                  <SectionRow>
-                    <div>Equity</div>
-                    <div>{state.equity}</div>
-                  </SectionRow>
+              <Typography component="div" marginTop={1} variant="h5">
+                <Box component="span" fontWeight="bold">
+                  Sector:{" "}
+                </Box>
+                {state.sector}
+              </Typography>
 
-                  <SectionRow>
-                    <div>Ticker</div>
-                    <div>{state.ticker}</div>
-                  </SectionRow>
+              <Typography component="div" marginTop={1} variant="h5">
+                <Box component="span" fontWeight="bold">
+                  Equity:{" "}
+                </Box>
+                {state.equity}
+              </Typography>
 
-                  <SectionRow>
-                    <div>Currency</div>
-                    <div>{state.currency}</div>
-                  </SectionRow>
-                </Section>
+              <Typography component="div" marginTop={1} variant="h5">
+                <Box component="span" fontWeight="bold">
+                  Ticker:{" "}
+                </Box>
+                {state.ticker}
+              </Typography>
 
-                <Section title="Position Details">
-                  <SectionRow>
-                    <div>Price</div>
-                    <div>{state.price}</div>
-                  </SectionRow>
+              <Typography component="div" marginTop={1} variant="h5">
+                <Box component="span" fontWeight="bold">
+                  Currency:{" "}
+                </Box>
+                {state.currency}
+              </Typography>
 
-                  <SectionRow>
-                    <div>Shares</div>
-                    <div>{state.shares}</div>
-                  </SectionRow>
+              <Typography variant="h3" marginTop={1}> Position Details </Typography>
+              
+              <Typography component="div" marginTop={1} variant="h5">
+                <Box component="span" fontWeight="bold">
+                  Price:{" "}
+                </Box>
+                {state.price}
+              </Typography>
 
-                  <SectionRow>
-                    <div>Fees</div>
-                    <div>{state.fees}</div>
-                  </SectionRow>
-                </Section>
+              <Typography component="div" marginTop={1} variant="h5">
+                <Box component="span" fontWeight="bold">
+                  Shares:{" "}
+                </Box>
+                {state.shares}
+              </Typography>
 
-                <Button
-                  isLoading={isSubmitting}
-                  loadingText="Hang on while we fight the demons."
-                  size="lg"
-                  colorScheme="teal"
-                  type="submit"
-                >
-                  Submit
-                </Button>
-              </Stack>
-            </Form>
-          )}
-        </Formik>
-      </Stack>
-    </Center>
+              <Typography component="div" marginTop={1} variant="h5">
+                <Box component="span" fontWeight="bold">
+                  Fees:{" "}
+                </Box>
+                {state.fees}
+              </Typography>
+
+              <Button
+                size="large"
+                variant="contained"
+                type="submit"
+                fullWidth
+                sx={{ marginTop: 2 }}
+                disabled={isSubmitting}
+              >
+                Submit
+              </Button>
+            </Stack>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
 

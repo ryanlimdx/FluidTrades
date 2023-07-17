@@ -1,15 +1,14 @@
-import { Stack, Heading, Button, Center } from "@chakra-ui/react";
 import { useAppState } from "../../../context/state";
 import axios from "../../../api/axios";
 import { Form, Formik } from "formik";
-import { SectionRow } from "../../../components/forms/Section";
 import { useNavigate } from "react-router-dom";
+import { Box, Typography, Button, Stack } from "@mui/material";
 
 const CurrencyConfirmation = () => {
-  const [state] = useAppState();
+  const [state, setState] = useAppState();
   const navigate = useNavigate();
 
-  const exchangeRate = state.amount / state.baseAmount
+  const exchangeRate = state.amount / state.baseAmount;
 
   const initialValues = {
     transactionType: state.transactionType,
@@ -18,10 +17,10 @@ const CurrencyConfirmation = () => {
     buyCurrency: state.currency,
     buyAmount: state.amount,
     fees: state.fees,
-    exchangeRate: exchangeRate
+    exchangeRate: exchangeRate,
   };
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values , {setSubmitting}) => {
     try {
       const config = { headers: { "Content-Type": "application/json" } };
       console.log(values);
@@ -48,85 +47,92 @@ const CurrencyConfirmation = () => {
       }
       console.log(error.config);
     } finally {
-      setSubmitting = false;
+      setState({});
+      setSubmitting(false);
     }
   };
 
   return (
-    <Center>
-      <Stack boxShadow="md" bg="whiteAlpha.700" p="20" rounded="md">
-        <Heading as="h1">
-          Woohoo! Now, confirm your
-          {state.transactionType === "Deposit" && " deposit "}
-          {state.transactionType === "Withdraw" && " withdrawal "}
-          {state.transactionType === "Convert" && " conversion "}
-          details!
-        </Heading>
+    <Box>
+      <Typography variant="h1">
+        Woohoo! Now, confirm your
+        {state.transactionType === "Deposit" && " deposit "}
+        {state.transactionType === "Withdraw" && " withdrawal "}
+        {state.transactionType === "Convert" && " conversion "}
+        details!
+      </Typography>
 
-        <Formik onSubmit={handleSubmit} initialValues={initialValues}>
-          {({ isSubmitting }) => (
-            <Form>
+      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+        {({ isSubmitting }) => (
+          <Form>
+            <Typography component="div" marginTop={1} variant="h5">
+              <Box component="span" fontWeight="bold">
+                Currency
+                {state.transactionType === "Deposit" && " deposited"}
+                {state.transactionType === "Withdraw" && " withdrawn"}
+                {state.transactionType === "Convert" && " converted from"}:{" "}
+              </Box>
+              {state.baseCurrency}
+            </Typography>
+
+            <Typography component="div" marginTop={1} variant="h5">
+              <Box component="span" fontWeight="bold">
+                Amount:{" "}
+              </Box>
+              {state.baseAmount}
+            </Typography>
+
+            {state.transactionType === "Convert" && (
               <Stack>
-                <SectionRow>
+                <Typography component="div" marginTop={1} variant="h5">
+                  <Box component="span" fontWeight="bold">
+                    Converted to:{" "}
+                  </Box>
+                  {state.currency}
+                </Typography>
+                <Typography component="div" marginTop={1} variant="h5">
+                  <Box component="span" fontWeight="bold">
+                    Amount received:{" "}
+                  </Box>
+                  {state.amount}
+                </Typography>
+
+                <Typography fontWeight="bold" component="div" marginTop={1} variant="h5">
                   <div>
-                    Currency
-                    {state.transactionType === "Deposit" && " deposited"}
-                    {state.transactionType === "Withdraw" && " withdrawn"}
-                    {state.transactionType === "Convert" && " converted from"}
+                    {state.baseCurrency}
+                    {state.currency}
                   </div>
-                  <div>{state.baseCurrency}</div>
-                </SectionRow>
-
-                <SectionRow>
-                  <div>Amount</div>
-                  <div>{state.baseAmount}</div>
-                </SectionRow>
-
-                {state.transactionType === "Convert" && (
-                  <Stack>
-                    <SectionRow>
-                      <div>Converted to</div>
-                      <div>{state.currency}</div>
-                    </SectionRow>
-
-                    <SectionRow>
-                      <div>Amount received</div>
-                      <div>{state.amount}</div>
-                    </SectionRow>
-
-                    <SectionRow>
-                      <div>
-                        {state.baseCurrency}
-                        {state.currency}
-                      </div>
-                      <div>
-                        Exchange rate at conversion:{" "}
-                        {state.amount / state.baseAmount}
-                      </div>
-                    </SectionRow>
-                  </Stack>
-                )}
-
-                <SectionRow>
-                  <div>Fees</div>
-                  <div>{state.fees}</div>
-                </SectionRow>
-
-                <Button
-                  isLoading={isSubmitting}
-                  loadingText="Hang on while we fight the demons."
-                  size="lg"
-                  colorScheme="teal"
-                  type="submit"
-                >
-                  Submit
-                </Button>
+                  <Typography component="div" marginTop={1} variant="h5">
+                    <Box component="span" fontWeight="bold">
+                      Exchange rate at conversion:{" "}
+                    </Box>
+                    {state.amount / state.baseAmount}
+                  </Typography>
+                </Typography>
               </Stack>
-            </Form>
-          )}
-        </Formik>
-      </Stack>
-    </Center>
+            )}
+
+            <Typography component="div" marginTop={1} variant="h5">
+              <Box component="span" fontWeight="bold">
+                Fees:{" "}
+              </Box>
+              {state.fees}
+            </Typography>
+
+            <Button
+              size="large"
+              variant="contained"
+              type="submit"
+              fullWidth
+              sx={{ marginTop: 2 }}
+              disabled={isSubmitting}
+            >
+              Submit
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
 
