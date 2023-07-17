@@ -59,9 +59,10 @@ const Topbar = () => {
           padding: 2
         }}
       >
-        <IconButton size="large" color="inherit" onClick={openMenu}>
+        {/* <IconButton size="large" color="inherit" onClick={openMenu}>
           <MenuIcon />
-        </IconButton>
+        </IconButton> */}
+        <div/> {/*to push elements right */}
 
         <Menu open={open} onClose={closeMenu} anchorEl={anchorEl}>
           {links.map(({ name, icon, to }) => (
