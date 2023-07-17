@@ -25,12 +25,14 @@ const StockConfirmation = () => {
       console.log(values);
       // Make POST request
       await axios
-        .post("/updateAssets/stock/confirmation", values, config)
+        .post("/update-assets/stock/confirmation", values, config)
+        .then(() => alert("Data successfully sent to database. (◕‿◕)"))
         .then(() => navigate("/"));
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
+        alert(error.response.data.message);
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);

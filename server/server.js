@@ -81,7 +81,7 @@ app.get("/currencies", auth, async(req, res) => {
 app.use('/', authentication);
 
 // Update Assets Middleware
-app.use('/updateAssets', updateAssets);
+app.use('/update-assets', updateAssets);
 
 // ensure port is up and running
 app.listen(3000, () => {

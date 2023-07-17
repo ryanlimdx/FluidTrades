@@ -16,14 +16,7 @@ const StockDetails = () => {
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
-    if (state.transactionType === "Buy") {
-      navigate("/updateAssets/stock/openingPosition");
-    } else if (state.transactionType === "Sell") {
-      navigate("/updateAssets/stock/closingPosition");
-    } else {
-      // dividends is not in use anymore
-      // navigate("/updateAssets/stock/dividends");
-    }
+    navigate("/update-assets/stock/transaction-details");
   };
 
   return (

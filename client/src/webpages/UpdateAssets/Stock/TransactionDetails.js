@@ -3,7 +3,7 @@ import { useAppState } from "../../../context/state";
 import { Typography, Box, Stack, Button, TextField } from "@mui/material";
 import { Form, Formik } from "formik";
 
-const OpeningPosition = () => {
+const TransactionDetails = () => {
   const initialValues = {
     price: "",
     shares: "",
@@ -15,13 +15,13 @@ const OpeningPosition = () => {
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
-    navigate("/updateAssets/stock/confirmation");
+    navigate("/update-assets/stock/confirmation");
   };
 
   return (
     <Box>
       <Typography variant="h1">
-        Almost there! Position details left...
+        Almost there! {state.transactionType} Position details left...
       </Typography>
 
       <Formik onSubmit={saveData} initialValues={initialValues}>
@@ -73,4 +73,4 @@ const OpeningPosition = () => {
   );
 };
 
-export default OpeningPosition;
+export default TransactionDetails;

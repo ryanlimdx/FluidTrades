@@ -102,7 +102,7 @@ router.post("/currency/confirmation", auth, async (req, res) => {
       );
     }
 
-    return res.status(200).send("Data sent to database.");
+    return res.status(200).send("Data successfully sent to database.");
   } catch (error) {
     res.status(500).json({ error: "An error occured." });
   }
@@ -180,7 +180,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
       { upsert: true }
     );
 
-    return res.status(200).send("Data sent to database.");
+    return res.status(200).send("Data successfully sent to database.");
   } catch (error) {
     res.status(500).json({ error: "An error occured." });
   }

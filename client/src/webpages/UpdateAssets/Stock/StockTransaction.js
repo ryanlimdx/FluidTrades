@@ -22,7 +22,7 @@ const StockTransaction = () => {
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
-    navigate("/updateAssets/stock/details");
+    navigate("/update-assets/stock/details");
   };
 
   return (
