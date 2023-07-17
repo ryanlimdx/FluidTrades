@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Box, Grid } from "@mui/material";
 import Header from "../../components/Header";
-import Fab from "@mui/material/Fab";
+import FloatingTool from "../../components/FloatingTool";
 
 import Assets from "./Assets";
 import Currency from "./Currency";
 
 import AddIcon from "@mui/icons-material/Add";
+import FAB from "../../components/FloatingTool";
 
 const Portfolio = () => {
   const navigate = useNavigate();
@@ -28,19 +29,7 @@ const Portfolio = () => {
         </Grid>
       </Grid>
 
-      <Fab
-        onClick={handleAdd}
-        sx={{
-            margin: 0,
-            top: 'auto',
-            right: 20,
-            bottom: 20,
-            left: 'auto',
-            position: 'fixed',}
-        }
-      >
-        <AddIcon />
-      </Fab>
+    <FloatingTool/>
     </Box>
   );
 };
