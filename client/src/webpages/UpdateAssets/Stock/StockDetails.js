@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
 import { Typography, Box, Stack, Button, TextField } from "@mui/material";
 import { Form, Formik } from "formik";
+import * as yup from "yup";
 
 const StockDetails = () => {
   const initialValues = {
@@ -10,6 +11,13 @@ const StockDetails = () => {
     ticker: "",
     currency: "",
   };
+
+  const detailsSchema = yup.object().shape({
+    sector: yup.string().required("Required"),
+    equity: yup.string().required("Required"),
+    ticker: yup.string().required("Required"),
+    currency: yup.string().required("Required"),
+  })
 
   const [state, setState] = useAppState();
   const navigate = useNavigate();
@@ -23,45 +31,50 @@ const StockDetails = () => {
     <Box>
       <Typography variant="h1">Tell us more about the company!</Typography>
 
-      <Formik onSubmit={saveData} initialValues={initialValues}>
-        {({ setFieldValue }) => (
+      <Formik onSubmit={saveData} initialValues={initialValues} validationSchema={detailsSchema}>
+        {({ errors, touched, setFieldValue }) => (
           <Form>
             <Stack margin={0}>
               <TextField
                 label="Sector"
                 id="outlined-helperText"
-                required
+                // required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("sector", event.target.value)
                 }
+                error={!!errors.sector && !!touched.sector}
+                helperText={errors.sector && touched.sector ? "Required" : undefined}
               />
               <TextField
                 label="Equity"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("equity", event.target.value)
                 }
+                error={!!errors.equity && !!touched.equity}
+                helperText={errors.equity && touched.equity ? "Required" : undefined}
               />
               <TextField
                 label="Ticker"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("ticker", event.target.value)
                 }
+                error={!!errors.ticker && !!touched.ticker}
+                helperText={errors.ticker && touched.ticker ? "Required" : undefined}
               />
               <TextField
                 label="Currency"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("currency", event.target.value)
                 }
+                error={!!errors.currency && !!touched.currency}
+                helperText={errors.currency && touched.currency ? "Required" : undefined}
               />
 
               <Button

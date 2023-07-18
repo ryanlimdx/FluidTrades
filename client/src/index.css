@@ -69,6 +69,17 @@ body,
   background: #555;
 }
 
+/* Change autofill background color */
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 20px 20px 20px 20px #23232329;
+} */
+
 
 /* FONTS */
 /* body {

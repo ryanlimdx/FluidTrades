@@ -11,7 +11,6 @@ import {
   Button,
   FormHelperText,
   useTheme,
-  Stack,
 } from "@mui/material";
 import { Form, Formik, Field } from "formik";
 import { themeSettings } from "../../../theme";
@@ -37,11 +36,12 @@ const RadioButton = ({ label, value }) => {
         border: 1,
         borderRadius: 1,
         borderColor: themeColors.radioButton.border,
-        height: 40,
-        width: 1000,
+        height: 50,
+        width: "100%",
+        paddingLeft: 0.5,
         marginLeft: 0,
         marginRight: 0,
-        marginTop: 2,
+        marginTop: 3,
         backgroundColor: checked ? themeColors.radioButton.main : undefined,
         "&:hover": {
           borderColor: themeColors.radioButton.borderHover,
@@ -72,32 +72,31 @@ const StockTransaction = () => {
 
       <Formik onSubmit={saveData} initialValues={initialValues}>
         {({ setFieldValue }) => (
-          <Form>
-            <Stack>
-              <Field as={FormControl} variant="standard">
+          <Form sx={{width: "100%"}}>
+              <Field as={FormControl} variant="standard" sx={{width: "100%"}}>
                 <RadioGroup
                   name="transactionType"
                   onChange={(event) =>
                     setFieldValue("transactionType", event.currentTarget.value)
                   }
+                  sx={{width: "100%"}}
                 >
                   <RadioButton label="Buy" value="Buy" />
                   <RadioButton label="Sell" value="Sell" />
                 </RadioGroup>
               </Field>
 
-              <FormHelperText> Select the transaction type. </FormHelperText>
+              <FormHelperText sx={{ marginTop: 3 }} > Select the transaction type. </FormHelperText>
 
               <Button
                 size="large"
                 variant="contained"
                 type="submit"
                 fullWidth
-                sx={{ marginTop: 2 }}
+                sx={{ marginTop: 3 }}
               >
                 Next
               </Button>
-            </Stack>
           </Form>
         )}
       </Formik>
