@@ -42,7 +42,7 @@ const Currency = () => {
 
   return (
       <Box
-        margin="40px 0 0 0"
+        margin="20px 0 0 0"
         // height="75vh"
         sx={{
           "& .MuiDataGrid-root": {

@@ -26,7 +26,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { borderRadius } from "@mui/system";
 
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
