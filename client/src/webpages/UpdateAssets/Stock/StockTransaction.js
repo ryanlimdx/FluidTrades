@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
-import { useState } from "react";
 import {
   Typography,
   Box,
@@ -15,13 +14,10 @@ import {
   Stack,
 } from "@mui/material";
 import { Form, Formik, Field } from "formik";
-import { tokens, themeSettings } from "../../../theme";
-import { border } from "@mui/system";
-import { background } from "@chakra-ui/react";
+import { themeSettings } from "../../../theme";
 
 const RadioButton = ({ label, value }) => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const themeColors = themeSettings(theme.palette.mode).palette;
 
   const radioGroup = useRadioGroup();
@@ -47,13 +43,9 @@ const RadioButton = ({ label, value }) => {
         marginRight: 0,
         marginTop: 2,
         backgroundColor: checked ? themeColors.radioButton.main : undefined,
-
         "&:hover": {
           borderColor: themeColors.radioButton.borderHover,
         },
-        // "& .Mui-checked": {
-        //   backgroundColor: "red",
-        // }
       }}
     />
   );
@@ -95,7 +87,7 @@ const StockTransaction = () => {
               </Field>
 
               <FormHelperText> Select the transaction type. </FormHelperText>
-              
+
               <Button
                 size="large"
                 variant="contained"
