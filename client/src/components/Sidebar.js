@@ -14,7 +14,7 @@ import ShowChartIcon from "@mui/icons-material/ShowChart";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import BusinessIcon from "@mui/icons-material/Business";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
+// import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();

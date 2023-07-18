@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
 import StockTransactions from "./StockTransactions";
 import CurrencyTransactions from "./CurrencyTransactions";
-import Fab from "@mui/material/Fab";
 import FloatingTool from "../../components/FloatingTool";
 
-import AddIcon from "@mui/icons-material/Add";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";

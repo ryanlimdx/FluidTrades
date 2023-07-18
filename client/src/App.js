@@ -1,13 +1,10 @@
 import React from "react";
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context/state";
 import { ChakraProvider } from "@chakra-ui/react";
 
 // Components
 import PrivateRoutes from "./navigation/PrivateRoutes";
-import Topbar from "./components/Topbar";
-import Sidebar from "./components/Sidebar";
 
 // Theme
 import { CssBaseline, ThemeProvider } from "@mui/material";
