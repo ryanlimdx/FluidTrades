@@ -14,7 +14,7 @@ const TransactionDetails = () => {
   const transactionSchema = yup.object().shape({
     price: yup.number().required("Required"),
     shares: yup.number().required("Required"),
-    fees: yup.number().required("Required"),
+    fees: yup.number(),
   });
 
   const [state, setState] = useAppState();
@@ -61,7 +61,7 @@ const TransactionDetails = () => {
                 margin="normal"
                 onChange={(event) => setFieldValue("fees", event.target.value)}
                 error = {!!errors.fees && !!touched.fees}
-                helperText={errors.fees && touched.fees ? "Please key in a number!" : undefined}
+                helperText={errors.fees && touched.fees ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
               />
 
               <Button

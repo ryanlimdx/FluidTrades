@@ -111,7 +111,7 @@ const StockConfirmation = () => {
                 <Box component="span" fontWeight="bold">
                   Fees:{" "}
                 </Box>
-                {state.fees}
+                {state.fees ? state.fees : 0.00}
               </Typography>
 
               <Button

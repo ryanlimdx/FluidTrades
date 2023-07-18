@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
 import { Typography, Box, Stack, Button, TextField } from "@mui/material";
 import { Form, Formik } from "formik";
+import * as yup from "yup";
 
 const ConvertTo = () => {
   const initialValues = {
@@ -9,6 +10,12 @@ const ConvertTo = () => {
     amount: "",
     fees: "",
   };
+
+  const conversionSchema = yup.object().shape({
+    currency: yup.string().required("Required"),
+    amount: yup.number().required("Required"),
+    fees: yup.number(),
+  })
 
   const [state, setState] = useAppState();
   const navigate = useNavigate();
@@ -24,8 +31,8 @@ const ConvertTo = () => {
         Almost there! Tell us about the currency you converted to.
       </Typography>
 
-      <Formik onSubmit={saveData} initialValues={initialValues}>
-        {({ setFieldValue }) => (
+      <Formik onSubmit={saveData} initialValues={initialValues} validationSchema={conversionSchema}>
+        {({ errors, touched, setFieldValue }) => (
           <Form>
             <Stack margin={0}>
               <Typography marginTop={1} variant="h5">I converted to:</Typography>
@@ -34,7 +41,8 @@ const ConvertTo = () => {
                 id="outlined-helperText"
                 required
                 onChange={(event) => setFieldValue("currency", event.target.value)}
-                helperText="Currency Symbol need not be included!"
+                error={!!errors.currency && !!touched.currency}
+                helperText={errors.currency && touched.currency ? "Required" : undefined}
               />
 
               <TextField
@@ -43,6 +51,8 @@ const ConvertTo = () => {
                 required
                 margin="normal"
                 onChange={(event) => setFieldValue("amount", event.target.value)}
+                error={!!errors.amount && !!touched.amount}
+                helperText={errors.amount && touched.amount ? "Please key in a number! Currency symbols need not be included." : undefined}
               />
 
               <TextField
@@ -51,7 +61,8 @@ const ConvertTo = () => {
                 required
                 margin="normal"
                 onChange={(event) => setFieldValue("fees", event.target.value)}
-                helperText="Commissions paid for the transaction."
+                error={!!errors.fees && !!touched.fees}
+                helperText={errors.fees && touched.fees ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
               />
 
               <Button
