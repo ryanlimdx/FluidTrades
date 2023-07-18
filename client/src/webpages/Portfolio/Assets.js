@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 
-const Assets = () => {
+const Assets = ({margin=undefined, height=undefined}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -69,14 +69,14 @@ const Assets = () => {
 
   return (
       <Box
-        margin="40px 0 0 0"
-        height="75vh"
+        margin={margin}
+        height={height}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            borderBottom: "none",
+            // borderBottom: "none",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.blueAccent[700],

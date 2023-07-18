@@ -49,7 +49,7 @@ const Currency = ({margin=undefined, height=undefined}) => {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            borderBottom: "none",
+            // borderBottom: "none",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.blueAccent[700],
