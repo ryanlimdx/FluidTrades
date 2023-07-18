@@ -144,6 +144,11 @@ export const themeSettings = (mode) => {
               dark: colors.primary[500],
               main: colors.primary[500],
             },
+            radioButton: {
+              main: colors.primary[400],
+              border: "#4A505D",
+              borderHover: "#FFFFFF",
+            },
             background: {
               default: colors.primary[500],
             },
@@ -164,6 +169,11 @@ export const themeSettings = (mode) => {
             appBar: {
               main: "#fcfcfc",
               light: "#fcfcfc",
+            },
+            radioButton: {
+              main: colors.primary[400],
+              border: colors.primary[100],
+              borderHover: colors.grey[900],
             },
             background: {
               default: "#fcfcfc",
