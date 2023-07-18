@@ -42,7 +42,7 @@ const Transactions = () => {
         </FormControl>
       </Box>
 
-      {form === "stock" ? <StockTransactions /> : <CurrencyTransactions />}
+      {form === "stock" ? <StockTransactions margin="40px 0 0 0" height="75vh"/> : <CurrencyTransactions margin="40px 0 0 0" height="75vh"/>}
 
       <FloatingTool />
     </Box>
