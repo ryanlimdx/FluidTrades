@@ -55,12 +55,19 @@ const StockConfirmation = () => {
   return (
     <Box>
       <Typography variant="h1">
-        Woohoo! Now, confirm your {state.transactionType} transaction!
+        Woohoo! Now, confirm your transaction!
       </Typography>
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         {({ isSubmitting }) => (
           <Form>
             <Stack>
+            <Typography component="div" marginTop={1} variant="h5">
+                <Box component="span" fontWeight="bold">
+                  Transaction Type:{" "}
+                </Box>
+                {state.transactionType}
+              </Typography>
+
               <Typography variant="h3" marginTop={1}> Stock Details </Typography>
 
               <Typography component="div" marginTop={1} variant="h5">
