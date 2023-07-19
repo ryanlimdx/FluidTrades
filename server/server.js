@@ -7,6 +7,7 @@ const { auth } = require("./middleware/auth");
 // Routes Middleware
 const authentication = require("./routes/authentication");
 const updateAssets = require("./routes/updateassets");
+const dashboard = require("./routes/dashboard");
 
 // ---------------------------------------------------------------------------------
 const User = require("./schemas/User");
@@ -90,6 +91,9 @@ app.use("/", authentication);
 
 // Update Assets Middleware
 app.use("/update-assets", updateAssets);
+
+// Portfolio Middleware
+app.use("/dashboard", dashboard);
 
 // ensure port is up and running
 app.listen(3000, () => {
