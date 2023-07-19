@@ -5,11 +5,10 @@ import { styled } from "@mui/system";
 
 const AppContentWrapper = styled(Box)({
   display: "flex",
-  height: "100vh",
   alignItems: "center",
   justifyContent: "center",
+  height: "75vh",
   width: "100%",
-  backgroundColor: "white",
 });
 
 const FormLayout = () => {
@@ -18,7 +17,6 @@ const FormLayout = () => {
       <AppContentWrapper>
         <Outlet />
       </AppContentWrapper>
-      
     </>
   );
 };

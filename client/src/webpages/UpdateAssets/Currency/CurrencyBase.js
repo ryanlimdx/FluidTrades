@@ -8,6 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Form, Formik } from "formik";
+import * as yup from "yup";
 
 const CurrencyBase = () => {
   const initialValues = {
@@ -15,6 +16,12 @@ const CurrencyBase = () => {
     baseAmount: "",
     fees: "",
   };
+
+  const baseCurrencySchema = yup.object().shape({
+    baseCurrency: yup.string().required("Required"),
+    baseAmount: yup.number().required("Required"),
+    fees: yup.number(),
+  });
 
   const [state, setState] = useAppState();
   const navigate = useNavigate();
@@ -35,27 +42,29 @@ const CurrencyBase = () => {
   return (
     <Box variant="outlined">
       <Typography variant="h1">
-        What are you {state.transactionType}ing today?{" "}
+        What are you {state.transactionType.toLowerCase()}ing today?{" "}
       </Typography>
 
-      <Formik onSubmit={saveData} initialValues={initialValues}>
-        {({ setFieldValue }) => (
+      <Formik onSubmit={saveData} initialValues={initialValues} validationSchema={baseCurrencySchema}>
+        {({ errors, touched, setFieldValue }) => (
           <Form>
-            <Stack margin={0}>
+            <Stack>
               <TextField
                 label="Base Currency"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) => setFieldValue("baseCurrency", event.target.value)}
+                error={!!errors.baseCrrency && !!touched.baseCurrency}
+                helperText={errors.baseCurrency && touched.baseCurrency ? "Required" : undefined}
               />
 
               <TextField
                 label="Amount"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) => setFieldValue("baseAmount", event.target.value)}
+                error={!!errors.baseAmount && !!touched.baseAmount}
+                helperText={errors.baseAmount && touched.baseAmount ? "Please key in a number! Currency symbols need not be included." : undefined}
               />
 
               {/* include field for fees if it is a deposit/ withdraw transactionType */}
@@ -65,9 +74,10 @@ const CurrencyBase = () => {
                   <TextField
                     label="Fees"
                     id="outlined-helperText"
-                    required
                     margin="normal"
                     onChange={(event) => setFieldValue("fees", event.target.value)}
+                    error={!!errors.fees && !!touched.fees}
+                    helperText={errors.fees && touched.fees ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
                   />
                 </>
               )}

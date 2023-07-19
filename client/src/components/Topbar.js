@@ -4,7 +4,7 @@ import useLogout from "../hooks/useLogout";
 
 // MUI components
 import { Typography, Box, IconButton, useTheme } from "@mui/material";
-import { ColorModeContext, themeSettings, tokens } from "../theme";
+import { ColorModeContext, tokens } from "../theme";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
@@ -16,12 +16,9 @@ import Logo from "../assets/FluidTradesLogoBG.PNG";
 import coinStack from "../assets/coin-stack.gif";
 
 // icons
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import MenuIcon from "@mui/icons-material/Menu";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import ListItemIcon from "@mui/material/ListItemIcon";
 
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -39,7 +36,6 @@ const Topbar = () => {
   const colorMode = useContext(ColorModeContext);
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
 
   useEffect(() => {
     axios
@@ -47,10 +43,9 @@ const Topbar = () => {
       .then((response) => {
         console.log(response);
         setName(response.data.name);
-        setEmail(response.data.email);
       })
       .catch((err) => console.log(err));
-  }, [setName, setEmail]);
+  }, [setName]);
 
   return (
     <AppBar

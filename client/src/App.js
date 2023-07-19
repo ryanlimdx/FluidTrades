@@ -1,13 +1,10 @@
 import React from "react";
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context/state";
 import { ChakraProvider } from "@chakra-ui/react";
 
 // Components
 import PrivateRoutes from "./navigation/PrivateRoutes";
-import Topbar from "./components/Topbar";
-import Sidebar from "./components/Sidebar";
 
 // Theme
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -27,13 +24,13 @@ import Portfolio from "./webpages/Portfolio/Portfolio";
 
 // Forms
 // Stock
-import StockTransaction from "./webpages/UpdateAssets/Stock/StockTransaction";
+import StockTransaction from "./webpages/UpdateAssets/Stock/TransactionType";
 import StockDetails from "./webpages/UpdateAssets/Stock/StockDetails";
 import TransactionDetails from "./webpages/UpdateAssets/Stock/TransactionDetails";
 import StockConfirmation from "./webpages/UpdateAssets/Stock/Confirmation";
 
 // Currency
-import CurrencyTransaction from "./webpages/UpdateAssets/Currency/CurrencyTransaction";
+import CurrencyTransaction from "./webpages/UpdateAssets/Currency/TransactionType";
 import CurrencyBase from "./webpages/UpdateAssets/Currency/CurrencyBase";
 import ConvertTo from "./webpages/UpdateAssets/Currency/ConvertTo";
 import CurrencyConfirmation from "./webpages/UpdateAssets/Currency/Confirmation";
