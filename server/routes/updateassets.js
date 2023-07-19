@@ -17,11 +17,11 @@ router.post("/currency/confirmation", auth, async (req, res) => {
 
     const transactionType = req.body.transactionType;
     const sellCurrency = req.body.sellCurrency;
-    const sellAmount = req.body.sellAmount;
+    const sellAmount = Number(req.body.sellAmount);
     const buyCurrency = req.body.buyCurrency;
-    const buyAmount = req.body.buyAmount;
-    const fees = req.body.fees;
-    const exchangeRate = req.body.exchangeRate;
+    const buyAmount = Number(req.body.buyAmount);
+    const fees = Number(req.body.fees);
+    const exchangeRate = Number(req.body.exchangeRate);
 
     // Create new transaction entry
     await CTransaction.create({
@@ -119,12 +119,12 @@ router.post("/stock/confirmation", auth, async (req, res) => {
     const ticker = req.body.ticker;
     const currency = req.body.currency;
 
-    const price = req.body.price;
-    let shares = parseFloat(req.body.shares);
+    const price = Number(req.body.price);
+    let shares = Number(parseFloat(req.body.shares));
     if (transactionType === "Sell") {
       shares = -shares;
     }
-    const fees = req.body.fees;
+    const fees = Number(req.body.fees);
 
     const investedCapital = price * shares + fees;
 
