@@ -25,7 +25,7 @@ const Dashboard = () => {
   return (
     <Box margin="20px">
       <Header title="DASHBOARD" />
-      <Grid container spacing={2}>
+      <Grid container spacing={2} height="75vh">
         <Grid item xs={4}>
           <PerformingAssets />
         </Grid>
@@ -53,7 +53,7 @@ const Dashboard = () => {
           </Box>
           
         </Grid> */}
-        <GridItem columns="12" title="Currency Transaction">
+        <GridItem columns="12" title="CURRENCY TRANSACTION">
           {/* to simplify the component to remove the datagrid  */}
           <CurrencyTransactions />
         </GridItem>
