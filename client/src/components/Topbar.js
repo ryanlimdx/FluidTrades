@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "../api/axios";
+import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 
 // MUI components
@@ -42,6 +43,8 @@ const Topbar = () => {
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   const themeColors = themeSettings(theme.palette.mode).palette;
+
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
