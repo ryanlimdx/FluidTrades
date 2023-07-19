@@ -4,33 +4,8 @@ const { app } = require("./app");
 // auth of user Middleware
 const { auth } = require("./middleware/auth");
 
-// Set up market data api
+// Set up market data API
 const axios = require('axios');
-const getQuote = async ({symbol}) => {
-  const options = {
-    method: "GET",
-    url: "https://twelve-data1.p.rapidapi.com/price",
-    params: {
-      symbol: symbol,
-      format: "json",
-      outputsize: "30",
-    },
-    headers: {
-      // "X-RapidAPI-Key": "1c8bce9d54msh8cbc95c564f2621p11f793jsnd17079bce2af",
-      'X-RapidAPI-Key': '673bac560cmshacd917fc1467ce3p17a520jsn9a4dc632f02a',
-      "X-RapidAPI-Host": "twelve-data1.p.rapidapi.com",
-    },
-  };
-
-  try {
-    const response = await axios.request(options);
-    console.log(response.data.price);
-    return response.data.price;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 
 // Routes Middleware
 const authentication = require("./routes/authentication");
