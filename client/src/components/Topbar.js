@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "../api/axios";
+import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 
 // MUI components
@@ -42,6 +43,8 @@ const Topbar = () => {
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   const themeColors = themeSettings(theme.palette.mode).palette;
+
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -111,7 +114,7 @@ const Topbar = () => {
             }}
           >
             <Box margin="0 7px 0 7px">
-              <Box // profile card
+              <Box // profile card - to add manage account button to link to profile page
                 marginBottom="5px"
                 padding="20px"
                 borderRadius="10px"

@@ -1,4 +1,3 @@
-import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import useUser from "./useUser";
 

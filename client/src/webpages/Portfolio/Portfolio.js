@@ -12,10 +12,10 @@ const Portfolio = () => {
 
       <Grid container spacing={2}>
         <Grid item xs={9}>
-          <Assets />
+          <Assets margin="20px 0 0 0" height="75vh" />
         </Grid>
         <Grid item xs={3}>
-          <Currency />
+          <Currency margin="20px 0 0 0"/>
         </Grid>
       </Grid>
 

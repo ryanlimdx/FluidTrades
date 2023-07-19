@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 
-const Assets = () => {
+const Assets = ({margin=undefined, height=undefined}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -12,9 +12,8 @@ const Assets = () => {
 
   useEffect(() => {
     axios
-      .get("/stocks")
+      .get("/assets")
       .then((response) => {
-        console.log(response);
         getData(response.data);
       })
       .catch((err) => console.log(err));
@@ -25,6 +24,7 @@ const Assets = () => {
     { field: "equity", headerName: "EQUITY", flex: 1 },
     { field: "ticker", headerName: "TICKER", flex: 1 },
     { field: "currency", headerName: "CURRENCY", flex: 1 },
+    // { field: "currPrice", headerName: "PRICE", flex: 1 },
     // { // to show current price (real time/ delayed data)
     //   field: "price",
     //   headerName: "PRICE",
@@ -49,6 +49,7 @@ const Assets = () => {
       align: "center",
       flex: 1, 
     },
+    { field: "breakevenPrice", headerName: "BREAKEVEN", flex: 1 },
     {
       field: "investedCapital",
       headerName: "INVESTED CAPITAL",
@@ -69,14 +70,14 @@ const Assets = () => {
 
   return (
       <Box
-        margin="20px 0 0 0"
-        height="75vh"
+        margin={margin}
+        height={height}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            borderBottom: "none",
+            // borderBottom: "none",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.blueAccent[700],

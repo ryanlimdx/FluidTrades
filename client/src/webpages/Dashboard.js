@@ -1,43 +1,62 @@
-import React, { useState, useEffect } from "react";
-import { Box, Typography, Paper, Stack, Grid } from "@mui/material";
+import React from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import Header from "../components/Header";
 
 // components
 import PerformingAssets from "../components/dashboard/PerformingAssets";
 import LaggingAssets from "../components/dashboard/LaggingAssets";
 import ExposurePieChart from "../components/dashboard/ExposurePieChart";
 import RealTimeSearch from "../components/dashboard/RealTimeSearch";
+import StockTransactions from "./Transactions/StockTransactions";
+import CurrencyTransactions from "./Transactions/CurrencyTransactions";
+
+const GridItem = ({ columns, title, children }) => {
+  return (
+    <Grid item xs={columns}>
+      <Box borderRadius="10px" padding="5px">
+        <Typography align="left" sx={{ fontWeight: "bold" }}>{title}</Typography>
+        {children}
+      </Box>
+    </Grid>
+  );
+};
 
 const Dashboard = () => {
   return (
-    <Box component="main" sx={{ p: 2 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <Paper
-            sx={{
-              textAlign: "left",
-            }}
-            elevation={0}
-          >
-            <Typography variant="h4" color="#7E909A">
-              DASHBOARD
-            </Typography>
-          </Paper>
-
-          <Stack direction="row" spacing={2} marginTop={2}>
-            <PerformingAssets />
-            <LaggingAssets />
-          </Stack>
+    <Box margin="20px">
+      <Header title="DASHBOARD" />
+      <Grid container spacing={2} height="75vh">
+        <Grid item xs={4}>
+          <PerformingAssets />
+        </Grid>
+        <Grid item xs={4}>
+          <LaggingAssets />
         </Grid>
 
         <Grid item xs={4}>
           <RealTimeSearch />
         </Grid>
-      </Grid>
 
-      <Grid container spacing={2} py={2}>
-        <Grid item xs={8}>
+        <Grid item xs={4}>
           <ExposurePieChart />
         </Grid>
+
+        <Grid item xs={4}>
+          <StockTransactions />
+        </Grid>
+        {/* <Grid item xs={4}>
+          <Box borderRadius="10px" padding="5px">
+            <Typography>
+              CurrencyTransactions
+            </Typography>
+            <CurrencyTransactions />
+          </Box>
+          
+        </Grid> */}
+        <GridItem columns="12" title="CURRENCY TRANSACTION">
+          {/* to simplify the component to remove the datagrid  */}
+          <CurrencyTransactions />
+        </GridItem>
       </Grid>
     </Box>
   );
