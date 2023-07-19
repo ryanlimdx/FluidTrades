@@ -107,7 +107,7 @@ app.get("/assets", auth, async (req, res) => {
       };
 
       const priceResponse = await axios.request(options);
-      const price = priceResponse.data.price;
+      const price = priceResponse.data.price ? priceResponse.data.price : "API limit xceeded";
 
       item.currPrice = price;
       item.breakevenPrice = item.investedCapital / item.shares;
