@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router";
 import axios from "../api/axios";
+import useLogout from "../hooks/useLogout";
 
 // MUI components
 import { Typography, Box, IconButton, useTheme } from "@mui/material";
@@ -26,6 +26,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const logout = useLogout();
   const openMenu = (e) => {
     setAnchorEl(e.target);
   };
@@ -50,8 +51,6 @@ const Topbar = () => {
       })
       .catch((err) => console.log(err));
   }, [setName, setEmail]);
-
-  const navigate = useNavigate();
 
   return (
     <AppBar
@@ -114,7 +113,7 @@ const Topbar = () => {
                 </Typography>
               </Box>
               <MenuItem
-                onClick={() => navigate()} // logout
+                onClick={logout} // logout
                 size="small"
               >
                 Logout
