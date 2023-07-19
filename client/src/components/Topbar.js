@@ -114,7 +114,7 @@ const Topbar = () => {
             }}
           >
             <Box margin="0 7px 0 7px">
-              <Box // profile card
+              <Box // profile card - to add manage account button to link to profile page
                 marginBottom="5px"
                 padding="20px"
                 borderRadius="10px"
