@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router";
 import axios from "../api/axios";
+import useLogout from "../hooks/useLogout";
 
 // MUI components
 import {
@@ -30,6 +30,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const logout = useLogout();
   const openMenu = (e) => {
     setAnchorEl(e.target);
   };
@@ -55,8 +56,6 @@ const Topbar = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  const navigate = useNavigate();
 
   return (
     <AppBar
@@ -144,7 +143,7 @@ const Topbar = () => {
               </Box>
 
               <MenuItem
-                onClick={() => navigate("/login")} // temporary logout method
+                onClick={logout}
                 sx={{
                   padding: "10px",
                   borderRadius: "10px",
