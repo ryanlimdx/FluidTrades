@@ -4,6 +4,34 @@ const { app } = require("./app");
 // auth of user Middleware
 const { auth } = require("./middleware/auth");
 
+// Set up market data api
+const axios = require('axios');
+const getQuote = async ({symbol}) => {
+  const options = {
+    method: "GET",
+    url: "https://twelve-data1.p.rapidapi.com/price",
+    params: {
+      symbol: symbol,
+      format: "json",
+      outputsize: "30",
+    },
+    headers: {
+      // "X-RapidAPI-Key": "1c8bce9d54msh8cbc95c564f2621p11f793jsnd17079bce2af",
+      'X-RapidAPI-Key': '673bac560cmshacd917fc1467ce3p17a520jsn9a4dc632f02a',
+      "X-RapidAPI-Host": "twelve-data1.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+    console.log(response.data.price);
+    return response.data.price;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 // Routes Middleware
 const authentication = require("./routes/authentication");
 const updateAssets = require("./routes/updateassets");
@@ -61,13 +89,33 @@ app.get("/assets", auth, async (req, res) => {
     // jsonArray1 = jsonArray1.concat(jsonArray2);
     const stocks = await Stock.find({ user: user }).lean();
 
-    stocks.forEach((element) => {
-      element.breakevenPrice = element.investedCapital / element.shares;
-    });
+    for await (let item of stocks) {
+      const options = {
+        method: "GET",
+        url: "https://twelve-data1.p.rapidapi.com/price",
+        params: {
+          symbol: item.ticker,
+          format: "json",
+          outputsize: "30",
+        },
+        headers: {
+          // "X-RapidAPI-Key": "1c8bce9d54msh8cbc95c564f2621p11f793jsnd17079bce2af",
+          'X-RapidAPI-Key': '673bac560cmshacd917fc1467ce3p17a520jsn9a4dc632f02a',
+          "X-RapidAPI-Host": "twelve-data1.p.rapidapi.com",
+        },
+      };
 
-    res.status(200).send(JSON.stringify(stocks));
+      const priceResponse = await axios.request(options);
+      const price = priceResponse.data.price;
+
+      item.currPrice = price;
+      item.breakevenPrice = item.investedCapital / item.shares;
+    }
+
+    return res.status(200).send(JSON.stringify(stocks));
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error: 500");
   }
 });
 

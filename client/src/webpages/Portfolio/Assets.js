@@ -3,23 +3,18 @@ import { tokens } from "../../theme";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
-import getQuote from "../../api/getQuote";
 
 const Assets = ({ margin = undefined, height = undefined }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const [data, getData] = useState([]);
+  const [assets, getAssets] = useState([]);
 
   useEffect(() => {
     axios
       .get("/assets")
       .then((response) => {
-        response.data.forEach((element) => {
-          const price = getQuote();
-          element.currPrice = price;
-        });
-        getData(response.data);
+        getAssets(response.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -29,13 +24,14 @@ const Assets = ({ margin = undefined, height = undefined }) => {
     { field: "equity", headerName: "EQUITY", flex: 1 },
     { field: "ticker", headerName: "TICKER", flex: 1 },
     { field: "currency", headerName: "CURRENCY", flex: 1 },
-    { // to show current price (real time/ delayed data)
+    {
+      // to show current price (real time/ delayed data)
       field: "currPrice",
       headerName: "PRICE",
-      flex: 1
-      // type: "number",
-      // headerAlign: "center",
-      // align: "center",
+      flex: 1,
+      type: "number",
+      headerAlign: "center",
+      align: "center",
       // renderCell: (params) => <Typography>${params.row.price.toFixed(2)}</Typography>,
     },
     {
@@ -102,7 +98,7 @@ const Assets = ({ margin = undefined, height = undefined }) => {
         },
       }}
     >
-      <DataGrid rows={data} columns={columns} getRowId={(row) => row._id} />
+      <DataGrid rows={assets} columns={columns} getRowId={(row) => row._id} />
     </Box>
   );
 };
