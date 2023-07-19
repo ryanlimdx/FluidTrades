@@ -53,10 +53,10 @@ const Dashboard = () => {
           </Box>
           
         </Grid> */}
-        {/* <GridItem columns="12" title="CURRENCY TRANSACTION">
-          // to simplify the component to remove the datagrid
+        <GridItem columns={12} title="CURRENCY TRANSACTION">
+          {/* to simplify the component to remove the datagrid  */}
           <CurrencyTransactions />
-        </GridItem> */}
+        </GridItem>
       </Grid>
     </Box>
   );
