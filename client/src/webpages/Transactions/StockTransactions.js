@@ -10,11 +10,11 @@ const StockTransactions = ({margin=undefined, height=undefined}) => {
 
   const [data, getData] = useState([]);
 
+
   useEffect(() => {
     axios
       .get("/stocktransactions")
       .then((response) => {
-        console.log(response);
         getData(response.data);
       })
       .catch((err) => console.log(err));

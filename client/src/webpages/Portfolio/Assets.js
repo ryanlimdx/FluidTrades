@@ -12,9 +12,8 @@ const Assets = ({margin=undefined, height=undefined}) => {
 
   useEffect(() => {
     axios
-      .get("/stocks")
+      .get("/assets")
       .then((response) => {
-        console.log(response);
         getData(response.data);
       })
       .catch((err) => console.log(err));
@@ -25,6 +24,7 @@ const Assets = ({margin=undefined, height=undefined}) => {
     { field: "equity", headerName: "EQUITY", flex: 1 },
     { field: "ticker", headerName: "TICKER", flex: 1 },
     { field: "currency", headerName: "CURRENCY", flex: 1 },
+    // { field: "currPrice", headerName: "PRICE", flex: 1 },
     // { // to show current price (real time/ delayed data)
     //   field: "price",
     //   headerName: "PRICE",
@@ -49,6 +49,7 @@ const Assets = ({margin=undefined, height=undefined}) => {
       align: "center",
       flex: 1, 
     },
+    { field: "breakevenPrice", headerName: "BREAKEVEN", flex: 1 },
     {
       field: "investedCapital",
       headerName: "INVESTED CAPITAL",

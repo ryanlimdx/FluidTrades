@@ -12,7 +12,7 @@ const Currency = ({margin=undefined, height=undefined}) => {
 
   useEffect(() => {
     axios
-      .get("/stocks")
+      .get("/currencies")
       .then((response) => {
         console.log(response);
         getData(response.data);
@@ -43,7 +43,7 @@ const Currency = ({margin=undefined, height=undefined}) => {
   return (
       <Box
         margin={margin}
-        height= {height}
+        height={height}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
