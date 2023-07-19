@@ -10,16 +10,16 @@ import RealTimeSearch from "../components/dashboard/RealTimeSearch";
 import StockTransactions from "./Transactions/StockTransactions";
 import CurrencyTransactions from "./Transactions/CurrencyTransactions";
 
-const GridItem = ({ columns, title, children }) => {
-  return (
-    <Grid item xs={columns}>
-      <Box borderRadius="10px" padding="5px">
-        <Typography align="left" sx={{ fontWeight: "bold" }}>{title}</Typography>
-        {children}
-      </Box>
-    </Grid>
-  );
-};
+// const GridItem = ({ columns, title, children }) => {
+//   return (
+//     <Grid item xs={columns}>
+//       <Box borderRadius="10px" padding="5px">
+//         <Typography align="left" sx={{ fontWeight: "bold" }}>{title}</Typography>
+//         {children}
+//       </Box>
+//     </Grid>
+//   );
+// };
 
 const Dashboard = () => {
   return (
@@ -53,10 +53,10 @@ const Dashboard = () => {
           </Box>
           
         </Grid> */}
-        <GridItem columns="12" title="CURRENCY TRANSACTION">
-          {/* to simplify the component to remove the datagrid  */}
+        {/* <GridItem columns="12" title="CURRENCY TRANSACTION">
+          // to simplify the component to remove the datagrid
           <CurrencyTransactions />
-        </GridItem>
+        </GridItem> */}
       </Grid>
     </Box>
   );
