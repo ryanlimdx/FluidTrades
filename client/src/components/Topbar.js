@@ -3,12 +3,18 @@ import axios from "../api/axios";
 import useLogout from "../hooks/useLogout";
 
 // MUI components
-import { Typography, Box, IconButton, useTheme } from "@mui/material";
-import { ColorModeContext, tokens } from "../theme";
-import AppBar from "@mui/material/AppBar";
-import Avatar from "@mui/material/Avatar";
+import {
+  Typography,
+  Box,
+  IconButton,
+  useTheme,
+  ListItemIcon,
+} from "@mui/material";
+import { ColorModeContext, tokens, themeSettings } from "../theme";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
 import Toolbar from "@mui/material/Toolbar";
 
 // profile and platform
@@ -19,6 +25,7 @@ import coinStack from "../assets/coin-stack.gif";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -34,8 +41,10 @@ const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+  const themeColors = themeSettings(theme.palette.mode).palette;
 
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     axios
@@ -43,9 +52,10 @@ const Topbar = () => {
       .then((response) => {
         console.log(response);
         setName(response.data.name);
+        setEmail(response.data.email);
       })
       .catch((err) => console.log(err));
-  }, [setName]);
+  }, []);
 
   return (
     <AppBar
@@ -86,31 +96,62 @@ const Topbar = () => {
             <AccountCircleIcon />
           </IconButton>
 
-          <Menu open={open} onClose={closeMenu} anchorEl={anchorEl}>
-            <Box margin="20px 20px 15px 20px">
-              <Box
+          <Menu
+            open={open}
+            onClose={closeMenu}
+            anchorEl={anchorEl}
+            sx={{
+              "& .MuiMenu-paper": {
+                borderRadius: "10px",
+              },
+              "& .MuiList-root": {
+                backgroundColor: themeColors.profileDropdown.background,
+              },
+              marginTop: "20px",
+            }}
+          >
+            <Box margin="0 7px 0 7px">
+              <Box // profile card
+                marginBottom="5px"
+                padding="20px"
+                borderRadius="10px"
+                backgroundColor={themeColors.profileDropdown.main}
                 display="flex"
-                justifyContent="center"
                 alignItems="center"
-                mb="10px"
               >
-                <img
-                  alt="coin stack"
-                  width="100px"
-                  height="100px"
-                  src={coinStack}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                />
+                <Box mr="20px">
+                  <img
+                    alt="profile icon"
+                    width="70px"
+                    height="70px"
+                    src={coinStack}
+                    style={{ cursor: "pointer", borderRadius: "50%" }}
+                    onClick={() => {
+                      navigate("/profile");
+                      closeMenu();
+                    }}
+                  />
+                </Box>
+                <Box>
+                  <Typography variant="h5" color={colors.grey[100]} mb="1px">
+                    {name}
+                  </Typography>
+                  <Typography variant="h6" color={colors.grey[100]}>
+                    {email}
+                  </Typography>
+                </Box>
               </Box>
-              <Box textAlign="center">
-                <Typography variant="h5" color={colors.grey[100]}>
-                  {name}
-                </Typography>
-              </Box>
+
               <MenuItem
-                onClick={logout} // logout
-                size="small"
+                onClick={logout}
+                sx={{
+                  padding: "10px",
+                  borderRadius: "10px",
+                }}
               >
+                <ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
                 Logout
               </MenuItem>
             </Box>
