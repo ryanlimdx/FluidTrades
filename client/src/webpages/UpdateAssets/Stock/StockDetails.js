@@ -7,14 +7,14 @@ import * as yup from "yup";
 const StockDetails = () => {
   const initialValues = {
     sector: "",
-    equity: "",
+    security: "",
     ticker: "",
     currency: "",
   };
 
   const detailsSchema = yup.object().shape({
     sector: yup.string().required("Required"),
-    equity: yup.string().required("Required"),
+    security: yup.string().required("Required"),
     ticker: yup.string().required("Required"),
     currency: yup.string().required("Required"),
   })
@@ -51,10 +51,10 @@ const StockDetails = () => {
                 id="outlined-helperText"
                 margin="normal"
                 onChange={(event) =>
-                  setFieldValue("equity", event.target.value)
+                  setFieldValue("security", event.target.value)
                 }
-                error={!!errors.equity && !!touched.equity}
-                helperText={errors.equity && touched.equity ? "Required" : undefined}
+                error={!!errors.security && !!touched.security}
+                helperText={errors.security && touched.security ? "Required" : undefined}
               />
               <TextField
                 label="Ticker"

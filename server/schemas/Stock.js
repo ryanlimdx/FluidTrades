@@ -11,11 +11,11 @@ const stockSchema = new mongoose.Schema({
         default: Date.now 
     },
     sector: String,
-    equity: String,
+    security: String,
     ticker: String,
     currency: String,
 
-    shares: Number,
+    quantity: Number,
     investedCapital: Number,
 
     currPrice: Number,

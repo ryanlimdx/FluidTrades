@@ -24,7 +24,7 @@ const StockTransactions = ({margin=undefined, height=undefined}) => {
     { field: "date", headerName: "DATE", flex: 1 },
     { field: "transactionType", headerName: "TRANSACTION", flex: 1 },
     { field: "sector", headerName: "SECTOR", flex: 1 },
-    { field: "equity", headerName: "EQUITY", flex: 1 },
+    { field: "security", headerName: "SECURITY", flex: 1 },
     { field: "ticker", headerName: "TICKER", flex: 1 },
     { field: "currency", headerName: "CURRENCY", flex: 1 },
     {
@@ -36,23 +36,23 @@ const StockTransactions = ({margin=undefined, height=undefined}) => {
       renderCell: (params) => <Typography>${params.row.price.toFixed(2)}</Typography>,
     },
     {
-      field: "shares",
-      headerName: "SHARES",
+      field: "quantity",
+      headerName: "QUANTITY",
       type: "number",
       headerAlign: "center",
       align: "center",
     },
     {
-      field: "fees",
-      headerName: "FEES",
+      field: "commissions",
+      headerName: "COMMISSIONS",
       type: "number",
       headerAlign: "center",
       align: "center",
       renderCell: (params) => 
       <Typography> 
         ${
-          params.row.fees 
-            ? params.row.fees.toFixed(2)
+          params.row.commissions 
+            ? params.row.commissions.toFixed(2)
             : 0.00
         }
       </Typography>

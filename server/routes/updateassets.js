@@ -22,8 +22,8 @@ router.post("/currency/confirmation", auth, async (req, res) => {
     const buyCurrency = req.body.buyCurrency;
     let buyAmount = req.body.buyAmount;
     if (buyAmount) { buyAmount = Number(req.body.buyAmount); }
-    let fees = req.body.fees;
-    if (fees) { fees = Number(req.body.fees); }
+    let commissions = req.body.commissions;
+    if (commissions) { commissions = Number(req.body.commissions); }
     let exchangeRate = req.body.exchangeRate;
     if (exchangeRate) { exchangeRate = Number(req.body.exchangeRate); }
 
@@ -36,7 +36,7 @@ router.post("/currency/confirmation", auth, async (req, res) => {
       sellAmount: sellAmount,
       buyCurrency: buyCurrency,
       buyAmount: buyAmount,
-      fees: fees,
+      commissions: commissions,
       exchangeRate: exchangeRate,
     });
     
@@ -46,7 +46,7 @@ router.post("/currency/confirmation", auth, async (req, res) => {
         { currency: sellCurrency, user: user._id, },
         {
           $inc: {
-            balance: sellAmount - fees,
+            balance: sellAmount - commissions,
           },
   
           $setOnInsert: {
@@ -62,7 +62,7 @@ router.post("/currency/confirmation", auth, async (req, res) => {
         { currency: sellCurrency, user: user._id, },
         {
           $inc: {
-            balance: - sellAmount - fees,
+            balance: - sellAmount - commissions,
           },
   
           $setOnInsert: {
@@ -78,7 +78,7 @@ router.post("/currency/confirmation", auth, async (req, res) => {
         { currency: sellCurrency, user: user._id, },
         {
           $inc: {
-            balance: - sellAmount - fees,
+            balance: - sellAmount - commissions,
           },
   
           $setOnInsert: {
@@ -119,21 +119,21 @@ router.post("/stock/confirmation", auth, async (req, res) => {
 
     const transactionType = req.body.transactionType;
     const sector = req.body.sector;
-    const equity = req.body.equity;
+    const security = req.body.security;
     const ticker = req.body.ticker;
     const currency = req.body.currency;
 
     const price = Number(req.body.price);
-    let shares = Number(req.body.shares);
+    let quantity = Number(req.body.quantity);
     if (transactionType === "Sell") {
-      shares = -shares;
+      quantity = -quantity;
     }
-    let fees = req.body.fees;
-    if (fees) { // only turn into number if fees is entered
-      fees = Number(fees);
+    let commissions = req.body.commissions;
+    if (commissions) { // only turn into number if commissions is entered
+      commissions = Number(commissions);
     }
 
-    const investedCapital = price * shares;
+    const investedCapital = price * quantity;
 
     // Create new transaction entry
     await STransaction.create({
@@ -141,13 +141,13 @@ router.post("/stock/confirmation", auth, async (req, res) => {
 
       transactionType: transactionType,
       sector: sector,
-      equity: equity,
+      security: security,
       ticker: ticker,
       currency: currency,
 
       price: price,
-      shares: shares,
-      fees: fees,
+      quantity: quantity,
+      commissions: commissions,
     });
 
     // Create a new stock for record purposes. If already exists, patch the data.
@@ -155,7 +155,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
       { ticker: ticker, user: user._id, },
       {
         $inc: {
-          shares: shares,
+          quantity: quantity,
           investedCapital: investedCapital,
         },
 
@@ -163,7 +163,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
           user: user._id,
 
           sector: sector,
-          equity: equity,
+          security: security,
           ticker: ticker,
           currency: currency,
         },
@@ -176,7 +176,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
       { currency: currency, user: user._id, },
       {
         $inc: {
-          balance: - investedCapital - fees,
+          balance: - investedCapital - commissions,
         },
 
         $setOnInsert: {

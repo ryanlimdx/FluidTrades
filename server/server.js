@@ -66,7 +66,7 @@ app.get("/assets", auth, async (req, res) => {
     const stocks = await Stock.find({ user: user }).lean();
 
     for await (let item of stocks) {
-      item.breakevenPrice = item.investedCapital / item.shares;
+      item.breakevenPrice = item.investedCapital / item.quantity;
       if (item.investedCapital < 0) {
         item.investedCapital = 0
       }
@@ -93,7 +93,8 @@ app.get("/assets", auth, async (req, res) => {
         const priceResponse = await axios.request(options);
         const price = priceResponse.data.price;
         item.currPrice = price;
-        item.returns = price * item.shares - item.investedCapital
+        item.marketValue = price * item.quantity
+        item.returns = item.marketValue - item.investedCapital
         if (item.investedCapital == 0) {
           item.returnsPCT = "∞"
         } else {
@@ -102,6 +103,7 @@ app.get("/assets", auth, async (req, res) => {
         
       } catch (error) {
         item.currPrice = "API limit exceeded";
+        item.marketValue = "API limit exceeded";
         item.returns = "API limit exceeded";
         item.returnsPCT = "API limit exceeded";
       }

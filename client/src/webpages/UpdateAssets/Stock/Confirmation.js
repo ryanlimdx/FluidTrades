@@ -10,13 +10,13 @@ const StockConfirmation = () => {
   const initialValues = {
     transactionType: state.transactionType,
     sector: state.sector,
-    equity: state.equity,
+    security: state.security,
     ticker: state.ticker.toUpperCase(),
     currency: state.currency,
 
     price: state.price,
-    shares: state.shares,
-    fees: state.fees ? state.fees : 0.00,
+    quantity: state.quantity,
+    commissions: state.commissions ? state.commissions : 0.00,
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -79,9 +79,9 @@ const StockConfirmation = () => {
 
               <Typography component="div" marginTop={1} variant="h5">
                 <Box component="span" fontWeight="bold">
-                  Equity:{" "}
+                  security:{" "}
                 </Box>
-                {state.equity}
+                {state.security}
               </Typography>
 
               <Typography component="div" marginTop={1} variant="h5">
@@ -109,16 +109,16 @@ const StockConfirmation = () => {
 
               <Typography component="div" marginTop={1} variant="h5">
                 <Box component="span" fontWeight="bold">
-                  Shares:{" "}
+                  Quantity:{" "}
                 </Box>
-                {state.shares}
+                {state.quantity}
               </Typography>
 
               <Typography component="div" marginTop={1} variant="h5">
                 <Box component="span" fontWeight="bold">
-                  Fees:{" "}
+                  Commissions:{" "}
                 </Box>
-                {state.fees ? state.fees : 0.00}
+                {state.commissions ? state.commissions : 0.00}
               </Typography>
 
               <Button

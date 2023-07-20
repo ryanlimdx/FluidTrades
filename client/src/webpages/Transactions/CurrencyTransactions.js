@@ -61,16 +61,16 @@ const CurrencyTransactions = ({margin=undefined, height=undefined}) => {
         </Typography>
     },
     {
-      field: "fees",
-      headerName: "FEES",
+      field: "commissions",
+      headerName: "COMMISSIONS",
       type: "number",
       headerAlign: "center",
       align: "center",
       renderCell: (params) => 
       <Typography> 
         ${
-          params.row.fees 
-            ? params.row.fees.toFixed(2)
+          params.row.commissions 
+            ? params.row.commissions.toFixed(2)
             : 0.00
         }
       </Typography>

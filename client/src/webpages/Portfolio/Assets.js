@@ -21,7 +21,7 @@ const Assets = ({ margin = undefined, height = undefined }) => {
 
   const columns = [
     { field: "sector", headerName: "SECTOR", flex: 1 },
-    { field: "equity", headerName: "EQUITY", flex: 1 },
+    { field: "security", headerName: "SECURITY", flex: 1 },
     { field: "ticker", headerName: "TICKER", flex: 1 },
     { field: "currency", headerName: "CURRENCY", flex: 1 },
     {
@@ -41,12 +41,27 @@ const Assets = ({ margin = undefined, height = undefined }) => {
       ),
     },
     {
-      field: "shares",
+      field: "quantity",
       headerName: "POSITION",
       type: "number",
       headerAlign: "center",
       align: "center",
       flex: 1,
+    },
+    {
+      field: "marketValue",
+      headerName: "MARKET VALUE",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: (params) => (
+        <Typography>
+          {params.row.marketValue === "API limit exceeded"
+            ? "API limit exceeded"
+            : "$" + parseFloat(params.row.marketValue).toFixed(2)}
+        </Typography>
+      ),
     },
     {
       // to show breakeven price
