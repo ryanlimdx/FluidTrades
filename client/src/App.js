@@ -61,11 +61,12 @@ function App() {
                   <Route element={ <PrivateRoutes><MainLayout/></PrivateRoutes> } >
                     <Route>
                       <Route path="/" element={<Dashboard />} />
-                      <Route path="/profile" element={<Profile />} />
+                      
                       <Route path="/transactions" element={<Transactions />} />
                       <Route path="/portfolio" element={<Portfolio />} />
 
                       <Route element={<FormLayout />} >
+                        <Route path="/profile" element={<Profile />} />
                         {/* Stock Form */}
                         <Route path="/update-assets/stock" element={<StockTransaction />} />
                         <Route path="/update-assets/stock/details" element={<StockDetails />} />
