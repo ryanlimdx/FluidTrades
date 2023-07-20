@@ -92,7 +92,7 @@ app.get("/assets", auth, async (req, res) => {
         method: "GET",
         url: "https://twelve-data1.p.rapidapi.com/price",
         params: {
-          symbol: item.ticker,
+          symbol: item.sector === "Cryptocurrency" ? item.ticker + "/" + item.currency : item.ticker,
           format: "json",
           outputsize: "30",
         },
