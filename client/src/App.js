@@ -26,8 +26,14 @@ import Portfolio from "./webpages/Portfolio/Portfolio";
 // Stock
 import StockTransaction from "./webpages/UpdateAssets/Stock/TransactionType";
 import StockDetails from "./webpages/UpdateAssets/Stock/StockDetails";
-import TransactionDetails from "./webpages/UpdateAssets/Stock/TransactionDetails";
+import StockTransactionDetails from "./webpages/UpdateAssets/Stock/TransactionDetails";
 import StockConfirmation from "./webpages/UpdateAssets/Stock/Confirmation";
+
+// Crypto
+import CryptoTransaction from "./webpages/UpdateAssets/Crypto/TransactionType";
+import CryptoDetails from "./webpages/UpdateAssets/Crypto/CryptoDetails";
+import CryptoTransactionDetails from "./webpages/UpdateAssets/Crypto/TransactionDetails";
+import CryptoConfirmation from "./webpages/UpdateAssets/Crypto/Confirmation";
 
 // Currency
 import CurrencyTransaction from "./webpages/UpdateAssets/Currency/TransactionType";
@@ -63,8 +69,14 @@ function App() {
                         {/* Stock Form */}
                         <Route path="/update-assets/stock" element={<StockTransaction />} />
                         <Route path="/update-assets/stock/details" element={<StockDetails />} />
-                        <Route path="/update-assets/stock/transaction-details" element={<TransactionDetails />} />
+                        <Route path="/update-assets/stock/transaction-details" element={<StockTransactionDetails />} />
                         <Route path="/update-assets/stock/confirmation" element={<StockConfirmation />} />
+
+                        {/* Crypto Form */}
+                        <Route path="/update-assets/crypto" element={<CryptoTransaction />} />
+                        <Route path="/update-assets/crypto/details" element={<CryptoDetails />} />
+                        <Route path="/update-assets/crypto/transaction-details" element={<CryptoTransactionDetails />} />
+                        <Route path="/update-assets/crypto/confirmation" element={<CryptoConfirmation />} />
 
                         {/* Currency Form */}
                         <Route path="update-assets/currency" element={<CurrencyTransaction />} />
