@@ -7,7 +7,7 @@ import PerformingAssets from "../components/dashboard/PerformingAssets";
 import LaggingAssets from "../components/dashboard/LaggingAssets";
 import ExposurePieChart from "../components/dashboard/ExposurePieChart";
 import RealTimeSearch from "../components/dashboard/RealTimeSearch";
-import StockTransactions from "./Transactions/StockTransactions";
+import AssetTransactions from "./Transactions/AssetTransactions";
 import CurrencyTransactions from "./Transactions/CurrencyTransactions";
 
 const GridItem = ({ columns, title, children }) => {
@@ -42,7 +42,7 @@ const Dashboard = () => {
         </Grid>
 
         <Grid item xs={4}>
-          <StockTransactions />
+          <AssetTransactions />
         </Grid>
         {/* <Grid item xs={4}>
           <Box borderRadius="10px" padding="5px">

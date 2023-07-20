@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 
-const StockTransactions = ({margin=undefined, height=undefined}) => {
+const AssetTransactions = ({margin=undefined, height=undefined}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -13,7 +13,7 @@ const StockTransactions = ({margin=undefined, height=undefined}) => {
 
   useEffect(() => {
     axios
-      .get("/stocktransactions")
+      .get("/assettransactions")
       .then((response) => {
         getData(response.data);
       })
@@ -91,4 +91,4 @@ const StockTransactions = ({margin=undefined, height=undefined}) => {
   );
 };
 
-export default StockTransactions;
+export default AssetTransactions;

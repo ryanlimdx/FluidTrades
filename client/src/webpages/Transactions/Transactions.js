@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
-import StockTransactions from "./StockTransactions";
+import AssetTransactions from "./AssetTransactions";
 import CurrencyTransactions from "./CurrencyTransactions";
 import FloatingTool from "../../components/FloatingTool";
 
@@ -36,13 +36,13 @@ const Transactions = () => {
             value={form}
             onChange={handleChange}
           >
-            <MenuItem value="stock">Stock</MenuItem>
+            <MenuItem value="assets">Assets</MenuItem>
             <MenuItem value="currency">Currency</MenuItem>
           </Select>
         </FormControl>
       </Box>
 
-      {form === "stock" ? <StockTransactions margin="40px 0 0 0" height="75vh"/> : <CurrencyTransactions margin="40px 0 0 0" height="75vh"/>}
+      {form === "stock" ? <AssetTransactions margin="40px 0 0 0" height="75vh"/> : <CurrencyTransactions margin="40px 0 0 0" height="75vh"/>}
 
       <FloatingTool />
     </Box>
