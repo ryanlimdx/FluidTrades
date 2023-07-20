@@ -126,7 +126,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
     }
     const fees = Number(req.body.fees);
 
-    const investedCapital = price * shares + fees;
+    const investedCapital = price * shares;
 
     // Create new transaction entry
     await STransaction.create({
@@ -169,7 +169,7 @@ router.post("/stock/confirmation", auth, async (req, res) => {
       { currency: currency, user: user._id, },
       {
         $inc: {
-          balance: -investedCapital,
+          balance: - investedCapital - fees,
         },
 
         $setOnInsert: {
