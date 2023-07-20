@@ -16,7 +16,7 @@ const StockConfirmation = () => {
 
     price: state.price,
     shares: state.shares,
-    fees: state.fees,
+    fees: state.fees ? state.fees : 0.00,
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {

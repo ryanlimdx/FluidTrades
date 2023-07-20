@@ -66,6 +66,11 @@ app.get("/assets", auth, async (req, res) => {
     const stocks = await Stock.find({ user: user }).lean();
 
     for await (let item of stocks) {
+      item.breakevenPrice = item.investedCapital / item.shares;
+      if (item.investedCapital < 0) {
+        item.investedCapital = 0
+      }
+
       const options = {
         method: "GET",
         url: "https://twelve-data1.p.rapidapi.com/price",
@@ -89,13 +94,16 @@ app.get("/assets", auth, async (req, res) => {
         const price = priceResponse.data.price;
         item.currPrice = price;
         item.returns = price * item.shares - item.investedCapital
-        item.returnsPCT = item.returns / item.investedCapital * 100
+        if (item.investedCapital == 0) {
+          item.returnsPCT = "∞"
+        } else {
+          item.returnsPCT = item.returns / item.investedCapital * 100
+        }
+        
       } catch (error) {
         item.currPrice = "API limit exceeded";
         item.returns = "API limit exceeded";
         item.returnsPCT = "API limit exceeded";
-      } finally {
-        item.breakevenPrice = item.investedCapital / item.shares;
       }
     }
 

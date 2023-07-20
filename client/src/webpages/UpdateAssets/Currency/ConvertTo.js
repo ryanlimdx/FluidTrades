@@ -35,7 +35,6 @@ const ConvertTo = () => {
         {({ errors, touched, setFieldValue }) => (
           <Form>
             <Stack margin={0}>
-              <Typography marginTop={1} variant="h5">I converted to:</Typography>
               <TextField
                 label="Currency"
                 id="outlined-helperText"

@@ -21,7 +21,7 @@ const CurrencyConfirmation = () => {
     sellAmount: state.baseAmount,
     buyCurrency: buyCurrency,
     buyAmount: state.amount,
-    fees: state.fees,
+    fees: state.fees ? state.fees : 0.00,
     exchangeRate: exchangeRate,
   };
 

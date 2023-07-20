@@ -101,8 +101,8 @@ const Assets = ({ margin = undefined, height = undefined }) => {
       flex: 1,
       renderCell: (params) => (
         <Typography>
-          {params.row.returnsPCT === "API limit exceeded"
-            ? "API limit exceeded"
+          {params.row.returnsPCT === "API limit exceeded" || params.row.returnsPCT === "∞"
+            ? params.row.returnsPCT
             : parseFloat(params.row.returnsPCT).toFixed(2) + "%"}
         </Typography>
       ),
