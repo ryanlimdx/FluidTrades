@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 const Transactions = () => {
-  const [form, setForm] = useState("stock");
+  const [form, setForm] = useState("assets");
 
   const handleChange = (event) => {
     setForm(event.target.value);
@@ -28,7 +28,7 @@ const Transactions = () => {
       <Header title="TRANSACTIONS" />
       <Box>
         <FormControl fullWidth>
-          <InputLabel id="txn-asset-picker-label">Asset</InputLabel>
+          <InputLabel id="txn-asset-picker-label" value="Asset">Asset</InputLabel>
           <Select
             labelId="txn-asset-picker"
             label="Asset"
@@ -42,7 +42,7 @@ const Transactions = () => {
         </FormControl>
       </Box>
 
-      {form === "stock" ? <AssetTransactions margin="40px 0 0 0" height="75vh"/> : <CurrencyTransactions margin="40px 0 0 0" height="75vh"/>}
+      {form === "assets" ? <AssetTransactions margin="40px 0 0 0" height="75vh"/> : <CurrencyTransactions margin="40px 0 0 0" height="75vh"/>}
 
       <FloatingTool />
     </Box>
