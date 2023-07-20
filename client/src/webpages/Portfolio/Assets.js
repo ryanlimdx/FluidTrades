@@ -32,7 +32,13 @@ const Assets = ({ margin = undefined, height = undefined }) => {
       type: "number",
       headerAlign: "center",
       align: "center",
-      // renderCell: (params) => <Typography>${params.row.price.toFixed(2)}</Typography>,
+      renderCell: (params) => (
+        <Typography>
+          {params.row.currPrice === "API limit exceeded"
+            ? "API limit exceeded"
+            : "$" + parseFloat(params.row.currPrice).toFixed(2)}
+        </Typography>
+      ),
     },
     {
       field: "shares",
@@ -49,9 +55,11 @@ const Assets = ({ margin = undefined, height = undefined }) => {
       type: "number",
       headerAlign: "center",
       align: "center",
-      // renderCell: (params) => (
-      //   <Typography>${params.row.price.toFixed(2)}</Typography>
-      // ),
+      renderCell: (params) => (
+        <Typography>
+          ${parseFloat(params.row.breakevenPrice).toFixed(2)}
+        </Typography>
+      ),
     },
     {
       field: "investedCapital",
@@ -66,6 +74,36 @@ const Assets = ({ margin = undefined, height = undefined }) => {
           {params.row.investedCapital
             ? params.row.investedCapital.toFixed(2)
             : 0.0}
+        </Typography>
+      ),
+    },
+    {
+      field: "returns",
+      headerName: "RETURNS",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: (params) => (
+        <Typography>
+          {params.row.returns === "API limit exceeded"
+            ? "API limit exceeded"
+            : "$" + parseFloat(params.row.returns).toFixed(2)}
+        </Typography>
+      ),
+    },
+    {
+      field: "returnsPCT",
+      headerName: "RETURNS (%)",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: (params) => (
+        <Typography>
+          {params.row.returnsPCT === "API limit exceeded"
+            ? "API limit exceeded"
+            : parseFloat(params.row.returnsPCT).toFixed(2) + "%"}
         </Typography>
       ),
     },

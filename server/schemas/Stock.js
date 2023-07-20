@@ -16,7 +16,13 @@ const stockSchema = new mongoose.Schema({
     currency: String,
 
     shares: Number,
-    investedCapital: Number
+    investedCapital: Number,
+
+    currPrice: Number,
+    returns: Number,
+    returnsPCT: Number,
+    breakevenPrice: Number
+
     },
 
     {

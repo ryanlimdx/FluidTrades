@@ -81,11 +81,22 @@ app.get("/assets", auth, async (req, res) => {
         },
       };
 
-      const priceResponse = await axios.request(options);
-      const price = priceResponse.data.price ? priceResponse.data.price : "API limit xceeded";
-
-      item.currPrice = price;
-      item.breakevenPrice = item.investedCapital / item.shares;
+      try {
+        // Another approach would be to: 
+        //   1. Set timeout
+        //   2. Put the API in frontend to re render once the API can call again
+        const priceResponse = await axios.request(options);
+        const price = priceResponse.data.price;
+        item.currPrice = price;
+        item.returns = price * item.shares - item.investedCapital
+        item.returnsPCT = item.returns / item.investedCapital * 100
+      } catch (error) {
+        item.currPrice = "API limit exceeded";
+        item.returns = "API limit exceeded";
+        item.returnsPCT = "API limit exceeded";
+      } finally {
+        item.breakevenPrice = item.investedCapital / item.shares;
+      }
     }
 
     return res.status(200).send(JSON.stringify(stocks));
