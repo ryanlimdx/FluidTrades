@@ -4,15 +4,15 @@ import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Button, Stack } from "@mui/material";
 
-const StockConfirmation = () => {
+const CryptoConfirmation = () => {
   const [state, setState] = useAppState();
   const navigate = useNavigate();
   const initialValues = {
     transactionType: state.transactionType,
-    sector: state.sector,
+    sector: "Cryptocurrency",
     security: state.security,
     ticker: state.ticker.toUpperCase(),
-    currency: state.currency,
+    currency: "USD",
 
     price: state.price,
     quantity: state.quantity,
@@ -25,7 +25,7 @@ const StockConfirmation = () => {
       console.log(values);
       // Make POST request
       await axios
-        .post("/update-assets/stock/confirmation", values, config)
+        .post("/update-assets/crypto/confirmation", values, config)
         .then(() => alert("Data successfully sent to database. (◕‿◕)"))
         .then(() => navigate("/"));
     } catch (error) {
@@ -74,7 +74,7 @@ const StockConfirmation = () => {
                 <Box component="span" fontWeight="bold">
                   Sector:{" "}
                 </Box>
-                {state.sector}
+                Cryptocurrency
               </Typography>
 
               <Typography component="div" marginTop={1} variant="h5">
@@ -95,7 +95,7 @@ const StockConfirmation = () => {
                 <Box component="span" fontWeight="bold">
                   Currency:{" "}
                 </Box>
-                {state.currency}
+                USD
               </Typography>
 
               <Typography variant="h3" marginTop={1}> Position Details </Typography>
@@ -139,4 +139,4 @@ const StockConfirmation = () => {
   );
 };
 
-export default StockConfirmation;
+export default CryptoConfirmation;

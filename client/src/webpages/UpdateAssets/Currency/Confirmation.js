@@ -9,7 +9,7 @@ const CurrencyConfirmation = () => {
   const navigate = useNavigate();
 
   const exchangeRate = state.amount / state.baseAmount;
-  
+
   let buyCurrency = state.currency;
   if (state.currency) {
     buyCurrency = state.currency.toUpperCase();
@@ -21,11 +21,11 @@ const CurrencyConfirmation = () => {
     sellAmount: state.baseAmount,
     buyCurrency: buyCurrency,
     buyAmount: state.amount,
-    commissions: state.commissions ? state.commissions : 0.00,
+    commissions: state.commissions ? state.commissions : 0.0,
     exchangeRate: exchangeRate,
   };
 
-  const handleSubmit = async (values , {setSubmitting}) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const config = { headers: { "Content-Type": "application/json" } };
       console.log(values);
@@ -61,16 +61,21 @@ const CurrencyConfirmation = () => {
   return (
     <Box>
       <Typography variant="h1">
-        Woohoo! Now, confirm your
-        {state.transactionType === "Deposit" && " deposit "}
-        {state.transactionType === "Withdraw" && " withdrawal "}
-        {state.transactionType === "Convert" && " conversion "}
-        details!
+        Woohoo! Now, confirm your transaction!
       </Typography>
 
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         {({ isSubmitting }) => (
           <Form>
+            <Typography component="div" marginTop={1} variant="h5">
+              <Box component="span" fontWeight="bold">
+                Transaction Type:{" "}
+              </Box>
+              {state.transactionType === "Deposit" && "Deposit"}
+              {state.transactionType === "Withdraw" && "Withdrawal"}
+              {state.transactionType === "Convert" && "Conversion"}
+            </Typography>
+
             <Typography component="div" marginTop={1} variant="h5">
               <Box component="span" fontWeight="bold">
                 Currency
@@ -103,7 +108,12 @@ const CurrencyConfirmation = () => {
                   {state.amount}
                 </Typography>
 
-                <Typography fontWeight="bold" component="div" marginTop={1} variant="h5">
+                <Typography
+                  fontWeight="bold"
+                  component="div"
+                  marginTop={1}
+                  variant="h5"
+                >
                   <div>
                     {state.baseCurrency}
                     {state.currency}
@@ -122,7 +132,7 @@ const CurrencyConfirmation = () => {
               <Box component="span" fontWeight="bold">
                 Commissions:{" "}
               </Box>
-              {state.commissions ? state.commissions : 0.00}
+              {state.commissions ? state.commissions : 0.0}
             </Typography>
 
             <Button

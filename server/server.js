@@ -31,12 +31,15 @@ app.get("/profile", auth, async (req, res) => {
 
 // -----------------------------------------------------------------------------------
 const STransaction = require("./schemas/StockTransaction");
+const CryptoTransaction = require("./schemas/CryptoTransaction");
 // GET request to retrieve stock transactions data
-app.get("/stocktransactions", auth, async (req, res) => {
+app.get("/assettransactions", auth, async (req, res) => {
   try {
     const user = await User.findById(req.userId);
     const stockTxns = await STransaction.find({ user: user });
-    return res.status(200).json(stockTxns);
+    const cryptoTxns = await CryptoTransaction.find({ user: user });
+    const assetTxns = stockTxns.concat(cryptoTxns);
+    return res.status(200).json(assetTxns);
   } catch (error) {
     console.log(error);
   }
@@ -54,8 +57,20 @@ app.get("/currencytransactions", auth, async (req, res) => {
   }
 });
 
+// const CryptoTransaction = require("./schemas/CryptoTransaction");
+// app.get("/cryptotransactions", auth, async (req, res) => {
+//   try {
+//     const user = await User.findById(req.userId);
+//     const cryptotxns = await CryptoTransaction.find({ user: user });
+//     return res.status(200).json(cryptoTxns);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
 const Stock = require("./schemas/Stock");
-// GET request to retrieve stock data
+const Crypto = require("./schemas/Crypto")
+// GET request to retrieve asset data
 app.get("/assets", auth, async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -64,8 +79,10 @@ app.get("/assets", auth, async (req, res) => {
     // var jsonArray2 = [{'name': "goud", 'id':1}, {'name': "doaaug", 'id':52}];
     // jsonArray1 = jsonArray1.concat(jsonArray2);
     const stocks = await Stock.find({ user: user }).lean();
+    const cryptos = await Crypto.find({ user: user }).lean();
+    const assets = stocks.concat(cryptos);
 
-    for await (let item of stocks) {
+    for await (let item of assets) {
       item.breakevenPrice = item.investedCapital / item.quantity;
       if (item.investedCapital < 0) {
         item.investedCapital = 0
@@ -75,7 +92,7 @@ app.get("/assets", auth, async (req, res) => {
         method: "GET",
         url: "https://twelve-data1.p.rapidapi.com/price",
         params: {
-          symbol: item.ticker,
+          symbol: item.sector === "Cryptocurrency" ? item.ticker + "/" + item.currency : item.ticker,
           format: "json",
           outputsize: "30",
         },
@@ -87,7 +104,7 @@ app.get("/assets", auth, async (req, res) => {
       };
 
       try {
-        // Another approach would be to: 
+        // Another approach to go around the API limit would be: 
         //   1. Set timeout
         //   2. Put the API in frontend to re render once the API can call again
         const priceResponse = await axios.request(options);
@@ -109,7 +126,7 @@ app.get("/assets", auth, async (req, res) => {
       }
     }
 
-    return res.status(200).send(JSON.stringify(stocks));
+    return res.status(200).send(JSON.stringify(assets));
   } catch (error) {
     console.log(error);
     return res.status(500).send("Error: 500");
