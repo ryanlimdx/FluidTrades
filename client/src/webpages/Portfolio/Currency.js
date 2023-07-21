@@ -67,7 +67,7 @@ const Currency = ({margin=undefined, height=undefined}) => {
           },
         }}
       >
-        <DataGrid rows={data} columns={columns} getRowId={(row) => row._id} />
+        <DataGrid rows={data} columns={columns} getRowId={(row) => row._id} sx={{minHeight: "312px"}} />
       </Box>
   );
 };

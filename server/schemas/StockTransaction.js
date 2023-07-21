@@ -15,13 +15,13 @@ const sTransactionSchema = new mongoose.Schema({
         required: true
     },
     sector: String,
-    equity: String,
+    security: String,
     ticker: String,
     currency: String,
 
     price: Number,
-    shares: Number,
-    fees: Number
+    quantity: Number,
+    commissions: Number
     },
 
     {

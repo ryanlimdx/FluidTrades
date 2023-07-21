@@ -21,7 +21,7 @@ const CurrencyConfirmation = () => {
     sellAmount: state.baseAmount,
     buyCurrency: buyCurrency,
     buyAmount: state.amount,
-    fees: state.fees,
+    commissions: state.commissions ? state.commissions : 0.00,
     exchangeRate: exchangeRate,
   };
 
@@ -120,9 +120,9 @@ const CurrencyConfirmation = () => {
 
             <Typography component="div" marginTop={1} variant="h5">
               <Box component="span" fontWeight="bold">
-                Fees:{" "}
+                Commissions:{" "}
               </Box>
-              {state.fees ? state.fees : 0.00}
+              {state.commissions ? state.commissions : 0.00}
             </Typography>
 
             <Button

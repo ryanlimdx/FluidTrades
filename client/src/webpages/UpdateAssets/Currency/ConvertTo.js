@@ -8,13 +8,13 @@ const ConvertTo = () => {
   const initialValues = {
     currency: "",
     amount: "",
-    fees: "",
+    commissions: "",
   };
 
   const conversionSchema = yup.object().shape({
     currency: yup.string().required("Required"),
     amount: yup.number().required("Required"),
-    fees: yup.number(),
+    commissions: yup.number(),
   })
 
   const [state, setState] = useAppState();
@@ -35,7 +35,6 @@ const ConvertTo = () => {
         {({ errors, touched, setFieldValue }) => (
           <Form>
             <Stack margin={0}>
-              <Typography marginTop={1} variant="h5">I converted to:</Typography>
               <TextField
                 label="Currency"
                 id="outlined-helperText"
@@ -56,13 +55,13 @@ const ConvertTo = () => {
               />
 
               <TextField
-                label="Fees"
+                label="Commissions"
                 id="outlined-helperText"
                 required
                 margin="normal"
-                onChange={(event) => setFieldValue("fees", event.target.value)}
-                error={!!errors.fees && !!touched.fees}
-                helperText={errors.fees && touched.fees ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
+                onChange={(event) => setFieldValue("commissions", event.target.value)}
+                error={!!errors.commissions && !!touched.commissions}
+                helperText={errors.commissions && touched.commissions ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
               />
 
               <Button

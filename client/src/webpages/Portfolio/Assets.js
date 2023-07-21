@@ -21,7 +21,7 @@ const Assets = ({ margin = undefined, height = undefined }) => {
 
   const columns = [
     { field: "sector", headerName: "SECTOR", flex: 1 },
-    { field: "equity", headerName: "EQUITY", flex: 1 },
+    { field: "security", headerName: "SECURITY", flex: 1 },
     { field: "ticker", headerName: "TICKER", flex: 1 },
     { field: "currency", headerName: "CURRENCY", flex: 1 },
     {
@@ -32,15 +32,36 @@ const Assets = ({ margin = undefined, height = undefined }) => {
       type: "number",
       headerAlign: "center",
       align: "center",
-      // renderCell: (params) => <Typography>${params.row.price.toFixed(2)}</Typography>,
+      renderCell: (params) => (
+        <Typography>
+          {params.row.currPrice === "API limit exceeded"
+            ? "API limit exceeded"
+            : "$" + parseFloat(params.row.currPrice).toFixed(2)}
+        </Typography>
+      ),
     },
     {
-      field: "shares",
+      field: "quantity",
       headerName: "POSITION",
       type: "number",
       headerAlign: "center",
       align: "center",
       flex: 1,
+    },
+    {
+      field: "marketValue",
+      headerName: "MARKET VALUE",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: (params) => (
+        <Typography>
+          {params.row.marketValue === "API limit exceeded"
+            ? "API limit exceeded"
+            : "$" + parseFloat(params.row.marketValue).toFixed(2)}
+        </Typography>
+      ),
     },
     {
       // to show breakeven price
@@ -49,9 +70,11 @@ const Assets = ({ margin = undefined, height = undefined }) => {
       type: "number",
       headerAlign: "center",
       align: "center",
-      // renderCell: (params) => (
-      //   <Typography>${params.row.price.toFixed(2)}</Typography>
-      // ),
+      renderCell: (params) => (
+        <Typography>
+          ${parseFloat(params.row.breakevenPrice).toFixed(2)}
+        </Typography>
+      ),
     },
     {
       field: "investedCapital",
@@ -66,6 +89,36 @@ const Assets = ({ margin = undefined, height = undefined }) => {
           {params.row.investedCapital
             ? params.row.investedCapital.toFixed(2)
             : 0.0}
+        </Typography>
+      ),
+    },
+    {
+      field: "returns",
+      headerName: "RETURNS",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: (params) => (
+        <Typography>
+          {params.row.returns === "API limit exceeded"
+            ? "API limit exceeded"
+            : "$" + parseFloat(params.row.returns).toFixed(2)}
+        </Typography>
+      ),
+    },
+    {
+      field: "returnsPCT",
+      headerName: "RETURNS (%)",
+      type: "number",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: (params) => (
+        <Typography>
+          {params.row.returnsPCT === "API limit exceeded" || params.row.returnsPCT === "∞"
+            ? params.row.returnsPCT
+            : parseFloat(params.row.returnsPCT).toFixed(2) + "%"}
         </Typography>
       ),
     },

@@ -14,13 +14,13 @@ const CurrencyBase = () => {
   const initialValues = {
     baseCurrency: "",
     baseAmount: "",
-    fees: "",
+    commissions: "",
   };
 
   const baseCurrencySchema = yup.object().shape({
     baseCurrency: yup.string().required("Required"),
     baseAmount: yup.number().required("Required"),
-    fees: yup.number(),
+    commissions: yup.number(),
   });
 
   const [state, setState] = useAppState();
@@ -67,17 +67,17 @@ const CurrencyBase = () => {
                 helperText={errors.baseAmount && touched.baseAmount ? "Please key in a number! Currency symbols need not be included." : undefined}
               />
 
-              {/* include field for fees if it is a deposit/ withdraw transactionType */}
+              {/* include field for commissions if it is a deposit/ withdraw transactionType */}
               {(state.transactionType === "Deposit" ||
                 state.transactionType === "Withdraw") && (
                 <>
                   <TextField
-                    label="Fees"
+                    label="Commissions"
                     id="outlined-helperText"
                     margin="normal"
-                    onChange={(event) => setFieldValue("fees", event.target.value)}
-                    error={!!errors.fees && !!touched.fees}
-                    helperText={errors.fees && touched.fees ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
+                    onChange={(event) => setFieldValue("commissions", event.target.value)}
+                    error={!!errors.commissions && !!touched.commissions}
+                    helperText={errors.commissions && touched.commissions ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
                   />
                 </>
               )}

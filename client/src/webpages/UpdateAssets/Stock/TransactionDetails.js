@@ -7,14 +7,14 @@ import * as yup from "yup";
 const TransactionDetails = () => {
   const initialValues = {
     price: "",
-    shares: "",
-    fees: "",
+    quantity: "",
+    commissions: "",
   };
 
   const transactionSchema = yup.object().shape({
     price: yup.number().required("Required"),
-    shares: yup.number().required("Required"),
-    fees: yup.number(),
+    quantity: yup.number().required("Required"),
+    commissions: yup.number(),
   });
 
   const [state, setState] = useAppState();
@@ -49,19 +49,19 @@ const TransactionDetails = () => {
                 id="outlined-helperText"
                 margin="normal"
                 onChange={(event) =>
-                  setFieldValue("shares", event.target.value)
+                  setFieldValue("quantity", event.target.value)
                 }
-                error = {!!errors.shares && !!touched.shares}
-                helperText={errors.shares && touched.shares ? "Please key in a number!" : undefined}
+                error = {!!errors.quantity && !!touched.quantity}
+                helperText={errors.quantity && touched.quantity ? "Please key in a number!" : undefined}
               />
 
               <TextField
-                label="Fees"
+                label="Commissions"
                 id="outlined-helperText"
                 margin="normal"
-                onChange={(event) => setFieldValue("fees", event.target.value)}
-                error = {!!errors.fees && !!touched.fees}
-                helperText={errors.fees && touched.fees ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
+                onChange={(event) => setFieldValue("commissions", event.target.value)}
+                error = {!!errors.commissions && !!touched.commissions}
+                helperText={errors.commissions && touched.commissions ? "Please key in a number (or leave it blank)! Currency symbols need not be included." : undefined}
               />
 
               <Button

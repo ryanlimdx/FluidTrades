@@ -66,6 +66,11 @@ app.get("/assets", auth, async (req, res) => {
     const stocks = await Stock.find({ user: user }).lean();
 
     for await (let item of stocks) {
+      item.breakevenPrice = item.investedCapital / item.quantity;
+      if (item.investedCapital < 0) {
+        item.investedCapital = 0
+      }
+
       const options = {
         method: "GET",
         url: "https://twelve-data1.p.rapidapi.com/price",
@@ -81,11 +86,27 @@ app.get("/assets", auth, async (req, res) => {
         },
       };
 
-      const priceResponse = await axios.request(options);
-      const price = priceResponse.data.price ? priceResponse.data.price : "API limit xceeded";
-
-      item.currPrice = price;
-      item.breakevenPrice = item.investedCapital / item.shares;
+      try {
+        // Another approach would be to: 
+        //   1. Set timeout
+        //   2. Put the API in frontend to re render once the API can call again
+        const priceResponse = await axios.request(options);
+        const price = priceResponse.data.price;
+        item.currPrice = price;
+        item.marketValue = price * item.quantity
+        item.returns = item.marketValue - item.investedCapital
+        if (item.investedCapital == 0) {
+          item.returnsPCT = "∞"
+        } else {
+          item.returnsPCT = item.returns / item.investedCapital * 100
+        }
+        
+      } catch (error) {
+        item.currPrice = "API limit exceeded";
+        item.marketValue = "API limit exceeded";
+        item.returns = "API limit exceeded";
+        item.returnsPCT = "API limit exceeded";
+      }
     }
 
     return res.status(200).send(JSON.stringify(stocks));

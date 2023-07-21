@@ -15,7 +15,7 @@ const Portfolio = () => {
           <Assets margin="20px 0 0 0" height="75vh" />
         </Grid>
         <Grid item xs={3}>
-          <Currency margin="20px 0 0 0"/>
+          <Currency margin="20px 0 0 0" height="75vh" />
         </Grid>
       </Grid>
 

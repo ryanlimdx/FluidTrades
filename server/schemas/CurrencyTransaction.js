@@ -24,7 +24,7 @@ const cTransactionSchema = new mongoose.Schema({
     },
     buyCurrency: String,
     buyAmount: Number,
-    fees: Number,
+    commissions: Number,
     exchangeRate: Number
     },
 
