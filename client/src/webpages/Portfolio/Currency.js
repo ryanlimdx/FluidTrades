@@ -12,7 +12,7 @@ const Currency = ({margin=undefined, height=undefined}) => {
 
   useEffect(() => {
     axios
-      .get("/currencies")
+      .get("portfolio/currencies")
       .then((response) => {
         console.log(response);
         getData(response.data);
