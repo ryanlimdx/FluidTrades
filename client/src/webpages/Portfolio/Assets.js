@@ -12,7 +12,7 @@ const Assets = ({ margin = undefined, height = undefined }) => {
 
   useEffect(() => {
     axios
-      .get("/assets")
+      .get("/portfolio/assets")
       .then((response) => {
         getAssets(response.data);
       })
