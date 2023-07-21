@@ -22,8 +22,8 @@ const Profile = () => {
   const [editMode, setEditMode] = useState(false);
 
   const initialValues = {
-    name: name,
-    email: email,
+    name: "",
+    email: "",
   };
 
   const userSchema = yup.object().shape({

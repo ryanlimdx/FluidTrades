@@ -91,9 +91,10 @@ router.post("/profile", auth, async (req, res) => {
     if (req.body.email) userData.email = req.body.email;
 
     console.log(userData);
+    
 
     await User.findOneAndUpdate(
-      { user: user._id },
+      { _id: user._id },
       { $set: userData, },
       { omitUndefined: true }
     );

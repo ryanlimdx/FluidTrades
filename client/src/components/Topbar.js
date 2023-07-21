@@ -58,7 +58,7 @@ const Topbar = () => {
         setEmail(response.data.email);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [setName, setEmail]);
 
   return (
     <AppBar
