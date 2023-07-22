@@ -60,8 +60,7 @@ function App() {
 
                   <Route element={ <PrivateRoutes><MainLayout /></PrivateRoutes> } >
                     <Route>
-                      <Route path="/" element={<Dashboard />} />
-                      
+                      <Route path="/" element={<Dashboard />} />                      
                       <Route path="/transactions" element={<Transactions />} />
                       <Route path="/portfolio" element={<Portfolio />} />
 
