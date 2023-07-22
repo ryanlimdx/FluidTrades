@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "../api/axios";
 import { Form, Formik } from "formik";
 import {
@@ -10,13 +10,16 @@ import {
   TextField,
 } from "@mui/material";
 
+import { ProfileContext } from "../context/nameContext";
+
 import coinStack from "../assets/coin-stack.gif";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Profile = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const { name, email } = useContext(ProfileContext);
+  const [nameValue, setName] = name;
+  const [emailValue, setEmail] = email;
   const [editName, setEditName] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -163,7 +166,7 @@ const Profile = () => {
 
           <Box>
             <Stack direction="row" justifyContent="space-between">
-              <Typography variant="h3">{name}</Typography>
+              <Typography variant="h3">{nameValue}</Typography>
 
               <IconButton
                 size="small"
@@ -177,7 +180,7 @@ const Profile = () => {
             </Stack>
 
             <Stack direction="row" justifyContent="space-between">
-              <Typography variant="h3">{email}</Typography>
+              <Typography variant="h3">{emailValue}</Typography>
               <IconButton
                 size="small"
                 onClick={() => {

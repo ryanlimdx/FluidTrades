@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context/state";
 import { ChakraProvider } from "@chakra-ui/react";
 
+// Context
+import ProfileProvider from "./context/nameContext";
+
 // Components
 import PrivateRoutes from "./navigation/PrivateRoutes";
 
@@ -52,44 +55,46 @@ function App() {
         <CssBaseline />
         <div className="app">
           <main className="content">
-            <AppProvider>
-              <Routes>
-                <Route path="/">
-                  <Route path="/login" element={ <ChakraProvider><Login /></ChakraProvider> } />
-                  <Route path="/register" element={ <ChakraProvider><Register /></ChakraProvider> } />
+            <ProfileProvider>
+              <AppProvider>
+                <Routes>
+                  <Route path="/">
+                    <Route path="/login" element={ <ChakraProvider><Login /></ChakraProvider> } />
+                    <Route path="/register" element={ <ChakraProvider><Register /></ChakraProvider> } />
 
-                  <Route element={ <PrivateRoutes><MainLayout /></PrivateRoutes> } >
-                    <Route>
-                      <Route path="/" element={<Dashboard />} />                      
-                      <Route path="/transactions" element={<Transactions />} />
-                      <Route path="/portfolio" element={<Portfolio />} />
+                    <Route element={ <PrivateRoutes><MainLayout /></PrivateRoutes> } >
+                      <Route>
+                        <Route path="/" element={<Dashboard />} />                      
+                        <Route path="/transactions" element={<Transactions />} />
+                        <Route path="/portfolio" element={<Portfolio />} />
 
-                      <Route element={<FormLayout />} >
-                        <Route path="/profile" element={<Profile />} />
-                        {/* Stock Form */}
-                        <Route path="/update-assets/stock" element={<StockTransaction />} />
-                        <Route path="/update-assets/stock/details" element={<StockDetails />} />
-                        <Route path="/update-assets/stock/transaction-details" element={<StockTransactionDetails />} />
-                        <Route path="/update-assets/stock/confirmation" element={<StockConfirmation />} />
+                        <Route element={<FormLayout />} >
+                          <Route path="/profile" element={<Profile />} />
+                          {/* Stock Form */}
+                          <Route path="/update-assets/stock" element={<StockTransaction />} />
+                          <Route path="/update-assets/stock/details" element={<StockDetails />} />
+                          <Route path="/update-assets/stock/transaction-details" element={<StockTransactionDetails />} />
+                          <Route path="/update-assets/stock/confirmation" element={<StockConfirmation />} />
 
-                        {/* Crypto Form */}
-                        <Route path="/update-assets/crypto" element={<CryptoTransaction />} />
-                        <Route path="/update-assets/crypto/details" element={<CryptoDetails />} />
-                        <Route path="/update-assets/crypto/transaction-details" element={<CryptoTransactionDetails />} />
-                        <Route path="/update-assets/crypto/confirmation" element={<CryptoConfirmation />} />
+                          {/* Crypto Form */}
+                          <Route path="/update-assets/crypto" element={<CryptoTransaction />} />
+                          <Route path="/update-assets/crypto/details" element={<CryptoDetails />} />
+                          <Route path="/update-assets/crypto/transaction-details" element={<CryptoTransactionDetails />} />
+                          <Route path="/update-assets/crypto/confirmation" element={<CryptoConfirmation />} />
 
-                        {/* Currency Form */}
-                        <Route path="update-assets/currency" element={<CurrencyTransaction />} />
-                        <Route path="update-assets/currency/base" element={<CurrencyBase />} />
-                        <Route path="update-assets/currency/convertTo" element={<ConvertTo />} />
-                        <Route path="update-assets/currency/confirmation" element={<CurrencyConfirmation />} />
+                          {/* Currency Form */}
+                          <Route path="update-assets/currency" element={<CurrencyTransaction />} />
+                          <Route path="update-assets/currency/base" element={<CurrencyBase />} />
+                          <Route path="update-assets/currency/convertTo" element={<ConvertTo />} />
+                          <Route path="update-assets/currency/confirmation" element={<CurrencyConfirmation />} />
+                        </Route>
                       </Route>
-                    </Route>
 
+                    </Route>
                   </Route>
-                </Route>
-              </Routes>
-            </AppProvider>
+                </Routes>
+              </AppProvider>
+            </ProfileProvider>
           </main>
         </div>
       </ThemeProvider>
