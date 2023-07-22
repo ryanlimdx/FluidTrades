@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "../api/axios";
 import { Form, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -10,7 +9,6 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import * as yup from "yup";
 
 import coinStack from "../assets/coin-stack.gif";
 import EditIcon from "@mui/icons-material/Edit";
@@ -19,29 +17,34 @@ import CloseIcon from "@mui/icons-material/Close";
 const Profile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [editName, setEditName] = useState(false);
+  const [editEmail, setEditEmail] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
 
-  const initialValues = {
-    name: name,
-    email: email,
-  };
-
-  const userSchema = yup.object().shape({
-    name: yup.string().required("Required"),
-    email: yup.string().required("Required"),
-  });
-
-  const navigate = useNavigate();
+  const initialValues = {};
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const config = { headers: { "Content-Type": "application/json" } };
-      console.log(values);
-      // Make POST request
-      await axios
-        .post("/profile", values, config)
-        .then(() => alert("Data successfully sent to database. (◕‿◕)"))
-        .then(() => navigate("/"));
+
+      let path;
+
+      if (editName) {
+        path = "profile/change_name";
+      } else if (editEmail) {
+        path = "profile/change_email";
+      }
+
+      await axios.patch(path, values, config).then((response) => {
+        if (response.status !== 200) {
+          alert(response.data.message);
+        } else {
+          alert(response.data.message);
+          setEditMode(false);
+          setIsUpdated(true);
+        }
+      });
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -66,6 +69,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    setIsUpdated(false);
     axios
       .get("/profile")
       .then((response) => {
@@ -74,11 +78,26 @@ const Profile = () => {
         setEmail(response.data.email);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [isUpdated]);
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Typography variant="h1">Hi {name}!</Typography>
+      <Stack direction="row">
+        <Typography variant="h1">Hi {name}!</Typography>
+        {editMode && (
+          <IconButton
+            size="large"
+            onClick={() => {
+              setEditMode(!editMode);
+              setEditEmail(false);
+              setEditName(false);
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        )}
+      </Stack>
+
       {/* User profile icon */}
       <Box mt="20px">
         <img
@@ -90,64 +109,35 @@ const Profile = () => {
         />
       </Box>
 
-      {/* Title */}
-      <Box display="flex" mt="20px">
-        <Typography variant="h2">Info</Typography>
-
-        <IconButton
-          size="large"
-          onClick={() => {
-            setEditMode(!editMode);
-            console.log(editMode);
-          }}
-        >
-          {editMode ? <CloseIcon /> : <EditIcon />}
-        </IconButton>
-      </Box>
-
       {editMode ? (
         <Box>
           {/* Form */}
-          <Formik
-            onSubmit={handleSubmit}
-            initialValues={initialValues}
-            validationSchema={userSchema}
-          >
-            {({ errors, touched, setFieldValue, isSubmitting }) => (
+          <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+            {({ setFieldValue, isSubmitting }) => (
               <Form>
                 <Stack>
-                  <TextField
-                    label="Name"
-                    id="name"
-                    margin="normal"
-                    onChange={(event) =>
-                      setFieldValue("name", event.target.value)
-                    }
-                    error={!!errors.name && !!touched.name}
-                    helperText={
-                      errors.name && touched.name
-                        ? "Please key in a username!"
-                        : undefined
-                    }
-                  />
+                  {editName && (
+                    <TextField
+                      label="Name"
+                      id="name"
+                      margin="normal"
+                      onChange={(event) =>
+                        setFieldValue("name", event.target.value)
+                      }
+                    />
+                  )}
 
-                  <TextField
-                    label="Email"
-                    id="email"
-                    margin="normal"
-                    onChange={(event) =>
-                      setFieldValue("email", event.target.value)
-                    }
-                    error={!!errors.email && !!touched.email}
-                    helperText={
-                      errors.email && touched.email
-                        ? "Please key in a valid email!"
-                        : undefined
-                    }
-                    sx={{
-                      color: editMode ? "undefined" : "transparent",
-                    }}
-                  />
+                  {editEmail && (
+                    <TextField
+                      label="Email"
+                      id="email"
+                      type="email"
+                      margin="normal"
+                      onChange={(event) =>
+                        setFieldValue("email", event.target.value)
+                      }
+                    />
+                  )}
 
                   <Button
                     size="large"
@@ -166,8 +156,31 @@ const Profile = () => {
         </Box>
       ) : (
         <Box>
-          <Typography variant="h3">{name}</Typography>
-          <Typography variant="h3">{email}</Typography>
+          <Stack direction="row">
+            <Typography variant="h3"> Name: {name} </Typography>
+            <IconButton
+              size="small"
+              onClick={() => {
+                setEditMode(!editMode);
+                setEditName(true);
+              }}
+            >
+              <EditIcon />
+            </IconButton>
+          </Stack>
+
+          <Stack direction="row">
+            <Typography variant="h3"> Email: {email} </Typography>
+            <IconButton
+              size="small"
+              onClick={() => {
+                setEditMode(!editMode);
+                setEditEmail(true);
+              }}
+            >
+              <EditIcon />
+            </IconButton>
+          </Stack>
         </Box>
       )}
     </Box>
