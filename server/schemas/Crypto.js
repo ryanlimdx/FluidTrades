@@ -10,6 +10,9 @@ const cryptoSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now 
     },
+    lastUpdatedDate: { 
+        type: Date, 
+    },
     sector: String,
     security: String,
     ticker: String,
@@ -18,10 +21,10 @@ const cryptoSchema = new mongoose.Schema({
     quantity: Number,
     investedCapital: Number,
 
-    currPrice: Number,
-    returns: Number,
-    returnsPCT: Number,
-    breakevenPrice: Number
+    currPrice: mongoose.Schema.Types.Mixed,
+    returns: mongoose.Schema.Types.Mixed,
+    returnsPCT: mongoose.Schema.Types.Mixed,
+    breakevenPrice: mongoose.Schema.Types.Mixed
 
     },
 
