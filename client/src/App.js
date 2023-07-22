@@ -58,7 +58,7 @@ function App() {
                   <Route path="/login" element={ <ChakraProvider><Login /></ChakraProvider> } />
                   <Route path="/register" element={ <ChakraProvider><Register /></ChakraProvider> } />
 
-                  <Route element={ <PrivateRoutes><MainLayout/></PrivateRoutes> } >
+                  <Route element={ <PrivateRoutes><MainLayout /></PrivateRoutes> } >
                     <Route>
                       <Route path="/" element={<Dashboard />} />
                       

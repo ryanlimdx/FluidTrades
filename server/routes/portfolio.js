@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+// Set up market data API
+const axios = require('axios');
+
 // User Authentication Middleware
 const { auth } = require("../middleware/auth");
 

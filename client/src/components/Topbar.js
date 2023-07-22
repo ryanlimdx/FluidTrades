@@ -3,6 +3,8 @@ import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 
+import Profile from "../webpages/Profile";
+
 // MUI components
 import {
   Typography,
@@ -33,7 +35,7 @@ const Topbar = () => {
   const open = Boolean(anchorEl);
   const logout = useLogout();
   const openMenu = (e) => {
-    setAnchorEl(e.target);
+    setAnchorEl(e.currentTarget);
   };
   const closeMenu = () => {
     setAnchorEl(null);
@@ -103,6 +105,14 @@ const Topbar = () => {
             open={open}
             onClose={closeMenu}
             anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
             sx={{
               "& .MuiMenu-paper": {
                 borderRadius: "10px",
