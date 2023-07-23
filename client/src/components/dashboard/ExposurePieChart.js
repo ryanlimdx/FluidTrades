@@ -3,7 +3,6 @@ import { Typography, Card, CardContent, Box, useTheme } from "@mui/material";
 import { themeSettings, tokens } from "../../theme";
 import { ResponsivePie } from "@nivo/pie";
 import axios from "../../api/axios";
-import { bgcolor } from "@mui/system";
 
 import CircleIcon from '@mui/icons-material/Circle';
 

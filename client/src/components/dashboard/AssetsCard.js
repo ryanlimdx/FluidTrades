@@ -7,12 +7,20 @@ import {
   ListItem,
   ListItemText,
   Stack,
+  useTheme,
 } from "@mui/material";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import { themeSettings, tokens } from "../../theme";
 import axios from "../../api/axios";
 
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+
 const AssetsCard = ({ mode }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const themeColors = themeSettings(theme.palette.mode).palette;
+  const cardColors = themeColors.card;
+
   const [assets, setAssets] = useState([]);
 
   useEffect(() => {
@@ -43,42 +51,57 @@ const AssetsCard = ({ mode }) => {
 
   return (
     <Card
-      variant="outlined"
-      sx={{ height: "100%", width: "100%", padding: "20px"}}
+      display="flex"
+      flexDirection="column"
+      sx={{
+        width: "100%",
+        height: "100%",
+        padding: "20px",
+        backgroundColor: cardColors.background,
+      }}
     >
       <CardContent>
         <Typography sx={{ fontWeight: "bold" }} marginLeft="10px">
-          TOP 3 {mode.toUpperCase()} ASSETS
+          {mode === "performing" ? "TOP " : ""}
+          {mode.toUpperCase()} ASSETS
         </Typography>
 
-        <Stack direction="row" justifyContent={"space-between"}>
-          <List disablePadding>
-            <ListItem>
-              <TrendingUpIcon />
-            </ListItem>
-            {assets.map((asset, index) => (
-              <ListItem key={index}>
-                <ListItemText primary={asset.security} />
+        {assets.length != 0 ? (
+          <Stack
+            direction="row"
+            justifyContent={"space-between"}
+            marginTop="20px"
+          >
+            <List disablePadding>
+              <ListItem>
+                <TrendingUpIcon />
               </ListItem>
-            ))}
-          </List>
+              {assets.map((asset, index) => (
+                <ListItem key={index}>
+                  <ListItemText primary={asset.security} />
+                </ListItem>
+              ))}
+            </List>
 
-          <List disablePadding>
-            <ListItem>
-              <AttachMoneyIcon />
-            </ListItem>
-            {assets.map((asset, index) => (
-              <ListItem key={index}>
-                <ListItemText
-                  primary={asset.returns.toFixed(2)}
-                  primaryTypographyProps={{
-                    color: mode === "performing" ? "#228b22" : "#d32f2f",
-                  }}
-                />
+            <List disablePadding>
+              <ListItem>
+                <AttachMoneyIcon />
               </ListItem>
-            ))}
-          </List>
-        </Stack>
+              {assets.map((asset, index) => (
+                <ListItem key={index}>
+                  <ListItemText
+                    primary={asset.returns.toFixed(2)}
+                    primaryTypographyProps={{
+                      color: mode === "performing" ? "#228b22" : "#d32f2f",
+                    }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Stack>
+        ) : (
+          <Typography>You currently have no assets</Typography>
+        )}
       </CardContent>
     </Card>
   );
