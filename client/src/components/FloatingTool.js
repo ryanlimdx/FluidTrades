@@ -11,6 +11,7 @@ import { ClickAwayListener } from "@mui/base";
 
 import BusinessIcon from "@mui/icons-material/Business";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import AddIcon from "@mui/icons-material/Add";
 
 const FloatingTool = () => {
@@ -57,13 +58,18 @@ const FloatingTool = () => {
           <Box display="flex" flexDirection="column">
             <Item
               title="Update Stocks"
-              to="/updateAssets/stock"
+              to="/update-assets/stock"
               icon={<BusinessIcon />}
             />
             <Item
               title="Update Currency"
-              to="/updateAssets/currency"
+              to="/update-assets/currency"
               icon={<CurrencyExchangeIcon />}
+            />
+            <Item
+              title="Update Crypto"
+              to="/update-assets/crypto"
+              icon={<CurrencyBitcoinIcon />}
             />
           </Box>
         </ClickAwayListener>
