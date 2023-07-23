@@ -7,6 +7,8 @@ import AssetsCard from "../components/dashboard/AssetsCard";
 import ExposurePieChart from "../components/dashboard/ExposurePieChart";
 import RealTimeSearch from "../components/dashboard/RealTimeSearch";
 import History from "../components/dashboard/History";
+import CurrencyCard from "../components/dashboard/CurrencyCard";
+import TimeChart from "../components/dashboard/TimeChart";
 
 const Dashboard = () => {
   return (
@@ -21,8 +23,8 @@ const Dashboard = () => {
           gridTemplateRows: "1fr 1fr 1fr",
           gridTemplateAreas: `
           "performingAssets performingAssets performingAssets laggingAssets laggingAssets laggingAssets riskExposure riskExposure riskExposure"
-          ". . . . . . . . ."
-          " history history history history history history . . ."
+          "timechart timechart timechart timechart timechart timechart currencycard currencycard currencycard"
+          "history history history history history history . . ."
           `,
           gap: 2,
         }}
@@ -39,9 +41,18 @@ const Dashboard = () => {
           <AssetsCard mode="lagging" />
         </Box>
 
+        <Box sx={{ gridArea: "timechart" }}>
+          <TimeChart />
+        </Box>
+
+        <Box sx={{ gridArea: "currencycard" }}>
+          <CurrencyCard />
+        </Box>
+
         <Box sx={{ gridArea: "history" }}>
           <History />
         </Box>
+        
       </Box>
     </Box>
   );
