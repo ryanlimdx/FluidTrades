@@ -3,8 +3,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import Header from "../components/Header";
 
 // components
-import PerformingAssets from "../components/dashboard/PerformingAssets";
-import LaggingAssets from "../components/dashboard/LaggingAssets";
+import AssetsCard from "../components/dashboard/AssetsCard";
 import ExposurePieChart from "../components/dashboard/ExposurePieChart";
 import RealTimeSearch from "../components/dashboard/RealTimeSearch";
 import AssetTransactions from "./Transactions/AssetTransactions";
@@ -27,10 +26,10 @@ const Dashboard = () => {
       <Header title="DASHBOARD" />
       <Grid container spacing={2} height="75vh">
         <Grid item xs={4}>
-          <PerformingAssets />
+          <AssetsCard mode="performing" />
         </Grid>
         <Grid item xs={4}>
-          <LaggingAssets />
+          <AssetsCard mode="lagging" />
         </Grid>
 
         <Grid item xs={4}>
