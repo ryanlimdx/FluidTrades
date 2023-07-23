@@ -70,9 +70,9 @@ const AssetsCard = ({ mode }) => {
             {assets.map((asset, index) => (
               <ListItem key={index}>
                 <ListItemText
-                  primary={asset.returns}
+                  primary={asset.returns.toFixed(2)}
                   primaryTypographyProps={{
-                    color: mode === "positive" ? "#228b22" : "#d32f2f",
+                    color: mode === "performing" ? "#228b22" : "#d32f2f",
                   }}
                 />
               </ListItem>

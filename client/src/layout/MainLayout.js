@@ -6,7 +6,7 @@ import Sidebar from "../components/Sidebar";
 const MainLayout = () => {
   return (
     <div className="app">
-      <Sidebar/>
+      <Sidebar />
       <main className="content">
         <Topbar />
         <Outlet />
