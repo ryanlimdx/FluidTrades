@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Set up market data API
-const axios = require('axios');
+const axios = require("axios");
 
 // User Authentication Middleware
 const { auth } = require("../middleware/auth");
@@ -23,13 +23,13 @@ router.get("/assets", auth, async (req, res) => {
     const assets = stocks.concat(cryptos);
 
     for await (let item of assets) {
-      const hours = Math.abs(Date.now() - item.lastUpdatedDate) / 36e5;
+      const hours = Math.abs(Date.now() - item.lastModified) / 36e5;
       if (
         hours > 1 ||
         item.currPrice == "API limit exceeded" ||
         !item.currPrice
       ) {
-        console.log("Updating database!")
+        console.log("Updating database!");
         // refresh the data or fetch the latest data
         item.breakevenPrice = item.investedCapital / item.quantity;
         if (item.investedCapital < 0) {
@@ -48,7 +48,8 @@ router.get("/assets", auth, async (req, res) => {
             outputsize: "30",
           },
           headers: {
-            "X-RapidAPI-Key": "1c8bce9d54msh8cbc95c564f2621p11f793jsnd17079bce2af",
+            "X-RapidAPI-Key":
+              "1c8bce9d54msh8cbc95c564f2621p11f793jsnd17079bce2af",
             // "X-RapidAPI-Key": "673bac560cmshacd917fc1467ce3p17a520jsn9a4dc632f02a",
             "X-RapidAPI-Host": "twelve-data1.p.rapidapi.com",
           },
@@ -80,8 +81,10 @@ router.get("/assets", auth, async (req, res) => {
               await Crypto.findOneAndUpdate(
                 { user: user, ticker: item.ticker, currency: item.currency },
                 {
+                  $currentDate: {
+                    lastModified: true,
+                  },
                   $set: {
-                    lastUpdatedDate: Date.now(),
                     investedCapital: item.investedCapital,
                     breakevenPrice: item.breakevenPrice,
                     currPrice: item.currPrice,
@@ -95,8 +98,10 @@ router.get("/assets", auth, async (req, res) => {
               await Stock.findOneAndUpdate(
                 { user: user, ticker: item.ticker, currency: item.currency },
                 {
+                  $currentDate: {
+                    lastModified: true,
+                  },
                   $set: {
-                    lastUpdatedDate: Date.now(),
                     investedCapital: item.investedCapital,
                     breakevenPrice: item.breakevenPrice,
                     currPrice: item.currPrice,

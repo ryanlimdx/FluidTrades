@@ -10,6 +10,9 @@ const cryptoSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now 
     },
+    lastModified: {
+        type: Date,
+    },
     sector: String,
     security: String,
     ticker: String,
