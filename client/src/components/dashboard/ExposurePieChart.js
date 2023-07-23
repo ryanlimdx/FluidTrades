@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Typography, Card, CardContent, Box, useTheme } from "@mui/material";
-import { themeSettings, tokens } from "../../theme";
+import { Typography, Card, Box, useTheme } from "@mui/material";
+import { themeSettings } from "../../theme";
 import { ResponsivePie } from "@nivo/pie";
 import axios from "../../api/axios";
 
@@ -10,7 +10,6 @@ const ExposurePieChart = () => {
   const [data, setData] = useState([]);
 
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const themeColors = themeSettings(theme.palette.mode).palette;
   const cardColors = themeColors.card;
 

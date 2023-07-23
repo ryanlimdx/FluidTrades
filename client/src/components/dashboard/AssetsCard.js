@@ -8,16 +8,17 @@ import {
   ListItemText,
   Stack,
   useTheme,
+  Box,
 } from "@mui/material";
-import { themeSettings, tokens } from "../../theme";
+import { themeSettings } from "../../theme";
 import axios from "../../api/axios";
 
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import PercentIcon from "@mui/icons-material/Percent";
 
 const AssetsCard = ({ mode }) => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const themeColors = themeSettings(theme.palette.mode).palette;
   const cardColors = themeColors.card;
 
@@ -66,42 +67,69 @@ const AssetsCard = ({ mode }) => {
           {mode.toUpperCase()} ASSETS
         </Typography>
 
-        {assets.length != 0 ? (
-          <Stack
-            direction="row"
-            justifyContent={"space-between"}
-            marginTop="20px"
-          >
-            <List disablePadding>
-              <ListItem>
-                <TrendingUpIcon />
-              </ListItem>
-              {assets.map((asset, index) => (
-                <ListItem key={index}>
-                  <ListItemText primary={asset.security} />
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <div/>
+          {assets.length !== 0 ? (
+            <Stack
+              direction="row"
+              justifyContent={"space-between"}
+              marginTop="20px"
+              width="100%"
+            >
+              <List disablePadding>
+                <ListItem>
+                  <TrendingUpIcon />
                 </ListItem>
-              ))}
-            </List>
+                {assets.map((asset, index) => (
+                  <ListItem key={index}>
+                    <ListItemText primary={asset.security} />
+                  </ListItem>
+                ))}
+              </List>
 
-            <List disablePadding>
-              <ListItem>
-                <AttachMoneyIcon />
-              </ListItem>
-              {assets.map((asset, index) => (
-                <ListItem key={index}>
-                  <ListItemText
-                    primary={asset.returns.toFixed(2)}
-                    primaryTypographyProps={{
-                      color: mode === "performing" ? "#228b22" : "#d32f2f",
-                    }}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          </Stack>
-        ) : (
-          <Typography>You currently have no assets</Typography>
-        )}
+              <Box display="flex">
+                <List disablePadding>
+                  <ListItem>
+                    <AttachMoneyIcon />
+                  </ListItem>
+                  {assets.map((asset, index) => (
+                    <ListItem key={index}>
+                      <ListItemText
+                        primary={asset.returns.toFixed(2)}
+                        primaryTypographyProps={{
+                          color: mode === "performing" ? "#228b22" : "#d32f2f",
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+
+                <List disablePadding>
+                  <ListItem>
+                    <PercentIcon />
+                  </ListItem>
+                  {assets.map((asset, index) => (
+                    <ListItem key={index}>
+                      <ListItemText
+                        primary={
+                          asset.returnsPCT === "∞"
+                            ? asset.returnsPCT
+                            : asset.returnsPCT.toFixed(2) + "%"
+                        }
+                        primaryTypographyProps={{
+                          color: mode === "performing" ? "#228b22" : "#d32f2f",
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            </Stack>
+          ) : (
+            <Typography mt="20px">You currently have no assets</Typography>
+          )}
+          <div/>
+        </Box>
       </CardContent>
     </Card>
   );
