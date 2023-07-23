@@ -52,8 +52,6 @@ const AssetsCard = ({ mode }) => {
 
   return (
     <Card
-      display="flex"
-      flexDirection="column"
       sx={{
         width: "100%",
         height: "100%",
@@ -61,14 +59,13 @@ const AssetsCard = ({ mode }) => {
         backgroundColor: cardColors.background,
       }}
     >
-      <CardContent>
+      <CardContent sx={{ width: "100%", height: "100%" }}>
         <Typography sx={{ fontWeight: "bold" }} marginLeft="10px">
           {mode === "performing" ? "TOP " : ""}
           {mode.toUpperCase()} ASSETS
         </Typography>
 
         <Box display="flex" flexDirection="column" alignItems="center">
-          <div/>
           {assets.length !== 0 ? (
             <Stack
               direction="row"
@@ -126,9 +123,10 @@ const AssetsCard = ({ mode }) => {
               </Box>
             </Stack>
           ) : (
-            <Typography mt="20px">You currently have no assets</Typography>
+            <Typography mt="20px">
+              You currently have no {mode} assets
+            </Typography>
           )}
-          <div/>
         </Box>
       </CardContent>
     </Card>
