@@ -108,6 +108,8 @@ router.post("/currency/confirmation", auth, async (req, res) => {
       );
     }
 
+    await Currency.findOneAndDelete({user: user._id, balance: 0});
+
     return res.status(200).send("Data successfully sent to database.");
   } catch (error) {
     res.status(500).json({ error: "An error occured." });
@@ -189,6 +191,9 @@ router.post("/stock/confirmation", auth, async (req, res) => {
       { upsert: true }
     );
 
+    await Stock.findOneAndDelete({user: user._id, quantity: 0});
+    await Currency.findOneAndDelete({user: user._id, balance: 0});
+
     return res.status(200).send("Data successfully sent to database.");
   } catch (error) {
     res.status(500).json({ error: "An error occured." });
@@ -269,6 +274,9 @@ router.post("/crypto/confirmation", auth, async (req, res) => {
       },
       { upsert: true }
     );
+
+    await Crypto.findOneAndDelete({user: user._id, quantity: 0});
+    await Currency.findOneAndDelete({user: user._id, balance: 0});
 
     return res.status(200).send("Data successfully sent to database.");
   } catch (error) {
