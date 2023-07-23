@@ -14,7 +14,7 @@ const ExposurePieChart = () => {
   }, []);
 
   return (
-    <Card variant="outlined" sx={{ height: 45 + "vh" }}>
+    <Card variant="outlined" sx={{height: "40vh"}}>
       <CardContent>
         <Typography align="left" sx={{ fontWeight: "bold" }}>
           Exposure Chart
