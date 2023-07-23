@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "../api/axios";
 import { Form, Formik } from "formik";
 import {
@@ -10,13 +10,16 @@ import {
   TextField,
 } from "@mui/material";
 
+import { ProfileContext } from "../context/nameContext";
+
 import coinStack from "../assets/coin-stack.gif";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Profile = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const { name, email } = useContext(ProfileContext);
+  const [nameValue, setName] = name;
+  const [emailValue, setEmail] = email;
   const [editName, setEditName] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -82,35 +85,25 @@ const Profile = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Stack direction="row">
-        <Typography variant="h1">Hi {name}!</Typography>
-        {editMode && (
-          <IconButton
-            size="large"
-            onClick={() => {
-              setEditMode(!editMode);
-              setEditEmail(false);
-              setEditName(false);
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        )}
-      </Stack>
-
-      {/* User profile icon */}
-      <Box mt="20px">
-        <img
-          alt="profile icon"
-          width="80vw"
-          height="80vh"
-          src={coinStack}
-          style={{ borderRadius: "50%" }}
-        />
-      </Box>
-
       {editMode ? (
         <Box>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography variant="h1">
+              Edit your {editName ? "username" : "email"}
+            </Typography>
+
+            <IconButton
+              size="large"
+              onClick={() => {
+                setEditMode(!editMode);
+                setEditEmail(false);
+                setEditName(false);
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Stack>
+
           {/* Form */}
           <Formik onSubmit={handleSubmit} initialValues={initialValues}>
             {({ setFieldValue, isSubmitting }) => (
@@ -155,32 +148,50 @@ const Profile = () => {
           </Formik>
         </Box>
       ) : (
-        <Box>
-          <Stack direction="row">
-            <Typography variant="h3"> Name: {name} </Typography>
-            <IconButton
-              size="small"
-              onClick={() => {
-                setEditMode(!editMode);
-                setEditName(true);
-              }}
-            >
-              <EditIcon />
-            </IconButton>
-          </Stack>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Typography variant="h1">Hi {name}!</Typography>
 
-          <Stack direction="row">
-            <Typography variant="h3"> Email: {email} </Typography>
-            <IconButton
-              size="small"
-              onClick={() => {
-                setEditMode(!editMode);
-                setEditEmail(true);
-              }}
-            >
-              <EditIcon />
-            </IconButton>
-          </Stack>
+          {/* User profile icon */}
+          <Box mt="20px">
+            <img
+              alt="profile icon"
+              width="80vw"
+              height="80vh"
+              src={coinStack}
+              style={{ borderRadius: "50%" }}
+            />
+          </Box>
+
+          <Typography variant="h2" mt="20px">Info</Typography>
+
+          <Box>
+            <Stack direction="row" justifyContent="space-between">
+              <Typography variant="h3">{nameValue}</Typography>
+
+              <IconButton
+                size="small"
+                onClick={() => {
+                  setEditMode(!editMode);
+                  setEditName(true);
+                }}
+              >
+                <EditIcon />
+              </IconButton>
+            </Stack>
+
+            <Stack direction="row" justifyContent="space-between">
+              <Typography variant="h3">{emailValue}</Typography>
+              <IconButton
+                size="small"
+                onClick={() => {
+                  setEditMode(!editMode);
+                  setEditEmail(true);
+                }}
+              >
+                <EditIcon />
+              </IconButton>
+            </Stack>
+          </Box>
         </Box>
       )}
     </Box>
