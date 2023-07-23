@@ -11,20 +11,6 @@ const dashboard = require("./routes/dashboard");
 const portfolio = require("./routes/portfolio");
 const profile = require("./routes/profile");
 const transactions = require("./routes/transactions");
-// -----------------------------------------------------------------------------------
-
-// const CryptoTransaction = require("./schemas/CryptoTransaction");
-// app.get("/cryptotransactions", auth, async (req, res) => {
-//   try {
-//     const user = await User.findById(req.userId);
-//     const cryptotxns = await CryptoTransaction.find({ user: user });
-//     return res.status(200).json(cryptoTxns);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
-// --------------------------------------------------------------------------
 
 // Login + Register Route
 app.use("/", authentication);
