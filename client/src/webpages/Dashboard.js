@@ -16,9 +16,9 @@ const Dashboard = () => {
       <Header title="DASHBOARD" />
 
       <Box
+        height="30vh"
         sx={{
           display: "grid",
-          height: "80vh",
           gridTemplateColumns: "repeat(9, 1fr)",
           gridTemplateRows: "1fr 1fr 1fr",
           gridTemplateAreas: `
@@ -52,7 +52,6 @@ const Dashboard = () => {
         <Box sx={{ gridArea: "history" }}>
           <History />
         </Box>
-        
       </Box>
     </Box>
   );
