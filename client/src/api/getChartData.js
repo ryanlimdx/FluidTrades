@@ -6,8 +6,8 @@ const getChartData = async (ticker) => {
     url: 'https://twelve-data1.p.rapidapi.com/time_series',
     params: {
       symbol: ticker,
-      interval: '15min',
-      outputsize: '30',
+      interval: '1day',
+      outputsize: '31',
       format: 'json'
     },
     headers: {
