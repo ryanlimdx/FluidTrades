@@ -78,7 +78,7 @@ export const tokens = (mode) => ({
           200: "#080b12",
           300: "#0c101b",
           400: "#f2f0f0", // manually changed
-          500: "#141b2d",
+          500: "#e6e2e2", // manually changed, was "#141b2d"
           600: "#1F2A40",
           700: "#727681",
           800: "#a1a4ab",
@@ -144,9 +144,10 @@ export const themeSettings = (mode) => {
               dark: colors.primary[500],
               main: colors.primary[500],
             },
-            profileDropdown: {
+            card: {
               main: colors.primary[500],
               background: colors.primary[400],
+              text: colors.grey[100]
             },
             button: {
               main: colors.primary[400],
@@ -174,9 +175,10 @@ export const themeSettings = (mode) => {
               main: "#fcfcfc",
               light: "#fcfcfc",
             },
-            profileDropdown: {
-              main: colors.primary[400],
-              background: "#ffffff",
+            card: {
+              main: colors.primary[500],
+              background: colors.primary[400],
+              text: colors.grey[100]
             },
             button: {
               main: colors.primary[400],

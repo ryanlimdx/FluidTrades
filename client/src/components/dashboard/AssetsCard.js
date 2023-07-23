@@ -44,10 +44,10 @@ const AssetsCard = ({ mode }) => {
   return (
     <Card
       variant="outlined"
-      sx={{ height: 26 + "vh", minWidth: 49 + "%", overflow: "auto" }}
+      sx={{ height: "100%", width: "100%", padding: "20px"}}
     >
       <CardContent>
-        <Typography align="left" sx={{ fontWeight: "bold" }}>
+        <Typography sx={{ fontWeight: "bold" }} marginLeft="10px">
           TOP 3 {mode.toUpperCase()} ASSETS
         </Typography>
 
