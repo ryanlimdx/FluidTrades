@@ -13,7 +13,7 @@ const AssetTransactions = ({margin=undefined, height=undefined}) => {
 
   useEffect(() => {
     axios
-      .get("/assettransactions")
+      .get("/transactions/asset")
       .then((response) => {
         getData(response.data);
       })
