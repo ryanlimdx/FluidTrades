@@ -44,17 +44,8 @@ const Dashboard = () => {
         <Grid item xs={4}>
           <AssetTransactions />
         </Grid>
-        {/* <Grid item xs={4}>
-          <Box borderRadius="10px" padding="5px">
-            <Typography>
-              CurrencyTransactions
-            </Typography>
-            <CurrencyTransactions />
-          </Box>
-          
-        </Grid> */}
+
         <GridItem columns={12} title="CURRENCY TRANSACTION">
-          {/* to simplify the component to remove the datagrid  */}
           <CurrencyTransactions />
         </GridItem>
       </Grid>

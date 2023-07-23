@@ -7,15 +7,18 @@ const { auth } = require("../middleware/auth");
 const User = require("../schemas/User");
 const Currency = require("../schemas/Currency");
 const Stock = require("../schemas/Stock");
+const Crypto = require("../schemas/Crypto");
 
 // GET request for exposure chart
 router.get("/exposure", auth, async (req, res) => {
   try {
     const sectorMap = new Map();
     const user = await User.findById(req.userId);
-    const stocks = await Stock.find({ user: user }).lean()
+    const stocks = await Stock.find({ user: user }).lean();
+    const cryptos = await Crypto.find({ user: user }).lean();
+    const assets = stocks.concat(cryptos);
 
-    stocks.forEach((item) => {
+    assets.forEach((item) => {
       const sector = item.sector;
       const investedCapital = item.investedCapital;
   
