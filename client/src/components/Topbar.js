@@ -13,6 +13,7 @@ import {
   IconButton,
   useTheme,
   ListItemIcon,
+  Button,
 } from "@mui/material";
 import { ColorModeContext, tokens, themeSettings } from "../theme";
 import Menu from "@mui/material/Menu";
@@ -126,35 +127,61 @@ const Topbar = () => {
             }}
           >
             <Box margin="0 7px 0 7px">
-              <Box // profile card - to add manage account button to link to profile page
+              <Box
+                display="flex"
+                flexDirection="column"
                 marginBottom="5px"
                 padding="20px"
                 borderRadius="10px"
                 backgroundColor={themeColors.profileDropdown.main}
-                display="flex"
-                alignItems="center"
               >
-                <Box mr="20px">
-                  <img
-                    alt="profile icon"
-                    width="70px"
-                    height="70px"
-                    src={coinStack}
-                    style={{ cursor: "pointer", borderRadius: "50%" }}
-                    onClick={() => {
-                      navigate("/profile");
-                      closeMenu();
-                    }}
-                  />
+                <Box // profile card
+                  display="flex"
+                  alignItems="center"
+                >
+                  <Box mr="20px">
+                    <img
+                      alt="profile icon"
+                      width="70px"
+                      height="70px"
+                      src={coinStack}
+                      style={{ cursor: "pointer", borderRadius: "50%" }}
+                      onClick={() => {
+                        navigate("/profile");
+                        closeMenu();
+                      }}
+                    />
+                  </Box>
+                  <Box>
+                    <Typography variant="h5" color={colors.grey[100]} mb="1px">
+                      {nameValue}
+                    </Typography>
+                    <Typography variant="h6" color={colors.grey[100]}>
+                      {emailValue}
+                    </Typography>
+                  </Box>
                 </Box>
-                <Box>
-                  <Typography variant="h5" color={colors.grey[100]} mb="1px">
-                    {nameValue}
-                  </Typography>
-                  <Typography variant="h6" color={colors.grey[100]}>
-                    {emailValue}
-                  </Typography>
-                </Box>
+
+                <Button
+                variant="outlined"
+                  onClick={() => {
+                    navigate("/profile");
+                    closeMenu();
+                  }}
+                  size="small"
+                  sx={{
+                    marginLeft: "90px",
+                    marginTop: "10px",
+                    borderColor: themeColors.button.border,
+                    color: colors.grey[100],
+                    borderRadius: "10px",
+                    "&:hover": {
+                      borderColor: themeColors.button.borderHover,
+                    },
+                  }}
+                >
+                  Manage your account
+                </Button>
               </Box>
 
               <MenuItem
