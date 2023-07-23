@@ -22,11 +22,11 @@ const Global = () => {
         <Typography sx={{ fontWeight: "bold" }}>GLOBAL</Typography>
 
         <Box sx={{ gridArea: "hk", height: "8vh" }}>
-          <MarketChart symbol="SPY" />
+          <MarketChart symbol="SPY" loading={true} />
         </Box>
 
         <Box sx={{ gridArea: "hk", height: "8vh" }}>
-          <MarketChart symbol="EWH" />
+          <MarketChart symbol="EWH" loading={true} />
         </Box>
       </CardContent>
     </Card>
