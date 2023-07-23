@@ -16,7 +16,7 @@ const Dashboard = () => {
       <Header title="DASHBOARD" />
 
       <Box
-        height="30vh"
+        height="75vh"
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(9, 1fr)",
