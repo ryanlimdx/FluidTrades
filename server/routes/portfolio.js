@@ -87,7 +87,9 @@ router.get("/assets", auth, async (req, res) => {
                   $set: {
                     investedCapital: item.investedCapital,
                     breakevenPrice: item.breakevenPrice,
+
                     currPrice: item.currPrice,
+                    marketValue: item.marketValue,
                     returns: item.returns,
                     returnsPCT: item.returnsPCT,
                   },
@@ -104,7 +106,9 @@ router.get("/assets", auth, async (req, res) => {
                   $set: {
                     investedCapital: item.investedCapital,
                     breakevenPrice: item.breakevenPrice,
+                    
                     currPrice: item.currPrice,
+                    marketValue: item.marketValue,
                     returns: item.returns,
                     returnsPCT: item.returnsPCT,
                   },

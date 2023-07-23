@@ -22,6 +22,7 @@ const stockSchema = new mongoose.Schema({
     investedCapital: Number,
 
     currPrice: mongoose.Schema.Types.Mixed,
+    marketValue: mongoose.Schema.Types.Mixed,
     returns: mongoose.Schema.Types.Mixed,
     returnsPCT: mongoose.Schema.Types.Mixed,
     breakevenPrice: mongoose.Schema.Types.Mixed
