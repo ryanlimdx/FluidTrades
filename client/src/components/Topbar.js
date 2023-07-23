@@ -3,7 +3,8 @@ import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 
-import Profile from "../webpages/Profile";
+// Context
+import { ProfileContext } from "../context/nameContext";
 
 // MUI components
 import {
@@ -48,8 +49,9 @@ const Topbar = () => {
 
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const { name, email } = useContext(ProfileContext);
+  const [nameValue, setName] = name;
+  const [emailValue, setEmail] = email;
 
   useEffect(() => {
     axios
@@ -147,10 +149,10 @@ const Topbar = () => {
                 </Box>
                 <Box>
                   <Typography variant="h5" color={colors.grey[100]} mb="1px">
-                    {name}
+                    {nameValue}
                   </Typography>
                   <Typography variant="h6" color={colors.grey[100]}>
-                    {email}
+                    {emailValue}
                   </Typography>
                 </Box>
               </Box>
