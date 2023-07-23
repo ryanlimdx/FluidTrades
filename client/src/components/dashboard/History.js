@@ -97,9 +97,9 @@ const History = () => {
               rows={data}
               columns={columns}
               getRowId={(row) => row._id}
-              autoHeight
               hideFooter
               sx={{
+                height: "100%",
                 width: "100%",
                 marginTop: "20px",
                 border: 0,
