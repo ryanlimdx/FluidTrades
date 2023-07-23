@@ -49,40 +49,11 @@ const Dashboard = () => {
           <AssetsCard mode="performing" />
         </Box>
 
-        <Box sx={{ gridArea: "performingAssets" }}>
+        <Box sx={{ gridArea: "laggingAssets" }}>
           <AssetsCard mode="lagging" />
         </Box>
       </Box>
 
-      {/* display:grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    grid-template-rows: auto auto 1fr 1fr 1fr auto auto;
-    grid-gap:10px;
-    height: calc(100vh - 10px); */}
-      {/* <Grid container spacing={2} height="75vh">
-        <Grid item xs={4}>
-          <AssetsCard mode="performing" />
-        </Grid>
-        <Grid item xs={4}>
-          <AssetsCard mode="lagging" />
-        </Grid>
-
-        <Grid item xs={4}>
-          <RealTimeSearch />
-        </Grid>
-
-        <Grid item xs={4}>
-          <ExposurePieChart />
-        </Grid>
-
-        <Grid item xs={4}>
-          <AssetTransactions />
-        </Grid>
-
-        <GridItem columns={12} title="CURRENCY TRANSACTION">
-          <CurrencyTransactions />
-        </GridItem>
-      </Grid> */}
     </Box>
   );
 };

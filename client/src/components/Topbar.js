@@ -121,7 +121,7 @@ const Topbar = () => {
                 borderRadius: "10px",
               },
               "& .MuiList-root": {
-                backgroundColor: themeColors.profileDropdown.background,
+                backgroundColor: themeColors.card.background,
               },
               marginTop: "20px",
             }}
@@ -133,7 +133,7 @@ const Topbar = () => {
                 marginBottom="5px"
                 padding="20px"
                 borderRadius="10px"
-                backgroundColor={themeColors.profileDropdown.main}
+                backgroundColor={themeColors.card.main}
               >
                 <Box // profile card
                   display="flex"
@@ -163,7 +163,7 @@ const Topbar = () => {
                 </Box>
 
                 <Button
-                variant="outlined"
+                  variant="outlined"
                   onClick={() => {
                     navigate("/profile");
                     closeMenu();
