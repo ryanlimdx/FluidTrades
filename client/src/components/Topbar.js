@@ -3,8 +3,6 @@ import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 
-import Profile from "../webpages/Profile";
-
 // MUI components
 import {
   Typography,

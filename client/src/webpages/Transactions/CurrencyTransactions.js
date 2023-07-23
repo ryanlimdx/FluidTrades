@@ -12,7 +12,7 @@ const CurrencyTransactions = ({margin=undefined, height=undefined}) => {
 
   useEffect(() => {
     axios
-      .get("/currencytransactions")
+      .get("/transactions/currency")
       .then((response) => {
         console.log(response);
         getData(response.data);
