@@ -1,14 +1,15 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Header from "../components/Header";
 
 // components
 import AssetsCard from "../components/dashboard/AssetsCard";
 import ExposurePieChart from "../components/dashboard/ExposurePieChart";
-import RealTimeSearch from "../components/dashboard/RealTimeSearch";
 import History from "../components/dashboard/History";
 import CurrencyCard from "../components/dashboard/CurrencyCard";
 import TimeChart from "../components/dashboard/TimeChart";
+import Networth from "../components/dashboard/Networth";
+import Global from "../components/dashboard/GlobalCard";
 
 const Dashboard = () => {
   return (
@@ -20,11 +21,11 @@ const Dashboard = () => {
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(9, 1fr)",
-          gridTemplateRows: "1fr 1fr 1fr",
+          gridTemplateRows: "1fr 2fr 2fr",
           gridTemplateAreas: `
-          "performingAssets performingAssets performingAssets laggingAssets laggingAssets laggingAssets riskExposure riskExposure riskExposure"
-          "timechart timechart timechart timechart timechart timechart currencycard currencycard currencycard"
-          "history history history history history history . . ."
+          "networth networth networth global global global riskExposure riskExposure riskExposure"
+          "timechart timechart timechart timechart timechart timechart performingAssets performingAssets performingAssets"
+          "history history history history history history currencycard currencycard currencycard"
           `,
           gap: 2,
         }}
@@ -37,8 +38,8 @@ const Dashboard = () => {
           <AssetsCard mode="performing" />
         </Box>
 
-        <Box sx={{ gridArea: "laggingAssets" }}>
-          <AssetsCard mode="lagging" />
+        <Box sx={{ gridArea: "global" }}>
+          <Global/>
         </Box>
 
         <Box sx={{ gridArea: "timechart" }}>
@@ -51,6 +52,10 @@ const Dashboard = () => {
 
         <Box sx={{ gridArea: "history" }}>
           <History />
+        </Box>
+
+        <Box sx={{ gridArea: "networth" }}>
+          <Networth />
         </Box>
       </Box>
     </Box>
