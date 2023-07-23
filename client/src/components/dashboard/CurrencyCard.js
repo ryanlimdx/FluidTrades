@@ -34,9 +34,10 @@ const CurrencyCard = () => {
     <Card
       sx={{
         width: "100%",
-        height: "100%",
+        height: "27vh",
         padding: "20px",
         backgroundColor: cardColors.background,
+        overflow: "auto",
       }}
     >
       <CardContent sx={{ width: "100%", height: "100%" }}>
@@ -51,7 +52,7 @@ const CurrencyCard = () => {
           sx={{ width: "100%", height: "90%" }}
         >
           {currencies.length !== 0 ? (
-            <Stack direction="row" justifyContent={"space-between"}>
+            <Stack direction="row" justifyContent={"space-between"} sx={{width: "100%"}}>
               <List disablePadding>
                 {currencies.map((asset, index) => (
                   <ListItem key={index}>

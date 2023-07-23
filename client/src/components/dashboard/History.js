@@ -77,7 +77,7 @@ const History = () => {
     <Card
       sx={{
         width: "100%",
-        height: "100%",
+        height: "27vh",
         padding: "20px",
         backgroundColor: cardColors.background,
       }}
