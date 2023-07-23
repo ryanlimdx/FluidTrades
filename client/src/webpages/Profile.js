@@ -81,7 +81,7 @@ const Profile = () => {
         setEmail(response.data.email);
       })
       .catch((err) => console.log(err));
-  }, [isUpdated]);
+  }, [isUpdated, setName, setEmail]);
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
