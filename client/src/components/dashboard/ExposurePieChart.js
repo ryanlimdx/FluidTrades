@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Typography, Card, CardContent } from "@mui/material";
+import { Typography, Card, CardContent, Box } from "@mui/material";
 import { ResponsivePie } from "@nivo/pie";
 import axios from "../../api/axios";
 
@@ -14,14 +14,17 @@ const ExposurePieChart = () => {
   }, []);
 
   return (
-    <Card variant="outlined" sx={{height: "40vh"}}>
-      <CardContent>
+    <Box display="flex" flexDirection="column" sx={{width: "100%", height: "100%"}}>
+      <Box>
         <Typography align="left" sx={{ fontWeight: "bold" }}>
           Exposure Chart
         </Typography>
-        {data.length === 0 ? <Typography> You have no stocks currently. </Typography> : null}
-      </CardContent>
-      <ResponsivePie
+        {data.length === 0 ? (
+          <Typography> You have no stocks currently. </Typography>
+        ) : null}
+      </Box>
+      <Box sx={{width: "95%", height: "95%"}}>
+        <ResponsivePie
           data={data}
           margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
           innerRadius={0.5}
@@ -44,7 +47,8 @@ const ExposurePieChart = () => {
             modifiers: [["darker", 2]],
           }}
         />
-    </Card>
+      </Box>
+    </Box>
   );
 };
 
