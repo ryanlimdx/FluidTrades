@@ -35,16 +35,16 @@ const RadioButton = ({ label, value }) => {
       sx={{
         border: 1,
         borderRadius: 1,
-        borderColor: themeColors.radioButton.border,
+        borderColor: themeColors.button.border,
         height: 50,
         width: "100%",
         paddingLeft: 0.5,
         marginLeft: 0,
         marginRight: 0,
         marginTop: 3,
-        backgroundColor: checked ? themeColors.radioButton.main : undefined,
+        backgroundColor: checked ? themeColors.button.main : undefined,
         "&:hover": {
-          borderColor: themeColors.radioButton.borderHover,
+          borderColor: themeColors.button.borderHover,
         },
       }}
     />

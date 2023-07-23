@@ -148,7 +148,7 @@ export const themeSettings = (mode) => {
               main: colors.primary[500],
               background: colors.primary[400],
             },
-            radioButton: {
+            button: {
               main: colors.primary[400],
               border: "#4A505D",
               borderHover: "#FFFFFF",
@@ -178,7 +178,7 @@ export const themeSettings = (mode) => {
               main: colors.primary[400],
               background: "#ffffff",
             },
-            radioButton: {
+            button: {
               main: colors.primary[400],
               border: colors.primary[100],
               borderHover: colors.grey[900],
