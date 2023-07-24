@@ -42,7 +42,6 @@ const AssetsCard = ({ mode }) => {
           negativeReturns.sort((a, b) => a.returns - b.returns);
           setAssets(negativeReturns.slice(0, 3));
         } else {
-          // Handle other cases (e.g., "all") if needed
           setAssets(data);
         }
       } catch (error) {

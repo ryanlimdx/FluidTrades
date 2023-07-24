@@ -31,13 +31,13 @@ const Networth = () => {
 
         var networth = 0;
         var totalInvested = 0;
-        response.forEach((asset) => {
+        response.data.forEach((asset) => {
             totalInvested += asset.investedCapital
             if (asset.marketValue !== "API limit exceeded" && asset.marketValue) {
                 networth += asset.marketValue;
             }
         })
-        overallData.networth = networth;
+        overallData.networth = networth.toFixed(2);
         overallData.totalInvested = totalInvested;
         setData(overallData);
       })

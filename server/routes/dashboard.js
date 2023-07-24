@@ -5,7 +5,6 @@ const router = express.Router();
 const { auth } = require("../middleware/auth");
 
 const User = require("../schemas/User");
-const Currency = require("../schemas/Currency");
 const Stock = require("../schemas/Stock");
 const Crypto = require("../schemas/Crypto");
 
