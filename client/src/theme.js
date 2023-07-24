@@ -217,6 +217,10 @@ export const themeSettings = (mode) => {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 14,
       },
+      disclaimer: {
+        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontSize: 8,
+      },
     },
   };
 };
