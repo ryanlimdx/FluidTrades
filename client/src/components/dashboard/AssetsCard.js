@@ -66,29 +66,34 @@ const AssetsCard = ({ mode }) => {
         backgroundColor: cardColors.background,
       }}
     >
-      <CardContent sx={{ width: "100%", height: "100%" }}>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography sx={{ fontWeight: "bold" }} marginLeft="10px">
-            {modeValue === "performing" ? "TOP " : ""}
-            {modeValue.toUpperCase()} ASSETS
-          </Typography>
-          <IconButton
-            onClick={() => {
-              if (modeValue === "performing") {
-                setLoading(true);
-                setMode("lagging");
-              } else {
-                setLoading(true);
-                setMode("performing");
-              }
-            }}
+      {isLoading ? (
+        <Skeleton variation="rectangular" width="100%" height="100%" />
+      ) : (
+        <CardContent sx={{ width: "100%", height: "100%" }}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
           >
-            <SwitchLeftOutlinedIcon />
-          </IconButton>
-        </Box>
-        {isLoading ? (
-          <Skeleton variation="rectangular" width="100%" height="100%" />
-        ) : (
+            <Typography sx={{ fontWeight: "bold" }} marginLeft="10px">
+              {modeValue === "performing" ? "TOP " : ""}
+              {modeValue.toUpperCase()} ASSETS
+            </Typography>
+            <IconButton
+              onClick={() => {
+                if (modeValue === "performing") {
+                  setLoading(true);
+                  setMode("lagging");
+                } else {
+                  setLoading(true);
+                  setMode("performing");
+                }
+              }}
+            >
+              <SwitchLeftOutlinedIcon />
+            </IconButton>
+          </Box>
+
           <Box display="flex" flexDirection="column" alignItems="center">
             {assets.length !== 0 ? (
               <Stack
@@ -158,8 +163,8 @@ const AssetsCard = ({ mode }) => {
               </Typography>
             )}
           </Box>
-        )}
-      </CardContent>
+        </CardContent>
+      )}
     </Card>
   );
 };

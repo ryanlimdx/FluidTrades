@@ -62,6 +62,7 @@ const TimeChart = () => {
 
   const handleSearch = async () => {
     setError("");
+    setLoading(true);
     fetchChartData(symbol);
     setSearch(!search);
   };
