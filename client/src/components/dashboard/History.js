@@ -106,7 +106,7 @@ const History = () => {
               }}
             />
           ) : (
-            <Typography>You currently have no assets</Typography>
+            <Typography mt="20px">You currently have no assets</Typography>
           )}
         </Box>
       </CardContent>
