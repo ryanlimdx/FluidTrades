@@ -25,7 +25,6 @@ const CurrencyCard = () => {
       .get("/portfolio/currencies")
       .then((response) => {
         setCurrencies(response.data);
-        console.log(response.data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -37,7 +36,6 @@ const CurrencyCard = () => {
         height: "27vh",
         padding: "20px",
         backgroundColor: cardColors.background,
-        
       }}
     >
       <CardContent sx={{ width: "100%", height: "100%" }}>

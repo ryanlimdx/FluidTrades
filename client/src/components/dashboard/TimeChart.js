@@ -207,7 +207,7 @@ const TimeChart = () => {
           <Marquee pauseOnClick={true} pauseOnHover={true}>
             {stockData.map((data) => {
               return (
-                <Box display="flex">
+                <Box display="flex" key={data.datetime}>
                   <Typography
                     mr="10px"
                     ml="20px"

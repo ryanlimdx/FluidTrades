@@ -58,7 +58,6 @@ const Topbar = () => {
     axios
       .get("/profile")
       .then((response) => {
-        console.log(response);
         setName(response.data.name);
         setEmail(response.data.email);
       })
