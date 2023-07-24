@@ -7,6 +7,7 @@ import {
   IconButton,
   InputAdornment,
   useTheme,
+  Skeleton,
 } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import { useEffect, useState } from "react";
@@ -25,40 +26,19 @@ const TimeChart = () => {
 
   const [search, setSearch] = useState(false);
   const [symbol, setSymbol] = useState("SPY"); // default to S&P500
+  const [isLoading, setLoading] = useState(true);
   const [chartData, setChartData] = useState([]);
   const [stockData, setStockData] = useState([]);
+  const [isError, setError] = useState("");
 
   useEffect(() => {
-    fetchChartData(symbol);
+    fetchChartData("SPY");
   }, []);
 
   async function fetchChartData(symbol) {
     try {
       const response = await getChartData(symbol.toUpperCase());
       const data = response.values;
-
-      // // Find the day of the first element
-      // const firstDay = data?.[0].datetime.slice(0, 10);
-
-      // // Throw error if data is not found
-      // if (firstDay === undefined) throw new Error("Data not found!");
-
-      // setDate(firstDay);
-      // // Filter elements with the same day
-      // const filteredData = data.filter(
-      //   (item) => item.datetime.slice(0, 10) === firstDay
-      // );
-
-      // // Sort the filtered data in ascending order based on time
-      // const sortedData = filteredData.sort((a, b) =>
-      //   a.datetime.localeCompare(b.datetime)
-      // );
-
-      // // Change field names "datetime" to "x" and "close" to "y"
-      // const renamedData = sortedData.map((item) => ({
-      //   x: item.datetime.slice(11, 16),
-      //   y: Number(item.close),
-      // }));
 
       data.forEach((item) => {
         item.x = item.datetime;
@@ -68,13 +48,20 @@ const TimeChart = () => {
       setStockData(data);
       data.reverse();
       setChartData([{ id: "chart", data: data }]);
+      setLoading(false);
     } catch (error) {
-      alert("Error fetching data. Please input a valid ticker.");
+      // alert("Error fetching data. Please input a valid ticker.");
+      if (error.message === "Request failed with status code 429") {
+        setError("API limit exceeded");
+      } else {
+        setError("Please input a valid ticker!");
+      }
       console.error("Error fetching data:", error);
     }
   }
 
   const handleSearch = async () => {
+    setError("");
     fetchChartData(symbol);
     setSearch(!search);
   };
@@ -152,6 +139,9 @@ const TimeChart = () => {
         </Box>
 
         <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
           sx={{
             width: "100%",
             height: "75%",
@@ -159,73 +149,81 @@ const TimeChart = () => {
             marginTop: "20px",
           }}
         >
-          <ResponsiveLine
-            data={chartData}
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-            xScale={{ type: "point" }}
-            yScale={{
-              type: "linear",
-              min: "auto",
-              max: "auto",
-              stacked: true,
-              reverse: false,
-            }}
-            yFormat=" >-.2f"
-            axisTop={null}
-            axisRight={null}
-            axisBottom={null}
-            axisLeft={null}
-            enableGridX={false}
-            enableGridY={false}
-            pointSize={5}
-            pointColor={{ theme: "background" }}
-            pointBorderWidth={1}
-            pointBorderColor={{ from: "serieColor" }}
-            pointLabelYOffset={-12}
-            useMesh={true}
-            tooltip={({ point }) => {
-              return (
-                <Box
-                  display="flex"
-                  flexDirection="column"
-                  alignItems="center"
-                  sx={{
-                    padding: "10px",
-                    backgroundColor: cardColors.main,
-                    borderRadius: "6px",
-                  }}
-                >
-                  <Typography>Date : {point.data.x}</Typography>
-                  <Typography mt="2px">
-                    Price: ${point.data.y.toFixed(2)}
-                  </Typography>
-                </Box>
-              );
-            }}
-          />
+          {isLoading ? (
+            <Skeleton variation="rectangular" width="100%" height="100%" />
+          ) : isError ? (
+            <Typography>{isError}</Typography>
+          ) : (
+            <Box sx={{ width: "100%", height: "100%" }}>
+              <ResponsiveLine
+                data={chartData}
+                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                xScale={{ type: "point" }}
+                yScale={{
+                  type: "linear",
+                  min: "auto",
+                  max: "auto",
+                  stacked: true,
+                  reverse: false,
+                }}
+                yFormat=" >-.2f"
+                axisTop={null}
+                axisRight={null}
+                axisBottom={null}
+                axisLeft={null}
+                enableGridX={false}
+                enableGridY={false}
+                pointSize={5}
+                pointColor={{ theme: "background" }}
+                pointBorderWidth={1}
+                pointBorderColor={{ from: "serieColor" }}
+                pointLabelYOffset={-12}
+                useMesh={true}
+                tooltip={({ point }) => {
+                  return (
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      alignItems="center"
+                      sx={{
+                        padding: "10px",
+                        backgroundColor: cardColors.main,
+                        borderRadius: "6px",
+                      }}
+                    >
+                      <Typography>Date : {point.data.x}</Typography>
+                      <Typography mt="2px">
+                        Price: ${point.data.y.toFixed(2)}
+                      </Typography>
+                    </Box>
+                  );
+                }}
+              />
 
-          <Marquee pauseOnClick={true} pauseOnHover={true}>
-            {stockData.map((data) => {
-              return (
-                <Box display="flex" key={data.datetime}>
-                  <Typography
-                    mr="10px"
-                    ml="20px"
-                    sx={{ fontWeight: "bold", color: colors.grey[300] }}
-                  >
-                    {data.datetime}{" "}
-                  </Typography>
-                  <Typography sx={{ color: colors.grey[300] }}>
-                    Open: {parseFloat(data.open).toFixed(2)} {"   "}
-                    Close: {parseFloat(data.close).toFixed(2)} {"   "}
-                    Day's High: {parseFloat(data.high).toFixed(2)} {"   "}
-                    Day's Low: {parseFloat(data.low).toFixed(2)} {"   "}
-                    Volume: {data.volume} {"   "}
-                  </Typography>
-                </Box>
-              );
-            })}
-          </Marquee>
+              <Marquee pauseOnClick={true} pauseOnHover={true}>
+                {stockData.map((data) => {
+                  return (
+                    <Box display="flex" key={data.datetime}>
+                      <Typography
+                        mr="10px"
+                        ml="20px"
+                        sx={{ fontWeight: "bold", color: colors.grey[300] }}
+                      >
+                        {data.datetime}{" "}
+                      </Typography>
+                      <Typography sx={{ color: colors.grey[300] }}>
+                        Open: {parseFloat(data.open).toFixed(2)} {"   "}
+                        Close: {parseFloat(data.close).toFixed(2)} {"   "}
+                        Day's High: {parseFloat(data.high).toFixed(2)} {"   "}
+                        Day's Low: {parseFloat(data.low).toFixed(2)} {"   "}
+                        Volume: {data.volume} {"   "}
+                      </Typography>
+                    </Box>
+                  );
+                })}
+              </Marquee>
+            </Box>
+          )}
         </Box>
       </CardContent>
     </Card>

@@ -1,21 +1,21 @@
 import { Typography, Box, useTheme, Skeleton } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import { useEffect, useState } from "react";
-import { themeSettings, tokens } from "../../theme";
+import { themeSettings } from "../../theme";
 import getChartData from "../../api/getChartData";
 
 const MarketChart = ({ symbol, loading }) => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const themeColors = themeSettings(theme.palette.mode).palette;
   const cardColors = themeColors.card;
 
   const [chartData, setChartData] = useState([]);
   const [isLoading, setLoading] = useState(loading);
+  const [isError, setError] = useState("");
 
   useEffect(() => {
     fetchChartData(symbol);
-  }, []);
+  }, [symbol]);
 
   async function fetchChartData(symbol) {
     try {
@@ -30,19 +30,27 @@ const MarketChart = ({ symbol, loading }) => {
       setChartData([{ id: "chart", data: data }]);
       setLoading(false);
     } catch (error) {
-      alert("Error fetching data. Please input a valid ticker.");
+      // alert("Error fetching data. Please input a valid ticker.");
+      if (error.message === "Request failed with status code 429") {
+        setError("API limit exceeded");
+      } else {
+        setError("Please input a valid ticker!");
+      }
       console.error("Error fetching data:", error);
     }
   }
 
   return (
-    <Box mt="20px" sx={{ width: "100%", height: "100%" }}>
-      <Typography sx={{ color: colors.grey[300] }}>
-        {symbol.toUpperCase()}
-      </Typography>
-
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      sx={{ width: "100%", height: "100%" }}
+    >
       {isLoading ? (
         <Skeleton variation="rectangular" width="100%" height="100%" />
+      ) : isError ? (
+        <Typography>{isError}</Typography>
       ) : (
         <ResponsiveLine
           data={chartData}
