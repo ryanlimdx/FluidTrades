@@ -66,6 +66,7 @@ const Networth = () => {
           NET WORTH
         </Typography>
 
+        <Box display="flex" flexDirection="column" justifyContent="space-between" sx={{width: "100%", height: "95%"}}>
         <Box display="flex" flexDirection="column" alignItems="center">
           {isLoading ? (
             <Skeleton variation="rectangular" width="100%" height="100%" />
@@ -111,13 +112,15 @@ const Networth = () => {
         </Box>
 
         <Typography
+          variant="disclaimer"
           color={colors.grey[300]}
           marginLeft="10px"
-          marginTop="45%"
           marginBottom="10%"
         >
           *does not include cash balances, exchange rate
         </Typography>
+        </Box>
+        
       </CardContent>
     </Card>
   );
