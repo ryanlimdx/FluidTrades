@@ -37,7 +37,7 @@ const CurrencyCard = () => {
         height: "27vh",
         padding: "20px",
         backgroundColor: cardColors.background,
-        overflow: "auto",
+        
       }}
     >
       <CardContent sx={{ width: "100%", height: "100%" }}>
@@ -49,7 +49,8 @@ const CurrencyCard = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          sx={{ width: "100%", height: "90%" }}
+          mt="20px"
+          sx={{ width: "100%", height: "90%", overflow: "auto", }}
         >
           {currencies.length !== 0 ? (
             <Stack direction="row" justifyContent={"space-between"} sx={{width: "100%"}}>

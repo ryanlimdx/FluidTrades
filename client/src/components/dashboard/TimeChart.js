@@ -10,26 +10,29 @@ import {
 } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import { useEffect, useState } from "react";
-import { themeSettings } from "../../theme";
+import { themeSettings, tokens } from "../../theme";
 import getChartData from "../../api/getChartData";
+import Marquee from "react-fast-marquee";
 
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 
 const TimeChart = () => {
   const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const themeColors = themeSettings(theme.palette.mode).palette;
   const cardColors = themeColors.card;
 
-  const [data, setData] = useState([]);
+  const [search, setSearch] = useState(false);
   const [symbol, setSymbol] = useState("SPY"); // default to S&P500
-  const [updated, setUpdated] = useState(false);
-  const [date, setDate] = useState("");
+  const [chartData, setChartData] = useState([]);
+  const [stockData, setStockData] = useState([]);
 
   useEffect(() => {
-    fetchData(symbol);
+    fetchChartData(symbol);
   }, []);
 
-  async function fetchData(symbol) {
+  async function fetchChartData(symbol) {
     try {
       const response = await getChartData(symbol.toUpperCase());
       const data = response.values;
@@ -58,22 +61,26 @@ const TimeChart = () => {
       // }));
 
       data.forEach((item) => {
-        item.x = item.datetime
-        item.y = item.close
-      })
+        item.x = item.datetime;
+        item.y = item.close;
+      });
 
+      setStockData(data);
       data.reverse();
-
-      setData([{ id: "chart", data: data }]);
-      setUpdated(true);
+      setChartData([{ id: "chart", data: data }]);
     } catch (error) {
       alert("Error fetching data. Please input a valid ticker.");
       console.error("Error fetching data:", error);
     }
   }
 
-  const handleClick = async () => {
-    fetchData(symbol);
+  const handleSearch = async () => {
+    fetchChartData(symbol);
+    setSearch(!search);
+  };
+
+  const handleStartSearch = () => {
+    setSearch(!search);
   };
 
   return (
@@ -88,42 +95,73 @@ const TimeChart = () => {
       }}
     >
       <CardContent sx={{ width: "100%", height: "100%" }}>
-        <Typography sx={{ fontWeight: "bold" }} marginLeft="10px">
-          SEARCH
-        </Typography>
-        <TextField
-          id="outlined-basic"
-          label="Ticker"
-          size="small"
-          onChange={(event) => {
-            setUpdated(false);
-            setSymbol(event.target.value);
-          }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  size="small"
-                  aria-label="search"
-                  onClick={handleClick}
-                >
-                  <SearchIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          sx={{ mt: "20px" }}
-        />
-        {updated && (
-          <Typography>
-            {symbol.toUpperCase()}'s chart on {date}{" "}
-          </Typography>
-        )}
+        <Box
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Typography sx={{ fontWeight: "bold" }}>SEARCH</Typography>
 
-        <Box sx={{ width: "100%", height: "50%" }}>
+          {search ? (
+            <TextField
+              id="outlined-basic"
+              label="Ticker"
+              size="small"
+              onChange={(event) => {
+                setSymbol(event.target.value);
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      size="small"
+                      aria-label="search"
+                      onClick={handleSearch}
+                    >
+                      <SearchIcon />
+                    </IconButton>
+
+                    <Box>
+                      <IconButton
+                        size="small"
+                        aria-label="close search"
+                        onClick={handleStartSearch}
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                    </Box>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ) : (
+            <Box display="flex" alignItems="center">
+              <Typography mr="20px">
+                {symbol.toUpperCase()}: Daily Chart
+              </Typography>
+              <IconButton
+                size="small"
+                aria-label="search"
+                onClick={handleStartSearch}
+              >
+                <SearchIcon />
+              </IconButton>
+            </Box>
+          )}
+        </Box>
+
+        <Box
+          sx={{
+            width: "100%",
+            height: "75%",
+            borderRadius: "6px",
+            marginTop: "20px",
+          }}
+        >
           <ResponsiveLine
-            data={data}
-            margin={{ top: 7, right: 50, bottom: 50, left: 50 }}
+            data={chartData}
+            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
             xScale={{ type: "point" }}
             yScale={{
               type: "linear",
@@ -137,7 +175,6 @@ const TimeChart = () => {
             axisRight={null}
             axisBottom={null}
             axisLeft={null}
-
             enableGridX={false}
             enableGridY={false}
             pointSize={5}
@@ -159,11 +196,36 @@ const TimeChart = () => {
                   }}
                 >
                   <Typography>Date : {point.data.x}</Typography>
-                  <Typography mt="2px">Price: ${point.data.y.toFixed(2)}</Typography>
+                  <Typography mt="2px">
+                    Price: ${point.data.y.toFixed(2)}
+                  </Typography>
                 </Box>
               );
             }}
           />
+
+          <Marquee pauseOnClick={true} pauseOnHover={true}>
+            {stockData.map((data) => {
+              return (
+                <Box display="flex">
+                  <Typography
+                    mr="10px"
+                    ml="20px"
+                    sx={{ fontWeight: "bold", color: colors.grey[300] }}
+                  >
+                    {data.datetime}{" "}
+                  </Typography>
+                  <Typography sx={{ color: colors.grey[300] }}>
+                    Open: {parseFloat(data.open).toFixed(2)} {"   "}
+                    Close: {parseFloat(data.close).toFixed(2)} {"   "}
+                    Day's High: {parseFloat(data.high).toFixed(2)} {"   "}
+                    Day's Low: {parseFloat(data.low).toFixed(2)} {"   "}
+                    Volume: {data.volume} {"   "}
+                  </Typography>
+                </Box>
+              );
+            })}
+          </Marquee>
         </Box>
       </CardContent>
     </Card>

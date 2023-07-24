@@ -3,10 +3,6 @@ import {
   Typography,
   Card,
   CardContent,
-  List,
-  ListItem,
-  ListItemText,
-  Stack,
   useTheme,
   Box,
 } from "@mui/material";
@@ -90,6 +86,7 @@ const History = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
+          mt="20px"
           sx={{ width: "100%", height: "90%" }}
         >
           {data.length !== 0 ? (
@@ -101,7 +98,6 @@ const History = () => {
               sx={{
                 height: "100%",
                 width: "100%",
-                marginTop: "20px",
                 border: 0,
                 "& .MuiDataGrid-cell": {
                   borderBottom: "none",
@@ -110,7 +106,7 @@ const History = () => {
               }}
             />
           ) : (
-            <Typography mt="20px">You currently have no assets</Typography>
+            <Typography>You currently have no assets</Typography>
           )}
         </Box>
       </CardContent>

@@ -9,6 +9,7 @@ import {
   Stack,
   useTheme,
   Box,
+  IconButton,
 } from "@mui/material";
 import { themeSettings } from "../../theme";
 import axios from "../../api/axios";
@@ -16,6 +17,7 @@ import axios from "../../api/axios";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import PercentIcon from "@mui/icons-material/Percent";
+import SwitchLeftOutlinedIcon from "@mui/icons-material/SwitchLeftOutlined";
 
 const AssetsCard = ({ mode }) => {
   const theme = useTheme();
@@ -23,6 +25,7 @@ const AssetsCard = ({ mode }) => {
   const cardColors = themeColors.card;
 
   const [assets, setAssets] = useState([]);
+  const [modeValue, setMode] = useState(mode);
 
   useEffect(() => {
     async function fetchDataAndSort() {
@@ -30,11 +33,11 @@ const AssetsCard = ({ mode }) => {
         const response = await axios.get("/portfolio/assets");
         const data = response.data;
         // Sort the data by returns field based on the mode prop
-        if (mode === "performing") {
+        if (modeValue === "performing") {
           const positiveReturns = data.filter((asset) => asset.returns >= 0);
           positiveReturns.sort((a, b) => b.returns - a.returns);
           setAssets(positiveReturns.slice(0, 3));
-        } else if (mode === "lagging") {
+        } else if (modeValue === "lagging") {
           const negativeReturns = data.filter((asset) => asset.returns < 0);
           negativeReturns.sort((a, b) => a.returns - b.returns);
           setAssets(negativeReturns.slice(0, 3));
@@ -48,7 +51,7 @@ const AssetsCard = ({ mode }) => {
     }
 
     fetchDataAndSort();
-  }, [mode]);
+  }, [modeValue]);
 
   return (
     <Card
@@ -60,10 +63,15 @@ const AssetsCard = ({ mode }) => {
       }}
     >
       <CardContent sx={{ width: "100%", height: "100%" }}>
-        <Typography sx={{ fontWeight: "bold" }} marginLeft="10px">
-          {mode === "performing" ? "TOP " : ""}
-          {mode.toUpperCase()} ASSETS
-        </Typography>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Typography sx={{ fontWeight: "bold" }}  marginLeft="10px">
+            {modeValue === "performing" ? "TOP " : ""}
+            {modeValue.toUpperCase()} ASSETS
+          </Typography>
+          <IconButton onClick={() => modeValue === "performing" ? setMode("lagging") :setMode("performing") }>
+            <SwitchLeftOutlinedIcon/>
+          </IconButton>
+        </Box>
 
         <Box display="flex" flexDirection="column" alignItems="center">
           {assets.length !== 0 ? (
@@ -94,7 +102,7 @@ const AssetsCard = ({ mode }) => {
                       <ListItemText
                         primary={asset.returns.toFixed(2)}
                         primaryTypographyProps={{
-                          color: mode === "performing" ? "#228b22" : "#d32f2f",
+                          color: modeValue === "performing" ? "#228b22" : "#d32f2f",
                         }}
                       />
                     </ListItem>
@@ -114,7 +122,7 @@ const AssetsCard = ({ mode }) => {
                             : asset.returnsPCT.toFixed(2) + "%"
                         }
                         primaryTypographyProps={{
-                          color: mode === "performing" ? "#228b22" : "#d32f2f",
+                          color: modeValue === "performing" ? "#228b22" : "#d32f2f",
                         }}
                       />
                     </ListItem>
@@ -124,7 +132,7 @@ const AssetsCard = ({ mode }) => {
             </Stack>
           ) : (
             <Typography mt="20px">
-              You currently have no {mode} assets
+              You currently have no {modeValue} assets
             </Typography>
           )}
         </Box>
