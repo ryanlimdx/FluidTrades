@@ -2,9 +2,10 @@
 
 A web platform for casual and investors alike to consolidate their investments in one place. Developed using the MERN (MongoDB, Express, React, Node) tech stack.
 
-Credits to :
-[Twelve Data API on RapidAPI]([url](https://rapidapi.com/twelvedata/api/twelve-data1/)), which provided us with real time data on charts and prices of assets. 
-[Ed Roh]([url](https://www.youtube.com/watch?v=wYpCWwD1oz0)), whose youtube video we referenced to achieve theme support for our platform. 
+## Credits
+[Twelve Data API on RapidAPI](https://rapidapi.com/twelvedata/api/twelve-data1/), which provided us with real time data on charts and prices of assets.
+
+[Ed Roh](https://www.youtube.com/watch?v=wYpCWwD1oz0), whose youtube video we referenced to achieve theme support for our platform. 
 
 ## Team Members
 Wang Helin
