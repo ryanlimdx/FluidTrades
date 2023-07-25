@@ -4,7 +4,7 @@ A web platform for casual and investors alike to consolidate their investments i
 
 Credits to :
 [Twelve Data API on RapidAPI]([url](https://rapidapi.com/twelvedata/api/twelve-data1/)), which provided us with real time data on charts and prices of assets. 
-[Ed Roh]([url](https://www.youtube.com/watch?v=wYpCWwD1oz0)), whose youtube video we referenced to achieve theme support for ourplatform. 
+[Ed Roh]([url](https://www.youtube.com/watch?v=wYpCWwD1oz0)), whose youtube video we referenced to achieve theme support for our platform. 
 
 ## Team Members
 Wang Helin
