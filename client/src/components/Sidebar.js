@@ -107,7 +107,7 @@ const SideBar = () => {
                   <Avatar
                     alt="Logo"
                     src={Logo}
-                    sx={{ width: 40, height: 40, borderRadius: "50%" }}
+                    sx={{ width: 30, height: 30, borderRadius: "50%" }}
                   />
                   <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                     <CloseIcon />
