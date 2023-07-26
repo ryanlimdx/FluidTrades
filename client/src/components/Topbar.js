@@ -80,7 +80,7 @@ const Topbar = () => {
         <div /> {/*to push elements right */}
         {/* Platform Title and Logo */}
         <Box display="flex">
-          <Avatar alt="Logo" src={Logo} sx={{ width: 40, height: 40, borderRadius: "50%" }} />
+          <Avatar alt="Logo" src={Logo} sx={{ width: 30, height: 30, borderRadius: "50%", marginRight: "20px" }} />
           <Typography variant="h2" fontWeight="bold">
             FLUID TRADES
           </Typography>
