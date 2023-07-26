@@ -9,6 +9,7 @@ const AppContentWrapper = styled(Box)({
   justifyContent: "center",
   height: "75vh",
   width: "100%",
+  margin: "20px"
 });
 
 const FormLayout = () => {

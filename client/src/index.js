@@ -8,7 +8,7 @@ import { UserAuthProvider } from "./context/UserAuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
         <UserAuthProvider>
           <Routes>
@@ -16,5 +16,5 @@ root.render(
           </Routes>
         </UserAuthProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

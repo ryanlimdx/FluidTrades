@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { tokens } from "../theme";
 import { Avatar } from "@mui/material";
 import coinStack from "../assets/coin-stack.gif";
-import Logo from "../assets/FluidTradesLogoBG.PNG";
+import Logo from "../assets/MoneyIconLogo.jpg";
 
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import CloseIcon from "@mui/icons-material/Close";
@@ -107,7 +107,7 @@ const SideBar = () => {
                   <Avatar
                     alt="Logo"
                     src={Logo}
-                    sx={{ width: 40, height: 40 }}
+                    sx={{ width: 40, height: 40, borderRadius: "50%" }}
                   />
                   <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                     <CloseIcon />
