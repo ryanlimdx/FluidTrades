@@ -7,7 +7,8 @@ const cors = require('cors');
 // allow request to be sent from react app to express server using cors
 app.use(
   cors({
-    origin: 'http://localhost:4000',
+    // origin: 'http://localhost:4000',
+    origin: 'https://fluidtrades.netlify.app',
     credentials: true,
   }),
 );
