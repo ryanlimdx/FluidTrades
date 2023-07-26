@@ -23,7 +23,7 @@ import Avatar from "@mui/material/Avatar";
 import Toolbar from "@mui/material/Toolbar";
 
 // profile and platform
-import Logo from "../assets/FluidTradesLogoBG.PNG";
+import Logo from "../assets/MoneyIconLogo.jpg";
 import coinStack from "../assets/coin-stack.gif";
 
 // icons
@@ -80,7 +80,7 @@ const Topbar = () => {
         <div /> {/*to push elements right */}
         {/* Platform Title and Logo */}
         <Box display="flex">
-          <Avatar alt="Logo" src={Logo} sx={{ width: 40, height: 40 }} />
+          <Avatar alt="Logo" src={Logo} sx={{ width: 40, height: 40, borderRadius: "50%" }} />
           <Typography variant="h2" fontWeight="bold">
             FLUID TRADES
           </Typography>
