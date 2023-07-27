@@ -13,8 +13,8 @@ const StockDetails = () => {
   };
 
   const detailsSchema = yup.object().shape({
-    sector: yup.string().required("Required").matches(/^[A-z]+$/),
-    security: yup.string().required("Required").matches(/^[A-z]+$/),
+    sector: yup.string().required("Required"),
+    security: yup.string().required("Required"),
     ticker: yup.string().required("Required"),
     currency: yup.string().required("Required").matches(/^[A-z]+$/),
   })
@@ -44,7 +44,7 @@ const StockDetails = () => {
                   setFieldValue("sector", event.target.value)
                 }
                 error={!!errors.sector && !!touched.sector}
-                helperText={errors.sector && touched.sector ? "Please key in only alphabetical letters!" : "Required"}
+                helperText={errors.sector && touched.sector ? "Required" : undefined}
               />
               <TextField
                 label="Equity"
@@ -55,7 +55,7 @@ const StockDetails = () => {
                   setFieldValue("security", event.target.value)
                 }
                 error={!!errors.security && !!touched.security}
-                helperText={errors.security && touched.security ? "Please key in only alphabetical letters!" : "Required"}
+                helperText={errors.security && touched.security ? "Required" : undefined }
               />
               <TextField
                 label="Ticker"
@@ -66,7 +66,7 @@ const StockDetails = () => {
                   setFieldValue("ticker", event.target.value)
                 }
                 error={!!errors.ticker && !!touched.ticker}
-                helperText={errors.ticker && touched.ticker ? "Required" : "Required"}
+                helperText={errors.ticker && touched.ticker ? "Required" : undefined}
               />
               <TextField
                 label="Currency"
@@ -77,7 +77,7 @@ const StockDetails = () => {
                   setFieldValue("currency", event.target.value)
                 }
                 error={!!errors.currency && !!touched.currency}
-                helperText={errors.currency && touched.currency ? "Please input only alphabetic codes." : "Required"}
+                helperText={errors.currency && touched.currency ? "Please input only alphabetic codes." : undefined}
               />
 
               <Button
