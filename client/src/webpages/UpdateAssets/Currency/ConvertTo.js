@@ -41,7 +41,7 @@ const ConvertTo = () => {
                 required
                 onChange={(event) => setFieldValue("currency", event.target.value)}
                 error={!!errors.currency && !!touched.currency}
-                helperText={errors.currency && touched.currency ? "Please input only alphabetic codes." : "Required"}
+                helperText={errors.currency && touched.currency ? "Please input only alphabetic codes." : undefined }
               />
 
               <TextField
@@ -51,7 +51,7 @@ const ConvertTo = () => {
                 margin="normal"
                 onChange={(event) => setFieldValue("amount", event.target.value)}
                 error={!!errors.amount && !!touched.amount}
-                helperText={errors.amount && touched.amount ? "Please key in a number! Currency symbols need not be included." : "Required"}
+                helperText={errors.amount && touched.amount ? "Please key in a number! Currency symbols need not be included." : undefined }
               />
 
               <TextField
