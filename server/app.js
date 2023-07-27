@@ -12,6 +12,7 @@ app.use(
     credentials: true,
   }),
 );
+
 // read JSON bodies
 app.use(express.json());
 

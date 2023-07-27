@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
 import {
@@ -58,6 +59,10 @@ const CryptoTransaction = () => {
 
   const [state, setState] = useAppState();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setState({});
+  }, [setState]);
 
   const saveData = async (data) => {
     setState({ ...state, ...data });
