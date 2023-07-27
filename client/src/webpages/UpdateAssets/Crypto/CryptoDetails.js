@@ -40,7 +40,7 @@ const CryptoDetails = () => {
                   setFieldValue("security", event.target.value)
                 }
                 error={!!errors.security && !!touched.security}
-                helperText={errors.security && touched.security ? "Please input the name of the cryptocurrency. No numbers allowed." : "Required"}
+                helperText={errors.security && touched.security ? "Please input the name of the cryptocurrency. No numbers allowed." : "Name of the cryptocurrency i.e. Bitcoin"}
               />
               <TextField
                 label="Ticker"
@@ -50,7 +50,7 @@ const CryptoDetails = () => {
                   setFieldValue("ticker", event.target.value)
                 }
                 error={!!errors.ticker && !!touched.ticker}
-                helperText={errors.ticker && touched.ticker ? "Please input the ticker of the cryptocurrency. No numbers allowed." : "Required"}
+                helperText={errors.ticker && touched.ticker ? "Please input the ticker of the cryptocurrency. No numbers allowed." : "Ticker of the cryptocurrency i.e. BTC"}
               />
 
               <Button
