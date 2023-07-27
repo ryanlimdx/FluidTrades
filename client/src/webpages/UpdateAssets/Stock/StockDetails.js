@@ -38,7 +38,6 @@ const StockDetails = () => {
               <TextField
                 label="Sector"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("sector", event.target.value)
@@ -49,7 +48,6 @@ const StockDetails = () => {
               <TextField
                 label="Equity"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("security", event.target.value)
@@ -60,7 +58,6 @@ const StockDetails = () => {
               <TextField
                 label="Ticker"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("ticker", event.target.value)
@@ -71,7 +68,6 @@ const StockDetails = () => {
               <TextField
                 label="Currency"
                 id="outlined-helperText"
-                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("currency", event.target.value)
