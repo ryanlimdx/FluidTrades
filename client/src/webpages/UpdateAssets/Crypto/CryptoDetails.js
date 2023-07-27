@@ -11,8 +11,8 @@ const CryptoDetails = () => {
   };
 
   const detailsSchema = yup.object().shape({
-    security: yup.string().required("Required"),
-    ticker: yup.string().required("Required"),
+    security: yup.string().required("Required").matches(/^[A-z]+$/),
+    ticker: yup.string().required("Required").matches(/^[A-z]+$/),
   })
 
   const [state, setState] = useAppState();
@@ -40,7 +40,7 @@ const CryptoDetails = () => {
                   setFieldValue("security", event.target.value)
                 }
                 error={!!errors.security && !!touched.security}
-                helperText={errors.security && touched.security ? "Required" : undefined}
+                helperText={errors.security && touched.security ? "Please input the name of the cryptocurrency. No numbers allowed." : "Required"}
               />
               <TextField
                 label="Ticker"
@@ -50,7 +50,7 @@ const CryptoDetails = () => {
                   setFieldValue("ticker", event.target.value)
                 }
                 error={!!errors.ticker && !!touched.ticker}
-                helperText={errors.ticker && touched.ticker ? "Required" : undefined}
+                helperText={errors.ticker && touched.ticker ? "Please input the ticker of the cryptocurrency. No numbers allowed." : "Required"}
               />
 
               <Button

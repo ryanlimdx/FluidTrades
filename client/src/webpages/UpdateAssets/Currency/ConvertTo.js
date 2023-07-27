@@ -12,9 +12,9 @@ const ConvertTo = () => {
   };
 
   const conversionSchema = yup.object().shape({
-    currency: yup.string().required("Required"),
+    currency: yup.string().required("Required").matches(/^[A-z]+$/),
     amount: yup.number().required("Required"),
-    commissions: yup.number(),
+    commissions: yup.number() ,
   })
 
   const [state, setState] = useAppState();
@@ -41,7 +41,7 @@ const ConvertTo = () => {
                 required
                 onChange={(event) => setFieldValue("currency", event.target.value)}
                 error={!!errors.currency && !!touched.currency}
-                helperText={errors.currency && touched.currency ? "Required" : undefined}
+                helperText={errors.currency && touched.currency ? "Please input only alphabetic codes." : "Required"}
               />
 
               <TextField
@@ -51,7 +51,7 @@ const ConvertTo = () => {
                 margin="normal"
                 onChange={(event) => setFieldValue("amount", event.target.value)}
                 error={!!errors.amount && !!touched.amount}
-                helperText={errors.amount && touched.amount ? "Please key in a number! Currency symbols need not be included." : undefined}
+                helperText={errors.amount && touched.amount ? "Please key in a number! Currency symbols need not be included." : "Required"}
               />
 
               <TextField

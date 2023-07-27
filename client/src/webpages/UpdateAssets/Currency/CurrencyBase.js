@@ -18,7 +18,7 @@ const CurrencyBase = () => {
   };
 
   const baseCurrencySchema = yup.object().shape({
-    baseCurrency: yup.string().required("Required"),
+    baseCurrency: yup.string().required("Required").matches(/^[A-z]+$/),
     baseAmount: yup.number().required("Required"),
     commissions: yup.number(),
   });
@@ -54,8 +54,8 @@ const CurrencyBase = () => {
                 id="outlined-helperText"
                 margin="normal"
                 onChange={(event) => setFieldValue("baseCurrency", event.target.value)}
-                error={!!errors.baseCrrency && !!touched.baseCurrency}
-                helperText={errors.baseCurrency && touched.baseCurrency ? "Required" : undefined}
+                error={!!errors.baseCurrency && !!touched.baseCurrency}
+                helperText={errors.baseCurrency && touched.baseCurrency ? "Please input only alphabetic codes." : "Required"}
               />
 
               <TextField
@@ -64,7 +64,7 @@ const CurrencyBase = () => {
                 margin="normal"
                 onChange={(event) => setFieldValue("baseAmount", event.target.value)}
                 error={!!errors.baseAmount && !!touched.baseAmount}
-                helperText={errors.baseAmount && touched.baseAmount ? "Please key in a number! Currency symbols need not be included." : undefined}
+                helperText={errors.baseAmount && touched.baseAmount ? "Please key in a number! Currency symbols need not be included." : "Required"}
               />
 
               {/* include field for commissions if it is a deposit/ withdraw transactionType */}

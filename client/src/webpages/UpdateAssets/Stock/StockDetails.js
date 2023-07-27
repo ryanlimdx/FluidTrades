@@ -13,10 +13,10 @@ const StockDetails = () => {
   };
 
   const detailsSchema = yup.object().shape({
-    sector: yup.string().required("Required"),
-    security: yup.string().required("Required"),
+    sector: yup.string().required("Required").matches(/^[A-z]+$/),
+    security: yup.string().required("Required").matches(/^[A-z]+$/),
     ticker: yup.string().required("Required"),
-    currency: yup.string().required("Required"),
+    currency: yup.string().required("Required").matches(/^[A-z]+$/),
   })
 
   const [state, setState] = useAppState();
@@ -38,43 +38,46 @@ const StockDetails = () => {
               <TextField
                 label="Sector"
                 id="outlined-helperText"
-                // required
+                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("sector", event.target.value)
                 }
                 error={!!errors.sector && !!touched.sector}
-                helperText={errors.sector && touched.sector ? "Required" : undefined}
+                helperText={errors.sector && touched.sector ? "Please key in only alphabetical letters!" : "Required"}
               />
               <TextField
                 label="Equity"
                 id="outlined-helperText"
+                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("security", event.target.value)
                 }
                 error={!!errors.security && !!touched.security}
-                helperText={errors.security && touched.security ? "Required" : undefined}
+                helperText={errors.security && touched.security ? "Please key in only alphabetical letters!" : "Required"}
               />
               <TextField
                 label="Ticker"
                 id="outlined-helperText"
+                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("ticker", event.target.value)
                 }
                 error={!!errors.ticker && !!touched.ticker}
-                helperText={errors.ticker && touched.ticker ? "Required" : undefined}
+                helperText={errors.ticker && touched.ticker ? "Required" : "Required"}
               />
               <TextField
                 label="Currency"
                 id="outlined-helperText"
+                required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("currency", event.target.value)
                 }
                 error={!!errors.currency && !!touched.currency}
-                helperText={errors.currency && touched.currency ? "Required" : undefined}
+                helperText={errors.currency && touched.currency ? "Please input only alphabetic codes." : "Required"}
               />
 
               <Button
