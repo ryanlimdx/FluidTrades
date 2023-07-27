@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../../../context/state";
 import {
@@ -59,6 +60,10 @@ const CryptoTransaction = () => {
   const [state, setState] = useAppState();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setState({});
+  }, [setState]);
+
   const saveData = async (data) => {
     setState({ ...state, ...data });
     navigate("/update-assets/crypto/details");
@@ -68,6 +73,10 @@ const CryptoTransaction = () => {
     <Box>
       <Typography variant="h1">
         Hmm, what type of transaction did you do today?
+      </Typography>
+
+      <Typography variant="caption">
+        Please finish the form in a single seating. If you exit or logout, all progress will be lost.
       </Typography>
 
       <Formik onSubmit={saveData} initialValues={initialValues}>

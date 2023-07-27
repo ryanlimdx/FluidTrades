@@ -16,7 +16,7 @@ const StockDetails = () => {
     sector: yup.string().required("Required"),
     security: yup.string().required("Required"),
     ticker: yup.string().required("Required"),
-    currency: yup.string().required("Required"),
+    currency: yup.string().required("Required").matches(/^[A-z]+$/),
   })
 
   const [state, setState] = useAppState();
@@ -38,7 +38,6 @@ const StockDetails = () => {
               <TextField
                 label="Sector"
                 id="outlined-helperText"
-                // required
                 margin="normal"
                 onChange={(event) =>
                   setFieldValue("sector", event.target.value)
@@ -54,7 +53,7 @@ const StockDetails = () => {
                   setFieldValue("security", event.target.value)
                 }
                 error={!!errors.security && !!touched.security}
-                helperText={errors.security && touched.security ? "Required" : undefined}
+                helperText={errors.security && touched.security ? "Required" : undefined }
               />
               <TextField
                 label="Ticker"
@@ -74,7 +73,7 @@ const StockDetails = () => {
                   setFieldValue("currency", event.target.value)
                 }
                 error={!!errors.currency && !!touched.currency}
-                helperText={errors.currency && touched.currency ? "Required" : undefined}
+                helperText={errors.currency && touched.currency ? "Please input only alphabetic codes." : undefined}
               />
 
               <Button

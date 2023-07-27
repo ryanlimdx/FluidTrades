@@ -41,7 +41,7 @@ const TransactionDetails = () => {
                 margin="normal"
                 onChange={(event) => setFieldValue("price", event.target.value)}
                 error={!!errors.price && !!touched.price}
-                helperText={errors.price && touched.price ? "Please key in a number! Currency symbols need not be included." : undefined}
+                helperText={errors.price && touched.price ? "Please key in a number! Currency symbols need not be included." : undefined }
               />
 
               <TextField
@@ -52,7 +52,7 @@ const TransactionDetails = () => {
                   setFieldValue("quantity", event.target.value)
                 }
                 error = {!!errors.quantity && !!touched.quantity}
-                helperText={errors.quantity && touched.quantity ? "Please key in a number!" : undefined}
+                helperText={errors.quantity && touched.quantity ? "Please key in a number!" : undefined }
               />
 
               <TextField
