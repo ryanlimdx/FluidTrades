@@ -16,7 +16,7 @@ Ryan Lim Ding Xuan
 Access our documentation on Google Docs [here](https://docs.google.com/document/d/1gCoxk-lQIpuvIV7AXtsrBCL8j1hDQhX6AdY5lXQm_a8/edit?usp=sharing).
 
 ## Running the application locally
-Step 1. Clone the repository
+### Step 1. Clone the repository
 
 Fork the repository, then clone the repository locally by doing
 
@@ -24,7 +24,7 @@ Fork the repository, then clone the repository locally by doing
   git clone git@github.com:ryanlimdx/FluidTrades.git
 ```
   
-Step 2. Install Dependencies
+### Step 2. Install Dependencies
 In the root folder, do npm install (to install concurrently)
 
 ```
@@ -39,7 +39,7 @@ Then, do npm run build, to collectively install all dependencies for both fronte
 
 Alternatively, you can install the dependencies separately by doing cd client/server and doing npm install
 
-Step 3. Setup .env
+### Step 3. Setup .env
 
 To run the server you need to provide the .env variables:
 
@@ -49,7 +49,7 @@ To run the server you need to provide the .env variables:
 
 3. Copy the contents and paste it into the .env file with valid keys
 
-Step 4. Run the application
+### Step 4. Run the application
 
 With everything properly set up, you should be good to go! From the root directory, do npm start to run both front/backend at once
 
