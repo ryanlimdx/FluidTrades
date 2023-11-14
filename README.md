@@ -1,6 +1,6 @@
 # Fluid Trades
 
-A [web platform](https://fluidtrades.netlify.app/login) for casual and investors alike to consolidate their investments in one place. Developed using the MERN (MongoDB, Express, React, Node) tech stack.
+A [web platform](https://fluidtrades.netlify.app) for casual and investors alike to consolidate their investments in one place. Developed using the MERN (MongoDB, Express, React, Node) tech stack.
 
 ## Credits
 [Twelve Data API on RapidAPI](https://rapidapi.com/twelvedata/api/twelve-data1/), which provided us with real time data on charts and prices of assets. 
